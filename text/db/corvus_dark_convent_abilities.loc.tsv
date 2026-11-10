@@ -1,0 +1,10 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_dark_convent_abilities.loc		
+unit_abilities_onscreen_name_corv_passive_hexer_soul_harvest	Soul Harvest	false
+unit_abilities_tooltip_text_corv_passive_hexer_soul_harvest	Every soul torn from its body nearby feeds her power. The army's magic reserve grows by up to 0.1 per second while soldiers die close to her.	false
+special_ability_phases_onscreen_name_corv_passive_hexer_soul_harvest	Soul Harvest	false
+effects_description_corv_effect_ability_enable_hexer_soul_harvest	Passive ability: "Soul Harvest"	false
+effects_description_corv_effect_relations_with_morathi	Diplomatic relations: %+n with Morathi's Cult of Pleasure	false
+effect_bundles_localised_title_corv_diplomat_relations	Morathi's Envoys	false
+effect_bundles_localised_description_corv_diplomat_relations	Morathi's diplomats have been whispering in this faction's ear.	false
+effects_description_corv_effect_agent_enable_recruitment_dark_convent	Enables recruitment of Sorceresses	false

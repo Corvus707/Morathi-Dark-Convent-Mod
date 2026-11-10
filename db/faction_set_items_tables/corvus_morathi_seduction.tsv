@@ -1,0 +1,4 @@
+culture	faction	remove	set	subculture	id
+#faction_set_items_tables;1;db/faction_set_items_tables/corvus_morathi_seduction					
+	wh2_main_def_cult_of_pleasure	false	wh3_dcl27_seductive_influence		1907364521
+	wh2_main_def_cult_of_pleasure	true	slaanesh_seducible_factions		1907364522

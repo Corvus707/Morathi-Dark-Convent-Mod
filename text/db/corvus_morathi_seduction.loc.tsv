@@ -1,0 +1,5 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_seduction.loc
+rituals_display_name_corv_morathi_ritual_dominate	Dominate	false
+rituals_description_corv_morathi_ritual_dominate	The Hag Queen's whispers have done their work. Call in every debt, every secret, every stolen kiss, and make this faction a loyal [[img:icon_vassal]][[/img]]vassal of Naggaroth. The target faction must have reached 100% [[img:icon_seductive_influence]][[/img]]seductive influence. The total [[img:icon_seductive_influence]][[/img]]seductive influence required to reach this threshold depends on the target's race and number of settlements.	false
+campaign_group_rituals_unlock_text_corv_morathi_ritual_featurecorv_morathi_ritual_dominate	{{tr:campaign_group_rituals_unlock_text_wh3_dlc27_feature_seductive_influencewh3_main_ritual_sla_forced_vassalisation}}	false

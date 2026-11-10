@@ -26,6 +26,15 @@ local num_choice_rows = 5
 -- Prefix for UI-triggered actions, which go through the UITrigger event so every client in multiplayer applies them
 local action_prefix = "corv_dark_convent"
 local candidate_age = 22
+-- TESTING: offer the next dilemma straight away instead of on the next turn. Set back to false when done.
+local skip_dilemma_turn_wait = true
+-- TESTING: finish training as soon as the last dilemma is answered, ignoring the turns left. Set back to false when done.
+local skip_training_duration = true
+-- Morathi's trait: Sorceress heroes recruitable in any of her provinces
+local morathi_subtype = "wh2_main_def_morathi"
+local morathi_trait = "corv_trait_morathi_dark_convent"
+local old_convent_bundle_key = "corv_dark_convent"
+local convent_trait_prefix = "corv_trait_dark_convent_"
 
 -- training_state["<group>_<slot>"] = { group, slot, turns_left, resolved, pending, traits, subtype }
 local training_state = {}
@@ -62,12 +71,103 @@ local function default_subtype(group)
     end
 end
 
+-- Depth-first search for a descendant by id
+local function find_descendant(uic, id)
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        if child:Id() == id then
+            return child
+        end
+        local found = find_descendant(child, id)
+        if found then
+            return found
+        end
+    end
+end
+
+-- Vanilla bug, shown much more often now that Sorceress categories are usually empty: in the recruit panel the
+-- "no candidates" reason text spans the panel, is interactive, and sits over the top of the last lore button.
+-- Making it ignore the mouse lets clicks reach the button underneath.
+local function fix_recruit_panel_reason_text()
+    local panel = find_uicomponent(core:get_ui_root(), "character_panel")
+    local reason = panel and find_descendant(panel, "no_candidates_panel")
+    reason = reason and find_descendant(reason, "tx_reason")
+    if reason then
+        reason:SetInteractive(false)
+    end
+end
+
+-- all_traits() isn't documented; accept a Lua table or a list interface, of trait keys or trait objects
+local function trait_keys(character)
+    local traits = character:all_traits()
+    local keys = {}
+    local function add(trait)
+        if type(trait) == "string" then
+            table.insert(keys, trait)
+        elseif trait and trait.key then
+            table.insert(keys, trait:key())
+        end
+    end
+    if type(traits) == "table" then
+        for _, trait in ipairs(traits) do
+            add(trait)
+        end
+    elseif traits and traits.num_items then
+        for i = 0, traits:num_items() - 1 do
+            add(traits:item_at(i))
+        end
+    end
+    return keys
+end
+
+-- Characters spawned to the pool get a random starting trait from the game; Dark Convent graduates keep only theirs
+local function remove_non_convent_traits(character)
+    local keys = trait_keys(character)
+    local is_graduate = false
+    for _, key in ipairs(keys) do
+        if string.sub(key, 1, #convent_trait_prefix) == convent_trait_prefix then
+            is_graduate = true
+        end
+    end
+    if not is_graduate then
+        return
+    end
+    local lookup = cm:char_lookup_str(character)
+    for _, key in ipairs(keys) do
+        if string.sub(key, 1, #convent_trait_prefix) ~= convent_trait_prefix then
+            out("Dark Convent: removing starting trait "..key.." from recruited graduate")
+            cm:force_remove_trait(lookup, key)
+        end
+    end
+end
+
+-- Morathi's trait lets Sorceress heroes be recruited in any of her provinces
+local function give_morathi_convent_trait()
+    local faction = cm:get_faction(faction_key)
+    if not faction or faction:is_dead() then
+        return
+    end
+    -- Replaced by the trait; remove it from saves made before the change
+    if faction:has_effect_bundle(old_convent_bundle_key) then
+        cm:remove_effect_bundle(old_convent_bundle_key, faction_key)
+    end
+    local characters = faction:character_list()
+    for i = 0, characters:num_items() - 1 do
+        local character = characters:item_at(i)
+        if character:character_subtype_key() == morathi_subtype and not character:has_trait(morathi_trait) then
+            out("Dark Convent: giving "..morathi_trait.." to Morathi")
+            cm:force_add_trait(cm:char_lookup_str(character), morathi_trait)
+        end
+    end
+end
+
 local function finish_training(slot)
     local group = get_training_groups()[slot.group]
     local subtype = slot.subtype or default_subtype(group)
     out("Dark Convent: "..group.key.." slot "..slot.slot.." finished, spawning "..tostring(subtype).." with "..#slot.traits.." traits")
-    -- Arguments: faction, forename, family name, clan name, other name, age, male, agent, subtype, immortal, art set
-    local character_details = cm:spawn_character_to_pool(faction_key, "", "", "", "", candidate_age, false, group.agent, subtype, false, "")
+    -- Arguments: faction, forename, family name, clan name, other name, age, male, agent, subtype, immortal, art set.
+    -- "male" must match the subtype's art sets (generated from vanilla data) or the game picks an unrelated model.
+    local character_details = cm:spawn_character_to_pool(faction_key, "", "", "", "", candidate_age, group.male, group.agent, subtype, false, "")
     for _, trait in ipairs(slot.traits) do
         cm:force_add_trait_to_character_details(character_details, trait)
     end
@@ -76,7 +176,7 @@ end
 
 local function try_finish_training(slot)
     local group = get_training_groups()[slot.group]
-    if slot.turns_left <= 0 and not slot.pending and slot.resolved >= #group.dilemmas then
+    if (slot.turns_left <= 0 or skip_training_duration) and not slot.pending and slot.resolved >= #group.dilemmas then
         finish_training(slot)
     end
 end
@@ -90,6 +190,7 @@ local function start_training(group_index, slot_index)
     if faction:treasury() < group.cost then
         return
     end
+    out("Dark Convent: slot "..slot_key(group_index, slot_index).." started training ("..group.key..")")
     cm:treasury_mod(faction_key, -group.cost)
     -- The first dilemma is available straight away; the rest follow one per turn
     training_state[slot_key(group_index, slot_index)] = {
@@ -106,13 +207,16 @@ local function choose_dilemma_option(group_index, slot_index, choice_index)
     local slot = training_state[slot_key(group_index, slot_index)]
     local group = get_training_groups()[group_index]
     if not slot or not slot.pending then
+        out("Dark Convent: choice ignored, slot "..slot_key(group_index, slot_index)..(slot and " has no pending decision" or " is not training"))
         return
     end
     local dilemma = group.dilemmas[slot.resolved + 1]
     local choice = dilemma and dilemma.choices[choice_index]
     if not choice then
+        out("Dark Convent: choice ignored, no choice "..tostring(choice_index).." in dilemma "..tostring(dilemma and dilemma.key))
         return
     end
+    out("Dark Convent: slot "..slot_key(group_index, slot_index).." chose "..choice.key)
     for _, trait in ipairs(choice.traits) do
         table.insert(slot.traits, trait)
     end
@@ -120,7 +224,7 @@ local function choose_dilemma_option(group_index, slot_index, choice_index)
         slot.subtype = choice.subtype
     end
     slot.resolved = slot.resolved + 1
-    slot.pending = false
+    slot.pending = skip_dilemma_turn_wait and slot.resolved < #group.dilemmas
     try_finish_training(slot)
 end
 
@@ -138,6 +242,7 @@ end
 local function send_action(action, group_index, slot_index, choice_index)
     local faction = cm:get_faction(faction_key)
     local trigger = table.concat({action_prefix, action, group_index, slot_index, choice_index or 0}, ":")
+    out("Dark Convent: sending "..trigger)
     CampaignUI.TriggerCampaignScriptEvent(faction:command_queue_index(), trigger)
 end
 
@@ -260,12 +365,22 @@ local function refresh_dilemma_box(panel)
 
     local slot = selected_slot and training_state[slot_key(selected_slot.group, selected_slot.slot)]
     local group = slot and get_training_groups()[slot.group]
-    local dilemma = slot and group and slot.pending and group.dilemmas[slot.resolved + 1]
+    -- nil (not false) when there's nothing to decide, so the visibility checks below work
+    local dilemma = nil
+    if slot and group and slot.pending then
+        dilemma = group.dilemmas[slot.resolved + 1]
+    end
 
     active_holder:SetVisible(dilemma ~= nil)
     no_dilemma:SetVisible(dilemma == nil)
     if not dilemma then
-        set_text(no_dilemma, slot and "This candidate has no decision to make this turn." or "Select a candidate in training to see the decisions she faces.")
+        local message = "Select a candidate in training to see the decisions she faces."
+        if slot and group and slot.resolved >= #group.dilemmas then
+            message = "Her training is decided. She will join your forces in "..slot.turns_left.." turn(s)."
+        elseif slot then
+            message = "She is considering her last lesson. Her next decision comes next turn."
+        end
+        set_text(no_dilemma, message)
         return
     end
 
@@ -444,6 +559,8 @@ local function button_check_callback()
 end
 
 cm:add_first_tick_callback(function ()
+    give_morathi_convent_trait()
+
     core:progress_on_loading_screen_dismissed(function ()
         cm:real_callback(button_check_callback, 500, "corvus_morathi_add_court_button")
     end)
@@ -491,6 +608,7 @@ cm:add_first_tick_callback(function ()
             return string.sub(context:trigger(), 1, #action_prefix + 1) == action_prefix..":"
         end,
         function (context)
+            out("Dark Convent: received "..context:trigger())
             handle_action(context:trigger())
             refresh_training_ui()
         end,
@@ -505,6 +623,37 @@ cm:add_first_tick_callback(function ()
         function ()
             advance_training()
             refresh_training_ui()
+        end,
+        true)
+
+    core:add_listener(
+        "corvus_dark_convent_recruit_panel_opened",
+        "PanelOpenedCampaign",
+        function (context)
+            return context.string == "character_panel"
+        end,
+        function ()
+            -- Next tick, once the panel's contents exist
+            cm:callback(function ()
+                local ok, err = pcall(fix_recruit_panel_reason_text)
+                if not ok then
+                    out("Dark Convent: error fixing recruit panel: "..tostring(err))
+                end
+            end, 0.1)
+        end,
+        true)
+
+    core:add_listener(
+        "corvus_dark_convent_graduate_recruited",
+        "CharacterRecruited",
+        function (context)
+            return context:character():faction():name() == faction_key
+        end,
+        function (context)
+            local ok, err = pcall(remove_non_convent_traits, context:character())
+            if not ok then
+                out("Dark Convent: error removing starting traits: "..tostring(err))
+            end
         end,
         true)
 
@@ -550,6 +699,7 @@ cm:add_first_tick_callback(function ()
         end,
         function (context)
             local choice_index = ancestor_index(UIComponent(context.component), "choice")
+            out("Dark Convent: choice "..tostring(choice_index).." clicked, selected slot "..(selected_slot and slot_key(selected_slot.group, selected_slot.slot) or "none"))
             if choice_index and selected_slot then
                 send_action("choose", selected_slot.group, selected_slot.slot, choice_index)
             end

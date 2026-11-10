@@ -16,3 +16,4 @@ corv_morathi_ritual_feature	morathi_actions_t4_convert_climate		0	true
 corv_morathi_ritual_feature	morathi_actions_t5_declare_war		0	true
 corv_morathi_ritual_feature	morathi_actions_t5_intercept_diplomacy		0	true
 corv_morathi_ritual_feature	morathi_actions_t6_raze_province		0	true
+corv_morathi_ritual_feature	corv_morathi_ritual_dominate		0	true

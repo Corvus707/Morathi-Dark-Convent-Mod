@@ -1,0 +1,5 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_dark_convent					
+corv_effect_ability_enable_hexer_soul_harvest	general_ability.png	1	general_ability.png	battle	true
+corv_effect_relations_with_morathi	diplomacy.png	3	diplomacy.png	campaign	true
+corv_effect_agent_enable_recruitment_dark_convent	wizard.png	3	wizard.png	campaign	true
