@@ -1,0 +1,28 @@
+key	no_going_back_level	hidden	precedence	icon	ui_priority	pre_battle_speech_parameter	remove_on_skill_reset
+#character_traits_tables;3;db/character_traits_tables/corvus_dark_convent							
+corv_trait_dark_convent_assassin	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_assassin_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_nimble	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_nimble_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_wayfarer	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_wayfarer_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_gifted	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_gifted_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_hexer	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_hexer_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_taskmistress	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_taskmistress_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_cunning	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_cunning_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_depraved	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_depraved_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_supremacist	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_supremacist_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_corrupt	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_corrupt_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_diplomat	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_diplomat_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_gatherer	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_gatherer_hero	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_learned	1	false	1	dark_elves	0		false
+corv_trait_dark_convent_learned_hero	1	false	1	dark_elves	0		false
