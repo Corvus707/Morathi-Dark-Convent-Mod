@@ -8,6 +8,8 @@ local button_name = "button_corvus_morathi_court"
 local button_icon = "ui/skins/default/icon_gift_of_slaanesh.png"
 local button_tooltip = "The Dark Convent||Enter the Dark Convent to train spellcasters and acquire character traits."
 local escape_key_name = "corvus_morathi_court_escape"
+-- Gives the faction its character training slots (effects in effect_bundles_to_effects_junctions)
+local training_bundle_key = "corvus_dark_convent_training"
 
 -- Top-level UI (HUD, other panels) hidden while the court is open, restored on close
 local hidden_components = {}
@@ -88,7 +90,24 @@ local function close_panel()
     cm:release_escape_key_with_callback(escape_key_name)
 end
 
+local function apply_training_bundle()
+    local faction = cm:get_faction(faction_key)
+    if faction and not faction:is_dead() and not faction:has_effect_bundle(training_bundle_key) then
+        out("Applying "..training_bundle_key.." to "..faction_key)
+        cm:apply_effect_bundle(training_bundle_key, faction_key, 0)
+    end
+end
+
+-- Logs what the training panel sees, to tell missing slots apart from missing groups
+local function log_training_state()
+    local faction = cm:get_faction(faction_key)
+    out("Dark Convent: "..faction_key.." has "..training_bundle_key..": "..tostring(faction and faction:has_effect_bundle(training_bundle_key)))
+    local ok, result = pcall(common.get_context_value, "CcoCampaignFaction", faction_key, "CharacterTrainingGroupList.Size")
+    out("Dark Convent: training group count: "..(ok and tostring(result) or ("query failed: "..tostring(result))))
+end
+
 local function open_panel()
+    log_training_state()
     local panel = get_panel()
     if not panel then
         out("Creating "..panel_name)
@@ -134,6 +153,8 @@ local function button_check_callback()
 end
 
 cm:add_first_tick_callback(function ()
+    apply_training_bundle()
+
     core:progress_on_loading_screen_dismissed(function ()
         cm:real_callback(button_check_callback, 500, "corvus_morathi_add_court_button")
     end)

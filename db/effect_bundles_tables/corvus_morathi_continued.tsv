@@ -1,3 +1,4 @@
 key	localised_description	localised_title	bundle_target	priority	ui_icon	is_global_effect	show_in_3d_space	owner_only
 #effect_bundles_tables;4;db/effect_bundles_tables/corvus_morathi_continued								
 morathi_actions_t1_kidnap_slaves			faction	0		false	false	true
+corvus_dark_convent_training			faction	0		false	false	true
