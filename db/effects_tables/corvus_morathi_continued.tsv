@@ -2,3 +2,5 @@ effect	icon	priority	icon_negative	category	is_positive_value_good
 #effects_tables;0;db/effects_tables/corvus_morathi_continued					
 morathi_pooled_resource_web_of_power_cost	vmp_manipulation.png	1	vmp_manipulation.png	campaign	true
 morathi_pooled_resource_web_of_power_buildings	vmp_manipulation.png	1	vmp_manipulation.png	campaign	true
+corvus_effect_dark_convent_training_slot_sorceress	kislev_ice_court.png	1	kislev_ice_court.png	campaign	true
+corvus_effect_dark_convent_training_slot_supreme_sorceress	kislev_ice_court.png	1	kislev_ice_court.png	campaign	true
