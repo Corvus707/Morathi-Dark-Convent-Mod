@@ -8,17 +8,12 @@ corvus_dark_convent_data = {
 		duration = 5,
 		cost = 2000,
 		dilemmas = {
-			{ key = "corv_character_training_dilemma_sorceress_1", choices = {
-				{ key = "corv_character_training_dilemma_sorceress_1_first", traits = {"corv_trait_dark_convent_corrupt_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_1_second", traits = {"corv_trait_dark_convent_diplomat_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_1_third", traits = {"corv_trait_dark_convent_gatherer_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_1_fourth", traits = {"corv_trait_dark_convent_learned_hero"} },
-			} },
-			{ key = "corv_character_training_dilemma_sorceress_2", choices = {
-				{ key = "corv_character_training_dilemma_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_2_second", traits = {"corv_trait_dark_convent_cunning_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_2_third", traits = {"corv_trait_dark_convent_depraved_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_2_fourth", traits = {"corv_trait_dark_convent_supremacist_hero"} },
+			{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken", choices = {
+				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_first", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_dark" },
+				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_second", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_fire" },
+				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_third", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_shadow" },
+				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_fourth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_sorceress_beasts" },
+				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_fifth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_sorceress_death" },
 			} },
 			{ key = "corv_character_training_dilemma_sorceress_3", choices = {
 				{ key = "corv_character_training_dilemma_sorceress_3_first", traits = {"corv_trait_dark_convent_assassin_hero"} },
@@ -27,12 +22,17 @@ corvus_dark_convent_data = {
 				{ key = "corv_character_training_dilemma_sorceress_3_fourth", traits = {"corv_trait_dark_convent_gifted_hero"} },
 				{ key = "corv_character_training_dilemma_sorceress_3_fifth", traits = {"corv_trait_dark_convent_hexer_hero"} },
 			} },
-			{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken", choices = {
-				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_first", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_dark" },
-				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_second", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_fire" },
-				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_third", traits = {}, subtype = "corv_dc_wh2_main_def_sorceress_shadow" },
-				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_fourth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_sorceress_beasts" },
-				{ key = "corv_character_training_dilemma_sorceress_the_path_once_taken_fifth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_sorceress_death" },
+			{ key = "corv_character_training_dilemma_sorceress_2", choices = {
+				{ key = "corv_character_training_dilemma_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_2_second", traits = {"corv_trait_dark_convent_cunning_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_2_third", traits = {"corv_trait_dark_convent_depraved_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_2_fourth", traits = {"corv_trait_dark_convent_supremacist_hero"} },
+			} },
+			{ key = "corv_character_training_dilemma_sorceress_1", choices = {
+				{ key = "corv_character_training_dilemma_sorceress_1_first", traits = {"corv_trait_dark_convent_corrupt_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_1_second", traits = {"corv_trait_dark_convent_diplomat_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_1_third", traits = {"corv_trait_dark_convent_gatherer_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_1_fourth", traits = {"corv_trait_dark_convent_learned_hero"} },
 			} },
 		},
 	},
@@ -44,17 +44,12 @@ corvus_dark_convent_data = {
 		duration = 5,
 		cost = 3000,
 		dilemmas = {
-			{ key = "corv_character_training_dilemma_supreme_sorceress_1", choices = {
-				{ key = "corv_character_training_dilemma_supreme_sorceress_1_first", traits = {"corv_trait_dark_convent_corrupt"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_1_second", traits = {"corv_trait_dark_convent_diplomat"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_1_third", traits = {"corv_trait_dark_convent_gatherer"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_1_fourth", traits = {"corv_trait_dark_convent_learned"} },
-			} },
-			{ key = "corv_character_training_dilemma_supreme_sorceress_2", choices = {
-				{ key = "corv_character_training_dilemma_supreme_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_2_second", traits = {"corv_trait_dark_convent_cunning"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_2_third", traits = {"corv_trait_dark_convent_depraved"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_2_fourth", traits = {"corv_trait_dark_convent_supremacist"} },
+			{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach", choices = {
+				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_first", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_dark" },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_second", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_fire" },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_third", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_shadow" },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_fourth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_beasts" },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_fifth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_death" },
 			} },
 			{ key = "corv_character_training_dilemma_supreme_sorceress_3", choices = {
 				{ key = "corv_character_training_dilemma_supreme_sorceress_3_first", traits = {"corv_trait_dark_convent_assassin"} },
@@ -63,12 +58,17 @@ corvus_dark_convent_data = {
 				{ key = "corv_character_training_dilemma_supreme_sorceress_3_fourth", traits = {"corv_trait_dark_convent_gifted"} },
 				{ key = "corv_character_training_dilemma_supreme_sorceress_3_fifth", traits = {"corv_trait_dark_convent_hexer"} },
 			} },
-			{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach", choices = {
-				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_first", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_dark" },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_second", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_fire" },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_third", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_shadow" },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_fourth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_beasts" },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_disciplined_approach_fifth", traits = {}, subtype = "corv_dc_wh2_dlc10_def_supreme_sorceress_death" },
+			{ key = "corv_character_training_dilemma_supreme_sorceress_2", choices = {
+				{ key = "corv_character_training_dilemma_supreme_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_2_second", traits = {"corv_trait_dark_convent_cunning"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_2_third", traits = {"corv_trait_dark_convent_depraved"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_2_fourth", traits = {"corv_trait_dark_convent_supremacist"} },
+			} },
+			{ key = "corv_character_training_dilemma_supreme_sorceress_1", choices = {
+				{ key = "corv_character_training_dilemma_supreme_sorceress_1_first", traits = {"corv_trait_dark_convent_corrupt"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_1_second", traits = {"corv_trait_dark_convent_diplomat"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_1_third", traits = {"corv_trait_dark_convent_gatherer"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_1_fourth", traits = {"corv_trait_dark_convent_learned"} },
 			} },
 		},
 	},

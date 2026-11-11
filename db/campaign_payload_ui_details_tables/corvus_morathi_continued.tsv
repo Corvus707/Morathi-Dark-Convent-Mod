@@ -1,6 +1,2 @@
 component	icon	state	sort_order
 #campaign_payload_ui_details_tables;2;db/campaign_payload_ui_details_tables/corvus_morathi_continued			
-dummy_morathi_actions_t1_kidnap_slaves	ui/skins/default/icon_slaves.png	default	1
-dummy_morathi_actions_xp_0_character	ui/campaign ui/effect_bundles/experience.png	default	1
-dummy_morathi_diplo_penalty	ui/campaign ui/effect_bundles/diplomacy.png	default	1
-dummy_morathi_growth_penalty	ui/campaign ui/effect_bundles/diplomacy.png	default	1

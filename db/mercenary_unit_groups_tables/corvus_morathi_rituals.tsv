@@ -1,0 +1,4 @@
+chance_to_replenish	key	max_count	unit_record	use_partial_replenishment	max_replenish_per_turn	ui_order
+#mercenary_unit_groups_tables;3;db/mercenary_unit_groups_tables/corvus_morathi_rituals						
+0.0000	corv_morathi_summon_daemonette	10	wh3_main_sla_inf_daemonette_0	false	0.0000	0
+0.0000	corv_morathi_summon_keeper_of_secrets	4	wh3_main_sla_mon_keeper_of_secrets_0	false	0.0000	1

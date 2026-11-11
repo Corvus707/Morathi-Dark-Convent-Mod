@@ -7,9 +7,21 @@ local button_icon = "ui/skins/default/icon_gift_of_slaanesh.png"
 local button_tooltip = "Cult of Pleasure||Seduce enemies or manipulate the winds of magic to your advantage."
 local escape_key_name = "corvus_morathi_panel_escape"
 
--- Vanilla panels that may open alongside ours without closing it (e.g. while picking a ritual target)
+-- Vanilla panels that may open alongside ours without closing it. Clicking a settlement or army to pick a ritual
+-- target opens its panel, and closing ours would turn targeting off and lose the target.
 local panels_allowed_alongside = {
+    settlement_panel = true,
+    units_panel = true,
+    events = true,
 }
+
+-- Ritual pages, switched by the tabs above the panel. Each list shows the rituals whose key contains its filter
+-- (set in the layout): action_list = morathi_dark_magic_, action_list_manipulations = morathi_actions_
+local ritual_pages = {
+    { tab = "tab_dark_magic", list = "action_list", title = "Dark Magic" },
+    { tab = "tab_manipulations", list = "action_list_manipulations", title = "Manipulations" },
+}
+local current_page = 1
 
 local function get_panel()
     return find_uicomponent(core:get_ui_root(), panel_name)
@@ -28,6 +40,63 @@ local function set_button_selected(selected)
     local button = get_button()
     if button then
         button:SetState(selected and "selected" or "active")
+    end
+end
+
+-- Depth-first search for a descendant by id
+local function find_descendant(uic, id)
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        if child:Id() == id then
+            return child
+        end
+        local found = find_descendant(child, id)
+        if found then
+            return found
+        end
+    end
+end
+
+-- Text belongs to a single state, so set it in every state or a state change brings back the layout's text
+local function set_text(uic, text)
+    local ok = pcall(function ()
+        local current_state = uic:CurrentState()
+        for i = 0, uic:NumStates() - 1 do
+            uic:SetState(uic:GetStateByIndex(i))
+            uic:SetStateText(text, "")
+        end
+        uic:SetState(current_state)
+    end)
+    if not ok then
+        uic:SetStateText(text, "")
+    end
+end
+
+local function show_page(index)
+    local panel = get_panel()
+    if not panel then
+        return
+    end
+    current_page = index
+    for i, page in ipairs(ritual_pages) do
+        local list = find_descendant(panel, page.list)
+        if list then
+            list:SetVisible(i == index)
+        end
+        local tab = find_descendant(panel, page.tab)
+        if tab then
+            tab:SetTooltipText(page.title, true)
+            tab:SetState(i == index and "selected" or "active")
+        end
+    end
+    local title = find_descendant(panel, "tx_actions_title")
+    if title then
+        set_text(title, ritual_pages[index].title)
+    end
+    local list_box = find_descendant(panel, ritual_pages[index].list)
+    list_box = list_box and UIComponent(list_box:Parent())
+    if list_box then
+        list_box:Layout()
     end
 end
 
@@ -50,6 +119,10 @@ local function open_panel()
     panel:SetVisible(true)
     set_button_selected(true)
     cm:steal_escape_key_with_callback(escape_key_name, close_panel)
+    local ok, err = pcall(show_page, current_page)
+    if not ok then
+        out("Error showing ritual page: "..tostring(err))
+    end
 end
 
 local function get_or_create_button()
@@ -116,6 +189,29 @@ cm:add_first_tick_callback(function ()
             return context.string == "button_close" and is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
         end,
         close_panel,
+        true)
+
+    core:add_listener(
+        "corvus_morathi_panel_tab_clicked",
+        "ComponentLClickUp",
+        function (context)
+            for _, page in ipairs(ritual_pages) do
+                if context.string == page.tab then
+                    return is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
+                end
+            end
+            return false
+        end,
+        function (context)
+            for i, page in ipairs(ritual_pages) do
+                if context.string == page.tab then
+                    local ok, err = pcall(show_page, i)
+                    if not ok then
+                        out("Error showing ritual page: "..tostring(err))
+                    end
+                end
+            end
+        end,
         true)
 
     core:add_listener(

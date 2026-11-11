@@ -1,0 +1,89 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_rituals.loc		
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_1	Deals light damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_2	The target army suffers light attrition for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_3	Morathi's army gains +10% campaign movement range for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_4	Requires Morathi or a Sorceress of level 1 or higher	false
+rituals_display_name_morathi_dark_magic_withering_curse	Withering Curse	false
+rituals_description_morathi_dark_magic_withering_curse	The Hag Queen's curse eats at flesh and resolve alike.\\n\\n• Deals light damage to the target army\\n• The target army suffers light attrition for 3 turns\\n• Morathi's army gains +10% campaign movement range for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_1	For 3 turns, your armies in the target province gain +20% spell intensity and -20 Winds of Magic reserve per turn	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_2	Requires Morathi or a Sorceress of level 5 or higher	false
+rituals_display_name_morathi_dark_magic_amplify_magic	Amplify Magic	false
+rituals_description_morathi_dark_magic_amplify_magic	Morathi draws the winds of magic into one of her provinces.\\n\\n• For 3 turns, your armies in the target province gain +20% spell intensity and -20 Winds of Magic reserve per turn	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_1	Morathi teleports to the target settlement	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_2	Morathi's army is Tired and Silenced for 2 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_3	Requires Morathi of level 1 or higher	false
+rituals_display_name_morathi_dark_magic_shadow_walk	Shadow Walk	false
+rituals_description_morathi_dark_magic_shadow_walk	Morathi steps through shadow to stand among her faithful.\\n\\n• Morathi teleports to the target settlement\\n• Morathi's army is Tired and Silenced for 2 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_1	Adds 2 Daemonettes to your Daemonic Summoning pool, recruitable by your armies	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_2	Deals light damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_3	Requires Morathi or a Sorceress of level 5 or higher	false
+rituals_display_name_morathi_dark_magic_lesser_summoning	Lesser Summoning	false
+rituals_description_morathi_dark_magic_lesser_summoning	The Dark Prince sends lesser servants to Morathi's call.\\n\\n• Adds 2 Daemonettes to your Daemonic Summoning pool, recruitable by your armies\\n• Deals light damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_unholy_haste_1	Fully replenishes the target army's movement	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_unholy_haste_2	The target army is Tired for 1 turn	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_unholy_haste_3	Requires Morathi or a Sorceress of level 10 or higher	false
+rituals_display_name_morathi_dark_magic_unholy_haste	Unholy Haste	false
+rituals_description_morathi_dark_magic_unholy_haste	Dark sorcery drives the army onward without rest.\\n\\n• Fully replenishes the target army's movement\\n• The target army is Tired for 1 turn	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_1	The whole target army gains Vanguard Deployment, Stalk and Unspottable for 2 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_2	[PLACEHOLDER] Takes damage over time in battle while above 25% health (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_3	Requires Morathi or a Sorceress of level 15 or higher	false
+rituals_display_name_morathi_dark_magic_veil_of_shadows	Veil of Shadows	false
+rituals_description_morathi_dark_magic_veil_of_shadows	Shadows cloak the host as it marches to war.\\n\\n• The whole target army gains Vanguard Deployment, Stalk and Unspottable for 2 turns\\n• [PLACEHOLDER] Takes damage over time in battle while above 25% health (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_1	Adds a Keeper of Secrets to your Daemonic Summoning pool, recruitable by your armies	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_2	Deals major damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_3	Requires Morathi or a Sorceress of level 20 or higher	false
+rituals_display_name_morathi_dark_magic_greater_summoning	Greater Summoning	false
+rituals_description_morathi_dark_magic_greater_summoning	A Keeper of Secrets answers the summons, at a price.\\n\\n• Adds a Keeper of Secrets to your Daemonic Summoning pool, recruitable by your armies\\n• Deals major damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_1	Deals heavy damage to every garrison in the target province	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_2	Morathi's army is Exhausted for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_3	Requires Morathi of level 25 or higher	false
+rituals_display_name_morathi_dark_magic_cataclysm	Cataclysm	false
+rituals_description_morathi_dark_magic_cataclysm	Morathi unleashes her full power upon a province.\\n\\n• Deals heavy damage to every garrison in the target province\\n• Morathi's army is Exhausted for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_1	+300 Slaves	false
+campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_2	-15 growth in the target province for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_3	Worsens relations with the region's owner	false
+campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_4	Requires Morathi or a Sorceress of level 1 or higher	false
+rituals_display_name_morathi_actions_kidnap_slaves	Kidnap Slaves	false
+rituals_description_morathi_actions_kidnap_slaves	Raiders spirit away the unwary in the night.\\n\\n• +300 Slaves\\n• -15 growth in the target province for 3 turns\\n• Worsens relations with the region's owner	false
+campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_1	Reveals the target province and its neighbours	false
+campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_2	Requires Morathi or a Sorceress of level 1 or higher	false
+rituals_display_name_morathi_actions_druchii_spies	Druchii Spies	false
+rituals_description_morathi_actions_druchii_spies	Morathi's agents see everything.\\n\\n• Reveals the target province and its neighbours	false
+campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_1	The target army gains +25 seduce units budget and +1 unit seduction for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_2	[PLACEHOLDER] -25% seduction cost (no vanilla effect)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_3	Requires Morathi or a Sorceress of level 5 or higher	false
+rituals_display_name_morathi_actions_easier_seduction	Honeyed Words	false
+rituals_description_morathi_actions_easier_seduction	Every warrior has a price.\\n\\n• The target army gains +25 seduce units budget and +1 unit seduction for 3 turns\\n• [PLACEHOLDER] -25% seduction cost (no vanilla effect)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_1	[PLACEHOLDER] Permanently decreases a cult's discovery (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_2	Requires Morathi of level 1 or higher	false
+rituals_display_name_morathi_actions_support_cult	Shelter the Cult	false
+rituals_description_morathi_actions_support_cult	The faithful hide their secret worship well.\\n\\n• [PLACEHOLDER] Permanently decreases a cult's discovery (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_mark_1	The target lord receives the Gift of Slaanesh: +3 Seductive Influence per turn over their faction, +5 Slaanesh corruption in their province and -10% bribery cost for enemies in their province	false
+campaign_payload_ui_details_description_dummy_morathi_actions_mark_2	Improves relations with the target's faction	false
+campaign_payload_ui_details_description_dummy_morathi_actions_mark_3	Requires Morathi or a Sorceress of level 10 or higher	false
+rituals_display_name_morathi_actions_mark	Gift of Slaanesh	false
+rituals_description_morathi_actions_mark	A single touch, and they are His forever.\\n\\n• The target lord receives the Gift of Slaanesh: +3 Seductive Influence per turn over their faction, +5 Slaanesh corruption in their province and -10% bribery cost for enemies in their province\\n• Improves relations with the target's faction	false
+campaign_payload_ui_details_description_dummy_morathi_actions_corruption_1	+10 Slaanesh corruption in the target province for 5 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_corruption_2	Requires Morathi or a Sorceress of level 15 or higher	false
+rituals_display_name_morathi_actions_corruption	Seeds of Excess	false
+rituals_description_morathi_actions_corruption	Excess takes root wherever Morathi wills it.\\n\\n• +10 Slaanesh corruption in the target province for 5 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_1	[PLACEHOLDER] The target lord joins you and their army turns to Slaanesh (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_2	Requires Morathi or a Sorceress of level 20 or higher	false
+rituals_display_name_morathi_actions_seduce_lord	Seduce Lord	false
+rituals_description_morathi_actions_seduce_lord	Even the proudest lord can be made to kneel.\\n\\n• [PLACEHOLDER] The target lord joins you and their army turns to Slaanesh (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_1	Deals light damage to every garrison in the target province	false
+campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_2	[PLACEHOLDER] Spawns devotee armies and breaches walls (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_3	Requires Morathi or a Sorceress of level 25 or higher	false
+rituals_display_name_morathi_actions_devotee_uprising	Devotee Uprising	false
+rituals_description_morathi_actions_devotee_uprising	The hidden faithful rise as one.\\n\\n• Deals light damage to every garrison in the target province\\n• [PLACEHOLDER] Spawns devotee armies and breaches walls (not yet implemented)	false
+effect_bundles_localised_title_corv_ritual_withering_haste	Withering Curse	false
+effect_bundles_localised_title_corv_ritual_amplify_magic	Amplified Magic	false
+effect_bundles_localised_title_corv_ritual_tired_silenced	Shadow-Walked	false
+effect_bundles_localised_title_corv_ritual_tired	Tired	false
+effect_bundles_localised_title_corv_ritual_veil_of_shadows	Veil of Shadows	false
+effect_bundles_localised_title_corv_ritual_exhausted	Exhausted	false
+effect_bundles_localised_title_corv_ritual_kidnap_growth	Kidnappings	false
+effect_bundles_localised_title_corv_ritual_easier_seduction	Honeyed Words	false
+effect_bundles_localised_title_corv_ritual_corruption	Seeds of Excess	false
+effect_bundles_localised_title_corv_ritual_gift_of_slaanesh	Gift of Slaanesh	false

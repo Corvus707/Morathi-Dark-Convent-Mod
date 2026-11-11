@@ -1,0 +1,12 @@
+key	localised_description	localised_title	bundle_target	priority	ui_icon	is_global_effect	show_in_3d_space	owner_only
+#effect_bundles_tables;4;db/effect_bundles_tables/corvus_morathi_rituals								
+corv_ritual_withering_haste			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_amplify_magic			region	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_tired_silenced			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_tired			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_veil_of_shadows			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_exhausted			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_kidnap_growth			region	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_easier_seduction			force	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_corruption			region	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_gift_of_slaanesh			character	1	icon_gift_of_slaanesh.png	false	true	false
