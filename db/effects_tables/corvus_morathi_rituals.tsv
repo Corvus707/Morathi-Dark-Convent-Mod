@@ -1,0 +1,16 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_morathi_rituals					
+corv_effect_diplomatic_relations_slaanesh	diplomacy.png	5	diplomacy.png	campaign	true
+corv_effect_diplomatic_relations_chaos_norsca_beastmen	diplomacy.png	5	diplomacy.png	campaign	true
+corv_effect_seduce_units_cost	daemon/military_spending.png	70	daemon/military_spending.png	campaign	false
+corv_effect_druchii_armour	armour.png	401	armour.png	campaign	true
+corv_effect_druchii_melee_attack	melee_character.png	131	melee_character.png	campaign	true
+corv_effect_druchii_upkeep	military_spending.png	105	military_spending.png	campaign	false
+corv_effect_daemon_weapon_strength	weapon_damage.png	462	weapon_damage.png	campaign	true
+corv_effect_daemon_physical_resistance	resistance_physical.png	582	resistance_physical.png	campaign	true
+corv_effect_daemon_upkeep	military_spending.png	105	military_spending.png	campaign	false
+corv_effect_cult_spread_dummy	cult.png	999	cult.png	campaign	true
+corv_effect_cult_raise_disciple_army_dummy	cult.png	999	cult.png	campaign	true
+corv_effect_cult_loot_settlement_dummy	cult.png	999	cult.png	campaign	true
+corv_effect_cult_ritual_corruption_dummy	corruption_slaanesh.png	104	corruption_slaanesh.png	campaign	true
+corv_effect_cult_morathi_spell_mastery_dummy	wizard.png	2	wizard.png	campaign	true

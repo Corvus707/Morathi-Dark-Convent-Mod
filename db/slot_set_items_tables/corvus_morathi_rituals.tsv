@@ -1,0 +1,6 @@
+id	slot_template	slot_type	slot_set	building_level
+#slot_set_items_tables;2;db/slot_set_items_tables/corvus_morathi_rituals				
+1990000201	corv_morathi_cult	foreign	corv_morathi_slot_set_cult	
+1990000202	corv_morathi_cult	foreign	corv_morathi_slot_set_cult	
+1990000203	corv_morathi_cult	foreign	corv_morathi_slot_set_cult	
+1990000204	corv_morathi_cult	foreign	corv_morathi_slot_set_cult	

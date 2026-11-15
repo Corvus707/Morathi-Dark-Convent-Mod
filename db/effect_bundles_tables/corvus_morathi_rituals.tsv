@@ -10,3 +10,4 @@ corv_ritual_kidnap_growth			region	1	edict_def_read_dark_portents.png	false	fals
 corv_ritual_easier_seduction			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_corruption			region	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_gift_of_slaanesh			character	1	icon_gift_of_slaanesh.png	false	true	false
+corv_morathi_cult_morathi_magic			character	1	edict_def_read_dark_portents.png	false	false	true

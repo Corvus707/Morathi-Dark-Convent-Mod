@@ -1,0 +1,6 @@
+key	icon	sort_order	colour_r	colour_g	colour_b	show_in_ui	audio_switch
+#building_sets_tables;5;db/building_sets_tables/corvus_morathi_rituals							
+corv_morathi_set_cult_symbiotic	UI/Buildings/Icons/slaanesh_cat_cult.png	1	100	20	60	true	Infrastructure
+corv_morathi_set_cult_parasitic	UI/Buildings/Icons/cult_cat_sla_ritual.png	2	100	20	60	true	Infrastructure
+corv_morathi_set_cult_utility	UI/Buildings/Icons/cult_cat_magus.png	3	100	20	60	true	Infrastructure
+corv_morathi_set_cult_empowerment	UI/Buildings/Icons/slaanesh_cat_cult.png	4	100	20	60	true	Infrastructure

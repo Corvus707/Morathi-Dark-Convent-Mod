@@ -1,0 +1,17 @@
+chain	remove	set	super_chain
+#building_chain_set_items_tables;0;db/building_chain_set_items_tables/corvus_morathi_rituals			
+corv_morathi_cult_sym_slaves	false	corv_morathi_cult	
+corv_morathi_cult_sym_manipulation	false	corv_morathi_cult	
+corv_morathi_cult_sym_devotees	false	corv_morathi_cult	
+corv_morathi_cult_par_slaves	false	corv_morathi_cult	
+corv_morathi_cult_par_gold	false	corv_morathi_cult	
+corv_morathi_cult_par_manipulation	false	corv_morathi_cult	
+corv_morathi_cult_par_devotees	false	corv_morathi_cult	
+corv_morathi_cult_util_spread	false	corv_morathi_cult	
+corv_morathi_cult_util_army	false	corv_morathi_cult	
+corv_morathi_cult_util_loot	false	corv_morathi_cult	
+corv_morathi_cult_util_influence	false	corv_morathi_cult	
+corv_morathi_cult_emp_seduction	false	corv_morathi_cult	
+corv_morathi_cult_emp_winds	false	corv_morathi_cult	
+corv_morathi_cult_emp_druchii	false	corv_morathi_cult	
+corv_morathi_cult_emp_daemons	false	corv_morathi_cult	

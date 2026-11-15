@@ -1,0 +1,7 @@
+expression	key	display_only_active_effects	always_show_display_text
+#building_effect_context_expressions_tables;2;db/building_effect_context_expressions_tables/corvus_morathi_rituals			
+Region.Settlement.PrimaryBuilding.Level == 1	CorvHostSettlementLevel1	true	false
+Region.Settlement.PrimaryBuilding.Level == 2	CorvHostSettlementLevel2	true	false
+Region.Settlement.PrimaryBuilding.Level == 3	CorvHostSettlementLevel3	true	false
+Region.Settlement.PrimaryBuilding.Level == 4	CorvHostSettlementLevel4	true	false
+Region.Settlement.PrimaryBuilding.Level == 5	CorvHostSettlementLevel5	true	false
