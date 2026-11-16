@@ -1,15 +1,15 @@
 key	text	tooltip
 #Loc;1;text/db/corvus_morathi_rituals.loc		
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_1	Deals light damage to the target army	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_2	The target army suffers light attrition for 3 turns	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_3	Morathi's army gains +10% campaign movement range for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_1	Deals damage to the target army	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_2	The target army suffers attrition for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_3	Drawback: for 3 turns the target army gains +10% campaign movement range and +5% physical resistance	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_4	Requires Morathi or a Sorceress of level 1 or higher	false
 rituals_display_name_morathi_dark_magic_withering_curse	Withering Curse	false
-rituals_description_morathi_dark_magic_withering_curse	The Hag Queen's curse eats at flesh and resolve alike.\\n\\n• Deals light damage to the target army\\n• The target army suffers light attrition for 3 turns\\n• Morathi's army gains +10% campaign movement range for 3 turns	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_1	For 3 turns, your armies in the target province gain +20% spell intensity and -20 Winds of Magic reserve per turn	false
+rituals_description_morathi_dark_magic_withering_curse	The Hag Queen's curse eats at flesh and resolve alike.\\n\\n• Deals damage to the target army\\n• The target army suffers attrition for 3 turns\\n• Drawback: for 3 turns the target army gains +10% campaign movement range and +5% physical resistance	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_1	For 3 turns, every army in the target province, friend or foe, has +20% spell intensity and -20 Winds of Magic reserve per turn. Armies gain it while in the province and lose it when they leave	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_2	Requires Morathi or a Sorceress of level 5 or higher	false
 rituals_display_name_morathi_dark_magic_amplify_magic	Amplify Magic	false
-rituals_description_morathi_dark_magic_amplify_magic	Morathi draws the winds of magic into one of her provinces.\\n\\n• For 3 turns, your armies in the target province gain +20% spell intensity and -20 Winds of Magic reserve per turn	false
+rituals_description_morathi_dark_magic_amplify_magic	Morathi draws the winds of magic into one of her provinces.\\n\\n• For 3 turns, every army in the target province, friend or foe, has +20% spell intensity and -20 Winds of Magic reserve per turn. Armies gain it while in the province and lose it when they leave	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_1	Morathi teleports to the target settlement	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_2	Morathi's army is Tired and Silenced for 2 turns	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_3	Requires Morathi of level 1 or higher	false
@@ -26,42 +26,42 @@ campaign_payload_ui_details_description_dummy_morathi_dark_magic_unholy_haste_3	
 rituals_display_name_morathi_dark_magic_unholy_haste	Unholy Haste	false
 rituals_description_morathi_dark_magic_unholy_haste	Dark sorcery drives the army onward without rest.\\n\\n• Fully replenishes the target army's movement\\n• The target army is Tired for 1 turn	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_1	The whole target army gains Vanguard Deployment, Stalk and Unspottable for 2 turns	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_2	[PLACEHOLDER] Takes damage over time in battle while above 25% health (not yet implemented)	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_2	Drawback: its units take damage over time in battle while above 25% health	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_3	Requires Morathi or a Sorceress of level 15 or higher	false
 rituals_display_name_morathi_dark_magic_veil_of_shadows	Veil of Shadows	false
-rituals_description_morathi_dark_magic_veil_of_shadows	Shadows cloak the host as it marches to war.\\n\\n• The whole target army gains Vanguard Deployment, Stalk and Unspottable for 2 turns\\n• [PLACEHOLDER] Takes damage over time in battle while above 25% health (not yet implemented)	false
+rituals_description_morathi_dark_magic_veil_of_shadows	Shadows cloak the host as it marches to war.\\n\\n• The whole target army gains Vanguard Deployment, Stalk and Unspottable for 2 turns\\n• Drawback: its units take damage over time in battle while above 25% health	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_1	Adds a Keeper of Secrets to your Daemonic Summoning pool, recruitable by your armies	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_2	Deals major damage to the target army	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_3	Requires Morathi or a Sorceress of level 20 or higher	false
 rituals_display_name_morathi_dark_magic_greater_summoning	Greater Summoning	false
 rituals_description_morathi_dark_magic_greater_summoning	A Keeper of Secrets answers the summons, at a price.\\n\\n• Adds a Keeper of Secrets to your Daemonic Summoning pool, recruitable by your armies\\n• Deals major damage to the target army	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_1	Deals heavy damage to every garrison in the target province	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_1	Deals heavy damage to every garrison and every enemy army in the target province	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_2	Morathi's army is Exhausted for 3 turns	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_3	Requires Morathi of level 25 or higher	false
 rituals_display_name_morathi_dark_magic_cataclysm	Cataclysm	false
-rituals_description_morathi_dark_magic_cataclysm	Morathi unleashes her full power upon a province.\\n\\n• Deals heavy damage to every garrison in the target province\\n• Morathi's army is Exhausted for 3 turns	false
+rituals_description_morathi_dark_magic_cataclysm	Morathi unleashes her full power upon a province.\\n\\n• Deals heavy damage to every garrison and every enemy army in the target province\\n• Morathi's army is Exhausted for 3 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_1	+300 Slaves	false
-campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_2	-15 growth in the target province for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_2	-6 control in the target province for 3 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_3	Worsens relations with the region's owner	false
 campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_4	Requires Morathi or a Sorceress of level 1 or higher	false
 rituals_display_name_morathi_actions_kidnap_slaves	Kidnap Slaves	false
-rituals_description_morathi_actions_kidnap_slaves	Raiders spirit away the unwary in the night.\\n\\n• +300 Slaves\\n• -15 growth in the target province for 3 turns\\n• Worsens relations with the region's owner	false
-campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_1	Reveals the target province and its neighbours	false
+rituals_description_morathi_actions_kidnap_slaves	Raiders spirit away the unwary in the night.\\n\\n• +300 Slaves\\n• -6 control in the target province for 3 turns\\n• Worsens relations with the region's owner	false
+campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_1	Reveals all of the target region's owner's territory for 5 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_2	Requires Morathi or a Sorceress of level 1 or higher	false
 rituals_display_name_morathi_actions_druchii_spies	Druchii Spies	false
-rituals_description_morathi_actions_druchii_spies	Morathi's agents see everything.\\n\\n• Reveals the target province and its neighbours	false
-campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_1	The target army gains +25 seduce units budget and +1 unit seduction for 3 turns	false
-campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_2	[PLACEHOLDER] -25% seduction cost (no vanilla effect)	false
-campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_3	Requires Morathi or a Sorceress of level 5 or higher	false
+rituals_description_morathi_actions_druchii_spies	Morathi's agents see everything.\\n\\n• Reveals all of the target region's owner's territory for 5 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_1	The target army gains +25 seduce units budget, +1 unit seduction and -25% seduction cost for 3 turns	false
+campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_2	Requires Morathi or a Sorceress of level 5 or higher	false
 rituals_display_name_morathi_actions_easier_seduction	Honeyed Words	false
-rituals_description_morathi_actions_easier_seduction	Every warrior has a price.\\n\\n• The target army gains +25 seduce units budget and +1 unit seduction for 3 turns\\n• [PLACEHOLDER] -25% seduction cost (no vanilla effect)	false
+rituals_description_morathi_actions_easier_seduction	Every warrior has a price.\\n\\n• The target army gains +25 seduce units budget, +1 unit seduction and -25% seduction cost for 3 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_1	Founds a Cult of Pleasure with 4 building slots in the target region (a neutral or allied region without one)	false
-campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_2	Symbiotic buildings work openly with the region's owner	false
-campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_3	Parasitic buildings feed on the region in secret, but can be discovered	false
-campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_4	Utility buildings spread the cult and perform great rituals; Empowerment buildings strengthen your armies	false
-campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_5	Requires Morathi of level 1 or higher	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_2	+200 Devotees	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_3	Symbiotic buildings work openly with the region's owner	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_4	Parasitic buildings feed on the region in secret, but can be discovered	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_5	Utility buildings spread the cult and perform great rituals; Empowerment buildings strengthen your armies	false
+campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_6	Requires Morathi of level 1 or higher	false
 rituals_display_name_morathi_actions_support_cult	Establish Cult	false
-rituals_description_morathi_actions_support_cult	The faithful gather in secret to worship the Dark Prince.\\n\\n• Founds a Cult of Pleasure with 4 building slots in the target region (a neutral or allied region without one)\\n• Symbiotic buildings work openly with the region's owner\\n• Parasitic buildings feed on the region in secret, but can be discovered\\n• Utility buildings spread the cult and perform great rituals; Empowerment buildings strengthen your armies	false
+rituals_description_morathi_actions_support_cult	The faithful gather in secret to worship the Dark Prince.\\n\\n• Founds a Cult of Pleasure with 4 building slots in the target region (a neutral or allied region without one)\\n• +200 Devotees\\n• Symbiotic buildings work openly with the region's owner\\n• Parasitic buildings feed on the region in secret, but can be discovered\\n• Utility buildings spread the cult and perform great rituals; Empowerment buildings strengthen your armies	false
 campaign_payload_ui_details_description_dummy_morathi_actions_mark_1	The target lord receives the Gift of Slaanesh: +3 Seductive Influence per turn over their faction, +5 Slaanesh corruption in their province and -10% bribery cost for enemies in their province	false
 campaign_payload_ui_details_description_dummy_morathi_actions_mark_2	Improves relations with the target's faction	false
 campaign_payload_ui_details_description_dummy_morathi_actions_mark_3	Requires Morathi or a Sorceress of level 10 or higher	false
@@ -71,26 +71,29 @@ campaign_payload_ui_details_description_dummy_morathi_actions_corruption_1	+10 S
 campaign_payload_ui_details_description_dummy_morathi_actions_corruption_2	Requires Morathi or a Sorceress of level 15 or higher	false
 rituals_display_name_morathi_actions_corruption	Seeds of Excess	false
 rituals_description_morathi_actions_corruption	Excess takes root wherever Morathi wills it.\\n\\n• +10 Slaanesh corruption in the target province for 5 turns	false
-campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_1	[PLACEHOLDER] The target lord joins you and their army turns to Slaanesh (not yet implemented)	false
-campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_2	Requires Morathi or a Sorceress of level 20 or higher	false
+campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_1	The target lord and their whole army defect to you and receive the Gift of Slaanesh	false
+campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_2	Faction leaders and legendary lords resist: they only receive the Gift of Slaanesh	false
+campaign_payload_ui_details_description_dummy_morathi_actions_seduce_lord_3	Requires Morathi or a Sorceress of level 20 or higher	false
 rituals_display_name_morathi_actions_seduce_lord	Seduce Lord	false
-rituals_description_morathi_actions_seduce_lord	Even the proudest lord can be made to kneel.\\n\\n• [PLACEHOLDER] The target lord joins you and their army turns to Slaanesh (not yet implemented)	false
-campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_1	Deals light damage to every garrison in the target province	false
-campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_2	[PLACEHOLDER] Spawns devotee armies and breaches walls (not yet implemented)	false
+rituals_description_morathi_actions_seduce_lord	Even the proudest lord can be made to kneel.\\n\\n• The target lord and their whole army defect to you and receive the Gift of Slaanesh\\n• Faction leaders and legendary lords resist: they only receive the Gift of Slaanesh	false
+campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_1	Deals light damage to every garrison in the target province and breaches the walls of its settlements	false
+campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_2	Raises a disciple army of devotees next to the target settlement (no upkeep, cannot replenish, suffers attrition after 3 turns)	false
 campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_3	Requires Morathi or a Sorceress of level 25 or higher	false
 rituals_display_name_morathi_actions_devotee_uprising	Devotee Uprising	false
-rituals_description_morathi_actions_devotee_uprising	The hidden faithful rise as one.\\n\\n• Deals light damage to every garrison in the target province\\n• [PLACEHOLDER] Spawns devotee armies and breaches walls (not yet implemented)	false
-effect_bundles_localised_title_corv_ritual_withering_haste	Withering Curse	false
+rituals_description_morathi_actions_devotee_uprising	The hidden faithful rise as one.\\n\\n• Deals light damage to every garrison in the target province and breaches the walls of its settlements\\n• Raises a disciple army of devotees next to the target settlement (no upkeep, cannot replenish, suffers attrition after 3 turns)	false
+effect_bundles_localised_title_corv_ritual_withering_curse	Withering Curse	false
 effect_bundles_localised_title_corv_ritual_amplify_magic	Amplified Magic	false
 effect_bundles_localised_title_corv_ritual_tired_silenced	Shadow-Walked	false
 effect_bundles_localised_title_corv_ritual_tired	Tired	false
 effect_bundles_localised_title_corv_ritual_veil_of_shadows	Veil of Shadows	false
 effect_bundles_localised_title_corv_ritual_exhausted	Exhausted	false
-effect_bundles_localised_title_corv_ritual_kidnap_growth	Kidnappings	false
+effect_bundles_localised_title_corv_ritual_kidnap_control	Kidnappings	false
 effect_bundles_localised_title_corv_ritual_easier_seduction	Honeyed Words	false
 effect_bundles_localised_title_corv_ritual_corruption	Seeds of Excess	false
 effect_bundles_localised_title_corv_ritual_gift_of_slaanesh	Gift of Slaanesh	false
 effect_bundles_localised_title_corv_morathi_cult_morathi_magic	Dark Conduit	false
+effect_bundles_localised_title_corv_morathi_bundle_cult_disciple_army	Disciple Army	false
+effect_bundles_localised_title_corv_morathi_bundle_cult_disciple_army_fading	Fading Devotion	false
 building_sets_onscreen_name_corv_morathi_set_cult_symbiotic	Symbiotic	false
 building_sets_onscreen_description_corv_morathi_set_cult_symbiotic	Works openly with the region's owner.	false
 building_sets_onscreen_name_corv_morathi_set_cult_parasitic	Parasitic	false
@@ -102,12 +105,12 @@ building_sets_onscreen_description_corv_morathi_set_cult_empowerment	Devotees of
 building_chains_chain_tooltip_corv_morathi_cult_sym_slaves	Symbiotic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_sym_manipulation	Symbiotic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_sym_devotees	Symbiotic Cult	false
-building_chains_chain_tooltip_corv_morathi_cult_par_slaves	Parasitic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_par_gold	Parasitic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_par_manipulation	Parasitic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_par_devotees	Parasitic Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_util_spread	Utility Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_util_army	Utility Cult	false
+building_chains_chain_tooltip_corv_morathi_cult_util_vault	Utility Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_util_loot	Utility Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_util_influence	Utility Cult	false
 building_chains_chain_tooltip_corv_morathi_cult_emp_seduction	Empowerment Cult	false
@@ -141,15 +144,6 @@ building_description_texts_long_description_corv_morathi_cult_sym_devotees_2	Sym
 building_culture_variants_name_corv_morathi_cult_sym_devotees_3wh2_main_def_dark_elves	Shared Revels III	false
 building_short_description_texts_short_description_corv_morathi_cult_sym_devotees_3	The cult works openly, with the region owner's blessing.	false
 building_description_texts_long_description_corv_morathi_cult_sym_devotees_3	Symbiotic cult building.	false
-building_culture_variants_name_corv_morathi_cult_par_slaves_1wh2_main_def_dark_elves	Slave Raids I	false
-building_short_description_texts_short_description_corv_morathi_cult_par_slaves_1	The cult feeds on its host in secret.	false
-building_description_texts_long_description_corv_morathi_cult_par_slaves_1	Parasitic cult building.	false
-building_culture_variants_name_corv_morathi_cult_par_slaves_2wh2_main_def_dark_elves	Slave Raids II	false
-building_short_description_texts_short_description_corv_morathi_cult_par_slaves_2	The cult feeds on its host in secret.	false
-building_description_texts_long_description_corv_morathi_cult_par_slaves_2	Parasitic cult building.	false
-building_culture_variants_name_corv_morathi_cult_par_slaves_3wh2_main_def_dark_elves	Slave Raids III	false
-building_short_description_texts_short_description_corv_morathi_cult_par_slaves_3	The cult feeds on its host in secret.	false
-building_description_texts_long_description_corv_morathi_cult_par_slaves_3	Parasitic cult building.	false
 building_culture_variants_name_corv_morathi_cult_par_gold_1wh2_main_def_dark_elves	Skimmed Coffers I	false
 building_short_description_texts_short_description_corv_morathi_cult_par_gold_1	The cult feeds on its host in secret.	false
 building_description_texts_long_description_corv_morathi_cult_par_gold_1	Parasitic cult building.	false
@@ -186,6 +180,9 @@ building_description_texts_long_description_corv_morathi_cult_util_army_1	Utilit
 building_culture_variants_name_corv_morathi_cult_util_army_2wh2_main_def_dark_elves	Rite of the Disciples II	false
 building_short_description_texts_short_description_corv_morathi_cult_util_army_2	The cult's hidden leaders prepare their great works.	false
 building_description_texts_long_description_corv_morathi_cult_util_army_2	Utility cult building. On completion: raises a large disciple army at the region, adds +100 Slaanesh corruption to the province and destroys the cult.	false
+building_culture_variants_name_corv_morathi_cult_util_vault_1wh2_main_def_dark_elves	Vault of Whispers	false
+building_short_description_texts_short_description_corv_morathi_cult_util_vault_1	The cult's hidden leaders prepare their great works.	false
+building_description_texts_long_description_corv_morathi_cult_util_vault_1	Utility cult building.	false
 building_culture_variants_name_corv_morathi_cult_util_loot_1wh2_main_def_dark_elves	Ritual of Plunder I	false
 building_short_description_texts_short_description_corv_morathi_cult_util_loot_1	The cult's hidden leaders prepare their great works.	false
 building_description_texts_long_description_corv_morathi_cult_util_loot_1	Utility cult building.	false
@@ -229,12 +226,19 @@ effects_description_corv_effect_daemon_weapon_strength	Weapon strength for Daemo
 effects_description_corv_effect_daemon_physical_resistance	Physical resistance for Daemon units: %+n%	false
 effects_description_corv_effect_daemon_upkeep	Upkeep for Daemon units: %+n%	false
 effects_description_corv_effect_cult_spread_dummy	Each turn: %+n% chance to found a cult in a neighbouring region (doubled while Slaanesh corruption in the province is 50 or more)	false
-effects_description_corv_effect_cult_raise_disciple_army_dummy	When completed: raises a large disciple army next to the settlement, then the cult disbands	false
+effects_description_corv_effect_cult_raise_disciple_army_dummy	When completed: raises a large disciple army next to the settlement, then the cult disbands. The army costs no upkeep but cannot replenish, and suffers attrition after %n turns	false
 effects_description_corv_effect_cult_loot_settlement_dummy	When completed: loots the settlement for %n gold per settlement level and turns it into ruins, then the cult disbands	false
 effects_description_corv_effect_cult_ritual_corruption_dummy	When completed: Slaanesh corruption in the province %+n	false
 effects_description_corv_effect_cult_morathi_spell_mastery_dummy	Morathi's spell intensity: %+n% (in addition to the bonus above)	false
+effect_bundles_localised_description_corv_morathi_bundle_cult_disciple_army	Cultists risen at Morathi's call. They cost no upkeep, but their losses cannot be replenished, and after 3 turns their devotion fades.	false
+effect_bundles_localised_description_corv_morathi_bundle_cult_disciple_army_fading	The disciples' devotion fades. This army suffers attrition unless in areas of very high Slaanesh corruption.	false
+event_feed_strings_text_corv_morathi_cult_plunder_title	Ritual of Plunder	false
+event_feed_strings_text_corv_morathi_cult_plunder_secondary_detail	Morathi's cult has stripped the settlement of its riches and left it in ruins. Its gold now fills the Hag Queen's coffers.	false
 building_effect_context_expressions_display_text_CorvHostSettlementLevel1	Settlement level 1	false
 building_effect_context_expressions_display_text_CorvHostSettlementLevel2	Settlement level 2	false
 building_effect_context_expressions_display_text_CorvHostSettlementLevel3	Settlement level 3	false
 building_effect_context_expressions_display_text_CorvHostSettlementLevel4	Settlement level 4	false
 building_effect_context_expressions_display_text_CorvHostSettlementLevel5	Settlement level 5	false
+unit_abilities_onscreen_name_corv_veil_of_shadows_decay	Shadow-Bound	false
+unit_abilities_tooltip_text_corv_veil_of_shadows_decay	Wrapped in Morathi's shadows, this unit slowly withers while it fights. Stops below 25% health.	false
+effects_description_corv_effect_veil_of_shadows_decay	Grants "Shadow-Bound": units take damage over time in battle while above 25% health	false

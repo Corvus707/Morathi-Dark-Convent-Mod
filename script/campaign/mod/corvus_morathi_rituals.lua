@@ -34,27 +34,67 @@ local light_damage = 0.1
 local heavy_damage = 0.3
 local major_damage = 0.4
 local min_unit_strength = 0.05
-local attrition_per_turn = 0.03
-local attrition_turns = 3
+-- Withering Curse: initial damage, then its bundle on the target army (attrition and its drawbacks) for curse_turns
+local withering_damage = 0.15
+local curse_turns = 3
+-- Amplify Magic: turns a province stays amplified; armies in it get the bundle, and lose it when they leave
+local amplify_turns = 3
+local amplify_bundle = "corv_ritual_amplify_magic"
 -- Diplomatic attitude change, -6 to 6 (cm:apply_dilemma_diplomatic_bonus)
 local kidnap_relations = -3
 local mark_relations = 3
 -- Gift of Slaanesh: the effects of vanilla's gift tag as a character bundle (db: build_morathi_rituals.py)
 local gift_bundle = "corv_ritual_gift_of_slaanesh"
 local kidnap_slaves = 300
+-- Devotee Uprising: wall breaches in every settlement of the province, and a disciple army of devotees (raised by
+-- the cults script: no upkeep, no replenishment, attrition after a few turns)
+local uprising_wall_breaches = 2
+local uprising_units = {
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows", "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows",
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows", "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows",
+}
+-- Establish Cult also gives Devotees
+local establish_cult_devotees = 200
+local devotees_resource = "wh3_main_sla_devotees"
+local devotees_factor = "cults"
+-- Druchii Spies: the target faction's territory stays revealed this many turns
+local spies_turns = 5
 local slaves_resource = "def_slaves"
 local slaves_factor = "missions"
 
--- Saved: forces under Withering Curse attrition { force_cqi = turns left }
-local attrition_forces = {}
+-- Saved: factions under Druchii Spies { faction_key = turns left }
+local spied_factions = {}
+-- Saved: amplified provinces { province_key = turns left } and the armies that have the bundle { force_cqi = true }
+local amplified_provinces = {}
+local amplified_forces = {}
 
 cm:add_saving_game_callback(function (context)
-    cm:save_named_value("corvus_morathi_ritual_attrition", attrition_forces, context)
+    cm:save_named_value("corvus_morathi_ritual_spied_factions", spied_factions, context)
+    cm:save_named_value("corvus_morathi_ritual_amplified_provinces", amplified_provinces, context)
+    cm:save_named_value("corvus_morathi_ritual_amplified_forces", amplified_forces, context)
 end)
 
 cm:add_loading_game_callback(function (context)
-    attrition_forces = cm:load_named_value("corvus_morathi_ritual_attrition", {}, context)
+    spied_factions = cm:load_named_value("corvus_morathi_ritual_spied_factions", {}, context)
+    amplified_provinces = cm:load_named_value("corvus_morathi_ritual_amplified_provinces", {}, context)
+    amplified_forces = cm:load_named_value("corvus_morathi_ritual_amplified_forces", {}, context)
 end)
+
+-- Reveals every region the faction owns
+local function reveal_faction(target_key)
+    local target = cm:get_faction(target_key)
+    if not target or target:is_dead() then
+        return false
+    end
+    local regions = target:region_list()
+    for i = 0, regions:num_items() - 1 do
+        pcall(cm.make_region_visible_in_shroud, cm, faction_key, regions:item_at(i):name())
+    end
+    return true
+end
 
 -- ---- helpers -----------------------------------------------------------------------------------------------------
 
@@ -130,12 +170,118 @@ local function damage_province_garrisons(region, fraction)
     end
 end
 
+-- Every army (not garrisons) whose general is in the province
+local function armies_in_province(province_key)
+    local armies = {}
+    local factions = cm:model():world():faction_list()
+    for i = 0, factions:num_items() - 1 do
+        local forces = factions:item_at(i):military_force_list()
+        for j = 0, forces:num_items() - 1 do
+            local force = forces:item_at(j)
+            if not force:is_armed_citizenry() and force:has_general() then
+                local general = force:general_character()
+                if general:has_region() and general:region():province_name() == province_key then
+                    table.insert(armies, force)
+                end
+            end
+        end
+    end
+    return armies
+end
+
+-- Amplify Magic: armies in an amplified province have the bundle; armies that left lose it
+local function refresh_amplified_armies()
+    local wanted = {}
+    for province_key in pairs(amplified_provinces) do
+        for _, force in ipairs(armies_in_province(province_key)) do
+            wanted[tostring(force:command_queue_index())] = true
+        end
+    end
+    local model = cm:model()
+    for cqi in pairs(amplified_forces) do
+        if not wanted[cqi] then
+            if model:has_military_force_command_queue_index(tonumber(cqi)) then
+                cm:remove_effect_bundle_from_force(amplify_bundle, tonumber(cqi))
+            end
+            amplified_forces[cqi] = nil
+        end
+    end
+    for cqi in pairs(wanted) do
+        if not amplified_forces[cqi] then
+            cm:apply_effect_bundle_to_force(amplify_bundle, tonumber(cqi), 0)
+            amplified_forces[cqi] = true
+        end
+    end
+end
+
+local function safe_refresh_amplified_armies()
+    local ok, err = pcall(refresh_amplified_armies)
+    if not ok then
+        out("Morathi rituals: error refreshing Amplify Magic: "..tostring(err))
+    end
+end
+
+-- Wall breaches (as vanilla's Sayl manipulation does it); never repairs walls that are already more damaged
+local function breach_walls(region, breaches)
+    local settlement = region:settlement()
+    if not settlement:is_null_interface() and settlement:is_walled_settlement()
+        and settlement:number_of_wall_breaches() < breaches then
+        cm:set_settlement_wall_health(settlement, breaches)
+    end
+end
+
 local function change_relations(target_faction, delta)
     if not target_faction or target_faction:is_null_interface() or target_faction:name() == faction_key then
         return
     end
     out("Morathi rituals: relations with "..target_faction:name().." "..delta)
     cm:apply_dilemma_diplomatic_bonus(faction_key, target_faction:name(), math.max(-6, math.min(6, delta)))
+end
+
+-- Seduce Lord: the lord and their army defect to Morathi. Script can't move a character to another faction, so the
+-- army is removed and recreated for Morathi with the same lord (subtype and name) and units, at the same place.
+-- Faction leaders and legendary lords can't be recreated that way and resist: they only get the Gift of Slaanesh.
+local function seduce_lord(force)
+    local general = force:general_character()
+    if general:is_faction_leader() or general:character_details():is_unique() then
+        out("Morathi rituals: "..general:character_subtype_key().." resists Seduce Lord")
+        cm:apply_effect_bundle_to_character(gift_bundle, general, 0)
+        return
+    end
+    if not general:has_region() then
+        out("Morathi rituals: Seduce Lord can't recreate an army at sea")
+        return
+    end
+    local units = {}
+    local unit_list = force:unit_list()
+    for i = 0, unit_list:num_items() - 1 do
+        local unit = unit_list:item_at(i)
+        -- Characters (unit class "com") aren't recreated as units; the general comes with the new force
+        if unit:unit_class() ~= "com" then
+            table.insert(units, unit:unit_key())
+        end
+    end
+    local subtype, forename, surname = general:character_subtype_key(), general:get_forename(), general:get_surname()
+    local region_key = general:region():name()
+    local x, y = general:logical_position_x(), general:logical_position_y()
+    local old_faction = force:faction()
+    cm:kill_character(general:command_queue_index(), true)
+    cm:callback(function ()
+        local spawn_x, spawn_y = cm:find_valid_spawn_location_for_character_from_position(faction_key, x, y, true)
+        if spawn_x == -1 then
+            spawn_x, spawn_y = x, y
+        end
+        cm:create_force_with_general(faction_key, table.concat(units, ","), region_key, spawn_x, spawn_y, "general",
+            subtype, forename, "", surname, "", false,
+            function (char_cqi)
+                local character = cm:get_character_by_cqi(char_cqi)
+                if character then
+                    cm:apply_effect_bundle_to_character(gift_bundle, character, 0)
+                end
+                out("Morathi rituals: "..subtype.." seduced with "..#units.." units")
+            end)
+    end, 0.2)
+    change_relations(old_faction, -6)
 end
 
 -- Daemonic Summoning: units added on vanilla's daemonic_summoning recruitment source get a summon button in the army
@@ -170,17 +316,19 @@ end
 -- ---- ritual effects: key -> function(faction, target force, target region, target faction) ---------------------------
 
 local ritual_effects = {
-    morathi_dark_magic_withering_curse = function (faction, force)
-        damage_force(force, light_damage)
+    -- Damage now, then the curse bundle on the target army: attrition, plus +movement and +physical resistance as the
+    -- curse's drawbacks
+    morathi_dark_magic_withering_curse = function (_, force)
         if force then
-            attrition_forces[tostring(force:command_queue_index())] = attrition_turns
+            damage_force(force, withering_damage)
+            cm:apply_effect_bundle_to_force("corv_ritual_withering_curse", force:command_queue_index(), curse_turns)
         end
-        apply_to_morathi_force(faction, "corv_ritual_withering_haste", 3)
     end,
-    -- Province effect on one of Morathi's regions: her armies across that province get the spell bonuses
+    -- Amplifies the target region's province: every army in it (friend or foe) has the spell bonuses while there
     morathi_dark_magic_amplify_magic = function (_, _, region)
         if region then
-            cm:apply_effect_bundle_to_region("corv_ritual_amplify_magic", region:name(), 3)
+            amplified_provinces[region:province_name()] = amplify_turns
+            refresh_amplified_armies()
         end
     end,
     morathi_dark_magic_shadow_walk = function (faction, _, region)
@@ -215,27 +363,39 @@ local ritual_effects = {
     morathi_dark_magic_cataclysm = function (faction, _, region)
         if region then
             damage_province_garrisons(region, heavy_damage)
+            -- and every army in the province at war with Morathi
+            local damaged = 0
+            for _, force in ipairs(armies_in_province(region:province_name())) do
+                if force:faction():at_war_with(faction) then
+                    damage_force(force, heavy_damage)
+                    damaged = damaged + 1
+                end
+            end
+            out("Morathi rituals: Cataclysm damaged "..damaged.." enemy armies")
         end
         apply_to_morathi_force(faction, "corv_ritual_exhausted", 3)
     end,
     morathi_actions_kidnap_slaves = function (_, _, region)
         add_slaves(kidnap_slaves)
         if region then
-            cm:apply_effect_bundle_to_region("corv_ritual_kidnap_growth", region:name(), 3)
+            cm:apply_effect_bundle_to_region("corv_ritual_kidnap_control", region:name(), 3)
             change_relations(region:owning_faction(), kidnap_relations)
         end
     end,
+    -- Reveals the target region's owner's territory now and at each of Morathi's turns for spies_turns turns
     morathi_actions_druchii_spies = function (_, _, region)
-        if region then
-            local revealed = province_regions(region)
-            local adjacent = region:adjacent_region_list()
-            for i = 0, adjacent:num_items() - 1 do
-                table.insert(revealed, adjacent:item_at(i))
-            end
-            for _, r in ipairs(revealed) do
-                pcall(cm.make_region_visible_in_shroud, cm, faction_key, r:name())
+        if region and not region:owning_faction():is_null_interface() then
+            local target_key = region:owning_faction():name()
+            if reveal_faction(target_key) then
+                spied_factions[target_key] = spies_turns
+                out("Morathi rituals: spying on "..target_key.." for "..spies_turns.." turns")
             end
         end
+    end,
+    -- The cult itself is founded by the ritual's payload
+    morathi_actions_support_cult = function ()
+        local ok, err = pcall(cm.faction_add_pooled_resource, cm, faction_key, devotees_resource, devotees_factor, establish_cult_devotees)
+        out("Morathi rituals: adding "..establish_cult_devotees.." Devotees"..(ok and "" or (" failed: "..tostring(err))))
     end,
     morathi_actions_easier_seduction = function (_, force)
         if force then
@@ -262,9 +422,26 @@ local ritual_effects = {
     morathi_actions_devotee_uprising = function (_, _, region)
         if region then
             damage_province_garrisons(region, light_damage)
+            for _, r in ipairs(province_regions(region)) do
+                local ok, err = pcall(breach_walls, r, uprising_wall_breaches)
+                if not ok then
+                    out("Morathi rituals: breaching walls failed in "..r:name()..": "..tostring(err))
+                end
+            end
+            if corvus_morathi_cults_api and corvus_morathi_cults_api.raise_disciple_army then
+                corvus_morathi_cults_api.raise_disciple_army(region, uprising_units)
+            else
+                out("Morathi rituals: Devotee Uprising can't raise an army (cults script not loaded)")
+            end
         end
     end,
-    -- Not implemented yet: Shelter the Cult, Seduce Lord (their text says so in-game)
+    morathi_actions_seduce_lord = function (_, force)
+        if force and force:has_general() then
+            seduce_lord(force)
+        else
+            out("Morathi rituals: Seduce Lord found no target lord")
+        end
+    end,
 }
 
 local function on_ritual_completed(context)
@@ -368,20 +545,34 @@ cm:add_first_tick_callback(function ()
             return context:faction():name() == faction_key
         end,
         function ()
-            -- Withering Curse attrition ticks
-            local model = cm:model()
-            for cqi, turns in pairs(attrition_forces) do
-                local force = model:has_military_force_command_queue_index(tonumber(cqi)) and model:military_force_for_command_queue_index(tonumber(cqi))
-                if force and not force:is_null_interface() and turns > 0 then
-                    damage_force(force, attrition_per_turn)
-                    attrition_forces[cqi] = turns - 1
+            -- Amplify Magic: count down the amplified provinces
+            for province_key, turns in pairs(amplified_provinces) do
+                amplified_provinces[province_key] = turns > 1 and turns - 1 or nil
+            end
+            safe_refresh_amplified_armies()
+            -- Druchii Spies: keep the spied factions revealed
+            for target_key, turns in pairs(spied_factions) do
+                if turns > 1 and reveal_faction(target_key) then
+                    spied_factions[target_key] = turns - 1
                 else
-                    attrition_forces[cqi] = nil
+                    spied_factions[target_key] = nil
                 end
             end
             update_ritual_locks()
         end,
         true)
+
+    -- Amplify Magic follows the armies: refresh whenever a general stops moving or any faction's turn starts
+    for _, event in ipairs({ "CharacterFinishedMovingEvent", "FactionTurnStart" }) do
+        core:add_listener(
+            "corvus_morathi_rituals_amplify_"..event,
+            event,
+            function ()
+                return next(amplified_provinces) ~= nil or next(amplified_forces) ~= nil
+            end,
+            safe_refresh_amplified_armies,
+            true)
+    end
 
     core:add_listener(
         "corvus_morathi_rituals_rank_up",

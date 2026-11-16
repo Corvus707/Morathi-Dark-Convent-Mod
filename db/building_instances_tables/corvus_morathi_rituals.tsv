@@ -1,14 +1,11 @@
 key	num_instances
 #building_instances_tables;0;db/building_instances_tables/corvus_morathi_rituals	
-corv_morathi_cult_sym_slaves	1
-corv_morathi_cult_sym_manipulation	1
-corv_morathi_cult_sym_devotees	1
-corv_morathi_cult_par_slaves	1
-corv_morathi_cult_par_gold	1
-corv_morathi_cult_par_manipulation	1
-corv_morathi_cult_par_devotees	1
+corv_morathi_cult_gold	1
+corv_morathi_cult_manipulation	1
+corv_morathi_cult_devotees	1
 corv_morathi_cult_util_spread	1
 corv_morathi_cult_util_army	1
+corv_morathi_cult_util_vault	1
 corv_morathi_cult_util_loot	1
 corv_morathi_cult_util_influence	1
 corv_morathi_cult_emp_seduction	1

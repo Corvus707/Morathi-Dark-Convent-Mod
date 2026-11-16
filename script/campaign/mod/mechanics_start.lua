@@ -15,13 +15,9 @@ local panels_allowed_alongside = {
     events = true,
 }
 
--- Ritual pages, switched by the tabs above the panel. Each list shows the rituals whose key contains its filter
--- (set in the layout): action_list = morathi_dark_magic_, action_list_manipulations = morathi_actions_
-local ritual_pages = {
-    { tab = "tab_dark_magic", list = "action_list", title = "Dark Magic" },
-    { tab = "tab_manipulations", list = "action_list_manipulations", title = "Manipulations" },
-}
-local current_page = 1
+-- Both ritual lists are shown together in one scrolling list (set in the layout): Manipulations
+-- (action_list_manipulations, morathi_actions_), the Dark Magic title, then Dark Magic (action_list, morathi_dark_magic_)
+local ritual_lists = { "action_list_manipulations", "action_list" }
 
 local function get_panel()
     return find_uicomponent(core:get_ui_root(), panel_name)
@@ -57,44 +53,19 @@ local function find_descendant(uic, id)
     end
 end
 
--- Text belongs to a single state, so set it in every state or a state change brings back the layout's text
-local function set_text(uic, text)
-    local ok = pcall(function ()
-        local current_state = uic:CurrentState()
-        for i = 0, uic:NumStates() - 1 do
-            uic:SetState(uic:GetStateByIndex(i))
-            uic:SetStateText(text, "")
-        end
-        uic:SetState(current_state)
-    end)
-    if not ok then
-        uic:SetStateText(text, "")
-    end
-end
-
-local function show_page(index)
+local function show_ritual_lists()
     local panel = get_panel()
     if not panel then
         return
     end
-    current_page = index
-    for i, page in ipairs(ritual_pages) do
-        local list = find_descendant(panel, page.list)
+    local list_box
+    for _, id in ipairs(ritual_lists) do
+        local list = find_descendant(panel, id)
         if list then
-            list:SetVisible(i == index)
-        end
-        local tab = find_descendant(panel, page.tab)
-        if tab then
-            tab:SetTooltipText(page.title, true)
-            tab:SetState(i == index and "selected" or "active")
+            list:SetVisible(true)
+            list_box = UIComponent(list:Parent())
         end
     end
-    local title = find_descendant(panel, "tx_actions_title")
-    if title then
-        set_text(title, ritual_pages[index].title)
-    end
-    local list_box = find_descendant(panel, ritual_pages[index].list)
-    list_box = list_box and UIComponent(list_box:Parent())
     if list_box then
         list_box:Layout()
     end
@@ -119,9 +90,9 @@ local function open_panel()
     panel:SetVisible(true)
     set_button_selected(true)
     cm:steal_escape_key_with_callback(escape_key_name, close_panel)
-    local ok, err = pcall(show_page, current_page)
+    local ok, err = pcall(show_ritual_lists)
     if not ok then
-        out("Error showing ritual page: "..tostring(err))
+        out("Error showing ritual lists: "..tostring(err))
     end
 end
 
@@ -189,29 +160,6 @@ cm:add_first_tick_callback(function ()
             return context.string == "button_close" and is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
         end,
         close_panel,
-        true)
-
-    core:add_listener(
-        "corvus_morathi_panel_tab_clicked",
-        "ComponentLClickUp",
-        function (context)
-            for _, page in ipairs(ritual_pages) do
-                if context.string == page.tab then
-                    return is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
-                end
-            end
-            return false
-        end,
-        function (context)
-            for i, page in ipairs(ritual_pages) do
-                if context.string == page.tab then
-                    local ok, err = pcall(show_page, i)
-                    if not ok then
-                        out("Error showing ritual page: "..tostring(err))
-                    end
-                end
-            end
-        end,
         true)
 
     core:add_listener(

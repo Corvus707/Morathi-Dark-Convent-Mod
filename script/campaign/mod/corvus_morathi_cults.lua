@@ -21,10 +21,13 @@ local starting_cult_regions = {
 }
 local starting_building = "corv_morathi_cult_par_devotees_1"
 
+-- TESTING: spreading always succeeds (matches CULT_TESTING in morathi_cults.py). Set to false before release.
+local testing = true
+
 -- Spreading Whispers
 local spread_building = "corv_morathi_cult_util_spread_1"
-local spread_chance = 5               -- % per turn
-local spread_chance_corrupted = 10    -- % per turn while Slaanesh corruption in the province is 50 or more
+local spread_chance = testing and 100 or 5             -- % per turn
+local spread_chance_corrupted = testing and 100 or 10  -- % per turn while Slaanesh corruption in the province is 50 or more
 
 -- Rite of the Disciples
 local army_building = "corv_morathi_cult_util_army_2"
@@ -38,9 +41,19 @@ local army_units = {
     "wh3_main_sla_veh_hellflayer_0", "wh3_main_sla_mon_keeper_of_secrets_0",
 }
 
+-- The disciple army: no upkeep and no replenishment from the start, attrition after disciple_attrition_turns turns
+local disciple_bundle = "corv_morathi_bundle_cult_disciple_army"
+local disciple_fading_bundle = "corv_morathi_bundle_cult_disciple_army_fading"
+local disciple_attrition_turns = 3  -- matches DISCIPLE_ATTRITION_TURNS in morathi_cults.py
+local disciple_armies_saved_key = "corv_morathi_cult_disciple_armies"  -- "force_cqi:turn_raised;..."
+
 -- Ritual of Plunder
 local loot_building = "corv_morathi_cult_util_loot_2"
 local loot_gold_per_settlement_level = 1000
+local loot_event_title = "event_feed_strings_text_corv_morathi_cult_plunder_title"
+local loot_event_detail = "event_feed_strings_text_corv_morathi_cult_plunder_secondary_detail"
+local loot_event_index = 126  -- vanilla's cult event picture (the Changeling's cult destroyed message)
+
 
 -- Both rituals add this much Slaanesh corruption to the province
 local ritual_corruption = 100
@@ -158,16 +171,63 @@ end
 
 -- ---- Rituals ----
 
-local function raise_disciple_army(region)
+-- Disciple armies waiting for their attrition: { [force_cqi] = turn raised }, saved as "cqi:turn;cqi:turn"
+local function load_disciple_armies()
+    local armies = {}
+    for cqi, turn in string.gmatch(cm:get_saved_value(disciple_armies_saved_key) or "", "(%d+):(%d+)") do
+        armies[tonumber(cqi)] = tonumber(turn)
+    end
+    return armies
+end
+
+local function save_disciple_armies(armies)
+    local parts = {}
+    for cqi, turn in pairs(armies) do
+        table.insert(parts, cqi..":"..turn)
+    end
+    cm:set_saved_value(disciple_armies_saved_key, table.concat(parts, ";"))
+end
+
+local function raise_disciple_army(region, units)
     local x, y = cm:find_valid_spawn_location_for_character_from_settlement(faction_key, region:name(), false, true, 5)
     if x == -1 then
         log("no spawn location for the disciple army near "..region:name())
         return
     end
-    cm:create_force(faction_key, table.concat(army_units, ","), region:name(), x, y, true,
-        function (char_cqi)
-            log("raised a disciple army (general cqi "..tostring(char_cqi)..") at "..region:name())
+    cm:create_force(faction_key, table.concat(units or army_units, ","), region:name(), x, y, true,
+        function (char_cqi, force_cqi)
+            cm:apply_effect_bundle_to_force(disciple_bundle, force_cqi, 0)
+            local armies = load_disciple_armies()
+            armies[force_cqi] = cm:model():turn_number()
+            save_disciple_armies(armies)
+            log("raised a disciple army (general cqi "..tostring(char_cqi)..", force cqi "..tostring(force_cqi)..") at "..region:name())
         end)
+end
+
+-- Shared with the rituals script (Devotee Uprising): a disciple army near the region, with an optional unit list
+corvus_morathi_cults_api = corvus_morathi_cults_api or {}
+corvus_morathi_cults_api.raise_disciple_army = raise_disciple_army
+
+-- After disciple_attrition_turns turns, a disciple army's devotion fades and it starts suffering attrition
+local function update_disciple_armies()
+    local armies = load_disciple_armies()
+    local turn = cm:model():turn_number()
+    local changed = false
+    for cqi, raised in pairs(armies) do
+        local force = cm:model():military_force_for_command_queue_index(cqi)
+        if not force or force:is_null_interface() then
+            armies[cqi] = nil
+            changed = true
+        elseif turn - raised >= disciple_attrition_turns then
+            cm:apply_effect_bundle_to_force(disciple_fading_bundle, cqi, 0)
+            armies[cqi] = nil
+            changed = true
+            log("disciple army (force cqi "..cqi..") now suffers attrition")
+        end
+    end
+    if changed then
+        save_disciple_armies(armies)
+    end
 end
 
 local function perform_army_ritual(faction, region)
@@ -184,10 +244,15 @@ local function perform_loot_ritual(faction, region)
         level = settlement:primary_slot():building():building_level()
     end
     local gold = loot_gold_per_settlement_level * level
+    local x, y = settlement:logical_position_x(), settlement:logical_position_y()
     cm:treasury_mod(faction_key, gold)
     add_corruption(region, ritual_corruption)
     remove_cult(faction, region)
     cm:set_region_abandoned(region:name())
+    if faction:is_human() then
+        cm:show_message_event_located(faction_key, loot_event_title, "regions_onscreen_"..region:name(), loot_event_detail,
+            x, y, true, loot_event_index)
+    end
     log("Ritual of Plunder completed in "..region:name()..": looted "..gold.." gold (settlement level "..level..") and ruined it")
 end
 
@@ -244,6 +309,7 @@ local function update_cults(faction)
         end
     end
     safe("Morathi's magic", update_morathi_magic, faction)
+    safe("disciple armies", update_disciple_armies)
 end
 
 -- ---- Devotees counter on the resource bar ----
