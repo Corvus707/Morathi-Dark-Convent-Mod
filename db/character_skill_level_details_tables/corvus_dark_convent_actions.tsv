@@ -1,0 +1,4 @@
+campaign_key	faction_key	image_path	level	skill_key	subculture_key	unlocked_at_rank
+#character_skill_level_details_tables;1;db/character_skill_level_details_tables/corvus_dark_convent_actions						
+		x	2	corv_skill_hero_hinder_settlement_establish_cult_dark_convent		4
+		x	3	corv_skill_hero_hinder_settlement_establish_cult_dark_convent		9

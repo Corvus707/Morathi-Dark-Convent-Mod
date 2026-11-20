@@ -3,3 +3,5 @@ effect	icon	priority	icon_negative	category	is_positive_value_good
 corv_effect_ability_enable_hexer_soul_harvest	general_ability.png	1	general_ability.png	battle	true
 corv_effect_relations_with_morathi	diplomacy.png	3	diplomacy.png	campaign	true
 corv_effect_agent_enable_recruitment_dark_convent	wizard.png	3	wizard.png	campaign	true
+corv_effect_force_stat_armour_druchii	armour.png	400	armour.png	battle	true
+corv_effect_force_stat_melee_defence_druchii	defence.png	450	defence.png	battle	true

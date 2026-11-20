@@ -18,9 +18,8 @@ corvus_dark_convent_data = {
 			{ key = "corv_character_training_dilemma_sorceress_3", choices = {
 				{ key = "corv_character_training_dilemma_sorceress_3_first", traits = {"corv_trait_dark_convent_assassin_hero"} },
 				{ key = "corv_character_training_dilemma_sorceress_3_second", traits = {"corv_trait_dark_convent_nimble_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_3_third", traits = {"corv_trait_dark_convent_wayfarer_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_3_fourth", traits = {"corv_trait_dark_convent_gifted_hero"} },
-				{ key = "corv_character_training_dilemma_sorceress_3_fifth", traits = {"corv_trait_dark_convent_hexer_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_3_third", traits = {"corv_trait_dark_convent_gifted_hero"} },
+				{ key = "corv_character_training_dilemma_sorceress_3_fourth", traits = {"corv_trait_dark_convent_hexer_hero"} },
 			} },
 			{ key = "corv_character_training_dilemma_sorceress_2", choices = {
 				{ key = "corv_character_training_dilemma_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress_hero"} },
@@ -54,9 +53,8 @@ corvus_dark_convent_data = {
 			{ key = "corv_character_training_dilemma_supreme_sorceress_3", choices = {
 				{ key = "corv_character_training_dilemma_supreme_sorceress_3_first", traits = {"corv_trait_dark_convent_assassin"} },
 				{ key = "corv_character_training_dilemma_supreme_sorceress_3_second", traits = {"corv_trait_dark_convent_nimble"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_3_third", traits = {"corv_trait_dark_convent_wayfarer"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_3_fourth", traits = {"corv_trait_dark_convent_gifted"} },
-				{ key = "corv_character_training_dilemma_supreme_sorceress_3_fifth", traits = {"corv_trait_dark_convent_hexer"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_3_third", traits = {"corv_trait_dark_convent_gifted"} },
+				{ key = "corv_character_training_dilemma_supreme_sorceress_3_fourth", traits = {"corv_trait_dark_convent_hexer"} },
 			} },
 			{ key = "corv_character_training_dilemma_supreme_sorceress_2", choices = {
 				{ key = "corv_character_training_dilemma_supreme_sorceress_2_first", traits = {"corv_trait_dark_convent_taskmistress"} },

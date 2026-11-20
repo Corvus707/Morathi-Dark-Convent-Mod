@@ -25,7 +25,7 @@ local ritual_requirements = {
     morathi_actions_support_cult = { level = 1, morathi_only = true },
     morathi_actions_mark = { level = 10 },
     morathi_actions_corruption = { level = 15 },
-    morathi_actions_seduce_lord = { level = 20 },
+    morathi_actions_steal_secrets = { level = 20 },
     morathi_actions_devotee_uprising = { level = 25 },
 }
 
@@ -46,15 +46,32 @@ local mark_relations = 3
 -- Gift of Slaanesh: the effects of vanilla's gift tag as a character bundle (db: build_morathi_rituals.py)
 local gift_bundle = "corv_ritual_gift_of_slaanesh"
 local kidnap_slaves = 300
--- Devotee Uprising: wall breaches in every settlement of the province, and a disciple army of devotees (raised by
--- the cults script: no upkeep, no replenishment, attrition after a few turns)
+-- Devotee Uprising: in every settlement of the province that isn't Morathi's, garrison damage, wall breaches and a
+-- small disciple army of devotees (raised by the cults script: no upkeep, no replenishment, attrition after a few turns)
+local uprising_damage = 0.3
 local uprising_wall_breaches = 2
 local uprising_units = {
     "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
-    "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
-    "wh3_dlc27_sla_inf_devotees_of_slaanesh", "wh3_dlc27_sla_inf_devotees_of_slaanesh",
+    "wh3_dlc27_sla_inf_devotees_of_slaanesh",
     "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows", "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows",
-    "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows", "wh3_dlc27_sla_inf_devotees_of_slaanesh_crossbows",
+}
+-- Steal Secrets: research for the faction and experience for the performer's army
+local steal_secrets_turns = 4
+local steal_secrets_research_bundle = "corv_ritual_steal_secrets_research"
+local steal_secrets_experience_bundle = "corv_ritual_steal_secrets_experience"
+-- The performer of a Manipulation: the character picked in the panel's character list (sent by the panel script through
+-- a UI trigger), or Morathi when none is picked. Experience and turns wounded per ritual
+-- (matches PERFORMER in build_morathi_rituals.py).
+local performer_trigger_prefix = "corv_morathi_ritual_performer:"
+local performer_rewards = {
+    morathi_actions_kidnap_slaves = { xp = 500 },
+    morathi_actions_druchii_spies = { xp = 500 },
+    morathi_actions_easier_seduction = { xp = 1000, wounded = 2 },
+    morathi_actions_support_cult = { xp = 1000 },
+    morathi_actions_mark = { xp = 2500, wounded = 3 },
+    morathi_actions_corruption = { xp = 4000, wounded = 3 },
+    morathi_actions_steal_secrets = { xp = 20000 },
+    morathi_actions_devotee_uprising = { xp = 7000 },
 }
 -- Establish Cult also gives Devotees
 local establish_cult_devotees = 200
@@ -65,6 +82,8 @@ local spies_turns = 5
 local slaves_resource = "def_slaves"
 local slaves_factor = "missions"
 
+-- Saved: the performer picked in the panel (character cqi), or nil for Morathi
+local selected_performer_cqi = nil
 -- Saved: factions under Druchii Spies { faction_key = turns left }
 local spied_factions = {}
 -- Saved: amplified provinces { province_key = turns left } and the armies that have the bundle { force_cqi = true }
@@ -72,12 +91,15 @@ local amplified_provinces = {}
 local amplified_forces = {}
 
 cm:add_saving_game_callback(function (context)
+    cm:save_named_value("corvus_morathi_ritual_performer", selected_performer_cqi or 0, context)
     cm:save_named_value("corvus_morathi_ritual_spied_factions", spied_factions, context)
     cm:save_named_value("corvus_morathi_ritual_amplified_provinces", amplified_provinces, context)
     cm:save_named_value("corvus_morathi_ritual_amplified_forces", amplified_forces, context)
 end)
 
 cm:add_loading_game_callback(function (context)
+    local performer = cm:load_named_value("corvus_morathi_ritual_performer", 0, context)
+    selected_performer_cqi = performer ~= 0 and performer or nil
     spied_factions = cm:load_named_value("corvus_morathi_ritual_spied_factions", {}, context)
     amplified_provinces = cm:load_named_value("corvus_morathi_ritual_amplified_provinces", {}, context)
     amplified_forces = cm:load_named_value("corvus_morathi_ritual_amplified_forces", {}, context)
@@ -161,14 +183,6 @@ local function damage_region_garrison(region, fraction)
     out("Morathi rituals: damaged "..damaged.." forces in "..region:name())
 end
 
-local function damage_province_garrisons(region, fraction)
-    for _, r in ipairs(province_regions(region)) do
-        local ok, err = pcall(damage_region_garrison, r, fraction)
-        if not ok then
-            out("Morathi rituals: garrison damage failed in "..r:name()..": "..tostring(err))
-        end
-    end
-end
 
 -- Every army (not garrisons) whose general is in the province
 local function armies_in_province(province_key)
@@ -236,52 +250,6 @@ local function change_relations(target_faction, delta)
     end
     out("Morathi rituals: relations with "..target_faction:name().." "..delta)
     cm:apply_dilemma_diplomatic_bonus(faction_key, target_faction:name(), math.max(-6, math.min(6, delta)))
-end
-
--- Seduce Lord: the lord and their army defect to Morathi. Script can't move a character to another faction, so the
--- army is removed and recreated for Morathi with the same lord (subtype and name) and units, at the same place.
--- Faction leaders and legendary lords can't be recreated that way and resist: they only get the Gift of Slaanesh.
-local function seduce_lord(force)
-    local general = force:general_character()
-    if general:is_faction_leader() or general:character_details():is_unique() then
-        out("Morathi rituals: "..general:character_subtype_key().." resists Seduce Lord")
-        cm:apply_effect_bundle_to_character(gift_bundle, general, 0)
-        return
-    end
-    if not general:has_region() then
-        out("Morathi rituals: Seduce Lord can't recreate an army at sea")
-        return
-    end
-    local units = {}
-    local unit_list = force:unit_list()
-    for i = 0, unit_list:num_items() - 1 do
-        local unit = unit_list:item_at(i)
-        -- Characters (unit class "com") aren't recreated as units; the general comes with the new force
-        if unit:unit_class() ~= "com" then
-            table.insert(units, unit:unit_key())
-        end
-    end
-    local subtype, forename, surname = general:character_subtype_key(), general:get_forename(), general:get_surname()
-    local region_key = general:region():name()
-    local x, y = general:logical_position_x(), general:logical_position_y()
-    local old_faction = force:faction()
-    cm:kill_character(general:command_queue_index(), true)
-    cm:callback(function ()
-        local spawn_x, spawn_y = cm:find_valid_spawn_location_for_character_from_position(faction_key, x, y, true)
-        if spawn_x == -1 then
-            spawn_x, spawn_y = x, y
-        end
-        cm:create_force_with_general(faction_key, table.concat(units, ","), region_key, spawn_x, spawn_y, "general",
-            subtype, forename, "", surname, "", false,
-            function (char_cqi)
-                local character = cm:get_character_by_cqi(char_cqi)
-                if character then
-                    cm:apply_effect_bundle_to_character(gift_bundle, character, 0)
-                end
-                out("Morathi rituals: "..subtype.." seduced with "..#units.." units")
-            end)
-    end, 0.2)
-    change_relations(old_faction, -6)
 end
 
 -- Daemonic Summoning: units added on vanilla's daemonic_summoning recruitment source get a summon button in the army
@@ -362,7 +330,15 @@ local ritual_effects = {
     end,
     morathi_dark_magic_cataclysm = function (faction, _, region)
         if region then
-            damage_province_garrisons(region, heavy_damage)
+            -- Garrisons of settlements owned by factions at war with Morathi
+            for _, r in ipairs(province_regions(region)) do
+                if not r:is_abandoned() and r:owning_faction():at_war_with(faction) then
+                    local ok, err = pcall(damage_region_garrison, r, heavy_damage)
+                    if not ok then
+                        out("Morathi rituals: garrison damage failed in "..r:name()..": "..tostring(err))
+                    end
+                end
+            end
             -- and every army in the province at war with Morathi
             local damaged = 0
             for _, force in ipairs(armies_in_province(region:province_name())) do
@@ -419,30 +395,69 @@ local ritual_effects = {
             cm:apply_effect_bundle_to_region("corv_ritual_corruption", region:name(), 5)
         end
     end,
+    -- Every settlement of the province that isn't Morathi's (or a ruin): heavy garrison damage, breached walls and a
+    -- small disciple army next to it
     morathi_actions_devotee_uprising = function (_, _, region)
-        if region then
-            damage_province_garrisons(region, light_damage)
-            for _, r in ipairs(province_regions(region)) do
-                local ok, err = pcall(breach_walls, r, uprising_wall_breaches)
+        if not region then
+            return
+        end
+        local raise = corvus_morathi_cults_api and corvus_morathi_cults_api.raise_disciple_army
+        if not raise then
+            out("Morathi rituals: Devotee Uprising can't raise armies (cults script not loaded)")
+        end
+        for _, r in ipairs(province_regions(region)) do
+            if not r:is_abandoned() and r:owning_faction():name() ~= faction_key then
+                local ok, err = pcall(function ()
+                    damage_region_garrison(r, uprising_damage)
+                    breach_walls(r, uprising_wall_breaches)
+                    if raise then
+                        raise(r, uprising_units)
+                    end
+                end)
                 if not ok then
-                    out("Morathi rituals: breaching walls failed in "..r:name()..": "..tostring(err))
+                    out("Morathi rituals: Devotee Uprising failed in "..r:name()..": "..tostring(err))
                 end
-            end
-            if corvus_morathi_cults_api and corvus_morathi_cults_api.raise_disciple_army then
-                corvus_morathi_cults_api.raise_disciple_army(region, uprising_units)
-            else
-                out("Morathi rituals: Devotee Uprising can't raise an army (cults script not loaded)")
             end
         end
     end,
-    morathi_actions_seduce_lord = function (_, force)
-        if force and force:has_general() then
-            seduce_lord(force)
+    morathi_actions_steal_secrets = function (_, _, _, _, performer)
+        cm:apply_effect_bundle(steal_secrets_research_bundle, faction_key, steal_secrets_turns)
+        if performer and performer:has_military_force() then
+            cm:apply_effect_bundle_to_force(steal_secrets_experience_bundle,
+                performer:military_force():command_queue_index(), steal_secrets_turns)
         else
-            out("Morathi rituals: Seduce Lord found no target lord")
+            out("Morathi rituals: Steal Secrets' performer has no army")
         end
     end,
 }
+
+-- The character picked in the panel, if still one of Morathi's casters and not wounded; otherwise Morathi
+local function get_performer(faction)
+    if selected_performer_cqi then
+        local character = cm:get_character_by_cqi(selected_performer_cqi)
+        if character and not character:is_null_interface() and character:faction():name() == faction_key
+            and not character:is_wounded() then
+            return character
+        end
+    end
+    return get_morathi(faction)
+end
+
+local function reward_performer(key, performer)
+    local reward = performer_rewards[key]
+    if not reward or not performer then
+        return
+    end
+    local lookup = cm:char_lookup_str(performer)
+    if reward.xp then
+        cm:add_agent_experience(lookup, reward.xp)
+    end
+    if reward.wounded then
+        cm:wound_character(lookup, reward.wounded)
+    end
+    out("Morathi rituals: performer "..performer:character_subtype_key().." +"..tostring(reward.xp or 0).." xp, wounded "
+        ..tostring(reward.wounded or 0).." turns")
+end
 
 local function on_ritual_completed(context)
     local ritual = context:ritual()
@@ -475,7 +490,11 @@ local function on_ritual_completed(context)
     local target_faction = valid(function () return target:get_target_faction() end)
     out("Morathi rituals: target force "..tostring(force and force:command_queue_index())..", region "..tostring(region and region:name())
         ..", faction "..tostring(target_faction and target_faction:name()))
-    effect(cm:get_faction(faction_key), force, region, target_faction)
+    local faction = cm:get_faction(faction_key)
+    local performer = performer_rewards[key] and get_performer(faction)
+    effect(faction, force, region, target_faction, performer)
+    -- After the effect, so a wounded performer's army still gets Steal Secrets' bundle
+    reward_performer(key, performer)
 end
 
 -- ---- level requirements --------------------------------------------------------------------------------------------
@@ -573,6 +592,19 @@ cm:add_first_tick_callback(function ()
             safe_refresh_amplified_armies,
             true)
     end
+
+    core:add_listener(
+        "corvus_morathi_rituals_performer",
+        "UITrigger",
+        function (context)
+            return string.sub(context:trigger(), 1, #performer_trigger_prefix) == performer_trigger_prefix
+        end,
+        function (context)
+            local cqi = tonumber(string.sub(context:trigger(), #performer_trigger_prefix + 1))
+            selected_performer_cqi = cqi ~= 0 and cqi or nil
+            out("Morathi rituals: performer is now "..tostring(selected_performer_cqi or "Morathi"))
+        end,
+        true)
 
     core:add_listener(
         "corvus_morathi_rituals_rank_up",

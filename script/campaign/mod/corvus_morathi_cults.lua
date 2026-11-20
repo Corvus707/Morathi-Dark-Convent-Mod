@@ -14,12 +14,11 @@ local morathi_subtype = "wh2_main_def_morathi"
 local cult_slot_set = "corv_morathi_slot_set_cult"
 local slaanesh_corruption = "wh3_main_corruption_slaanesh"
 
--- Cults Morathi starts a new campaign with, and the building their first slot starts with
+-- Cults Morathi starts a new campaign with, and the building their first slot starts with (nil: empty slots)
 local starting_cult_regions = {
-    "wh3_main_combi_region_grey_rock_point",
     "wh3_main_combi_region_ghrond",
 }
-local starting_building = "corv_morathi_cult_par_devotees_1"
+local starting_building = nil
 
 -- TESTING: spreading always succeeds (matches CULT_TESTING in morathi_cults.py). Set to false before release.
 local testing = true
@@ -316,6 +315,7 @@ end
 
 local devotees_holder_name = "corvus_morathi_devotees_holder"
 local devotees_layout = "ui/campaign ui/corvus_morathi_devotees"
+local slaves_holder_name = "slave_holder"  -- hud_campaign_resource_bar_default
 
 local function add_devotees_counter()
     if cm:get_local_faction_name(true) ~= faction_key then
@@ -331,6 +331,16 @@ local function add_devotees_counter()
     end
     local holder = UIComponent(resource_bar:CreateComponent(devotees_holder_name, devotees_layout))
     holder:SetVisible(true)
+    -- The bar lays its children out in order: move the counter to just after the slaves counter
+    for i = 0, resource_bar:ChildCount() - 1 do
+        if UIComponent(resource_bar:Find(i)):Id() == slaves_holder_name then
+            local ok, err = pcall(function () resource_bar:Adopt(holder:Address(), i + 1) end)
+            if not ok then
+                log("could not move the Devotees counter next to the slaves: "..tostring(err))
+            end
+            break
+        end
+    end
     resource_bar:Layout()
     log("added the Devotees counter")
 end

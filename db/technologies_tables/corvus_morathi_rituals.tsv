@@ -1,0 +1,8 @@
+key	building_level	position_index	icon_name	mp_available_early	mp_available_late	info_pic	unique_index	is_civil	is_engineering	is_military	is_hidden
+#technologies_tables;7;db/technologies_tables/corvus_morathi_rituals											
+corv_morathi_tech_manipulation_1	wh_main_chs_port_ruin	1	wh3_dlc29_tech_nef_covens_1	false	false		1990000501	false	false	true	false
+corv_morathi_tech_manipulation_2	wh_main_chs_port_ruin	1	wh3_dlc29_tech_nef_covens_1	false	false		1990000502	false	false	true	false
+corv_morathi_tech_manipulation_3	wh_main_chs_port_ruin	1	wh3_dlc29_tech_nef_covens_1	false	false		1990000503	false	false	true	false
+corv_morathi_tech_convent_1	wh_main_chs_port_ruin	1	wh2_def_tech_upgrade_0	false	false		1990000504	false	false	true	false
+corv_morathi_tech_convent_2	wh_main_chs_port_ruin	1	wh2_def_tech_upgrade_0	false	false		1990000505	false	false	true	false
+corv_morathi_tech_convent_3	wh_main_chs_port_ruin	1	wh2_def_tech_upgrade_0	false	false		1990000506	false	false	true	false

@@ -15,3 +15,6 @@ corv_effect_cult_loot_settlement_dummy	cult.png	999	cult.png	campaign	true
 corv_effect_cult_ritual_corruption_dummy	corruption_slaanesh.png	104	corruption_slaanesh.png	campaign	true
 corv_effect_cult_morathi_spell_mastery_dummy	wizard.png	2	wizard.png	campaign	true
 corv_effect_veil_of_shadows_decay	attribute_stalk.png	320	attribute_stalk.png	campaign	false
+corv_effect_tech_convent_lord_1	wizard.png	2	wizard.png	campaign	true
+corv_effect_tech_convent_hero_2	wizard.png	2	wizard.png	campaign	true
+corv_effect_tech_convent_lord_2	wizard.png	2	wizard.png	campaign	true

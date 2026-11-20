@@ -20,8 +20,12 @@ end
 -- The engine's character training (Kislev's Ice Court) can't be given to another faction, so training is scripted.
 -- Groups, dilemmas, choices and traits come from corvus_dark_convent_data.lua, generated from the training TSVs.
 
--- Slots open from the start in each group; the rest show as locked
-local unlocked_slots_per_group = 1
+-- Technology each training slot needs, per group key and slot (Morathi's techs, db: morathi_techs.py). Slots not
+-- listed are open from the start; locked slots show as locked with the technology's name.
+local slot_unlock_techs = {
+    corv_dark_convent_training_group_sorceress = { [2] = "corv_morathi_tech_convent_2" },
+    corv_dark_convent_training_group_supreme_sorceress = { [1] = "corv_morathi_tech_convent_1", [2] = "corv_morathi_tech_convent_3" },
+}
 local num_choice_rows = 5
 -- Prefix for UI-triggered actions, which go through the UITrigger event so every client in multiplayer applies them
 local action_prefix = "corv_dark_convent"
@@ -57,8 +61,20 @@ local function slot_key(group_index, slot_index)
     return group_index.."_"..slot_index
 end
 
+local function slot_unlock_tech(group, slot_index)
+    return slot_unlock_techs[group.key] and slot_unlock_techs[group.key][slot_index]
+end
+
 local function is_slot_unlocked(group, slot_index)
-    return slot_index <= math.min(unlocked_slots_per_group, group.max_slots)
+    if slot_index > group.max_slots then
+        return false
+    end
+    local tech = slot_unlock_tech(group, slot_index)
+    if not tech then
+        return true
+    end
+    local faction = cm:get_faction(faction_key)
+    return faction and faction:has_technology(tech) or false
 end
 
 local function default_subtype(group)
@@ -158,6 +174,40 @@ local function give_morathi_convent_trait()
             out("Dark Convent: giving "..morathi_trait.." to Morathi")
             cm:force_add_trait(cm:char_lookup_str(character), morathi_trait)
         end
+    end
+end
+
+-- Convent Sorceresses (heroes) get Establish Cult instead of Steal Technology from a hidden skill in their tree
+-- (db: build_convent_actions.py). Its node is only granted to characters created after the change; the ones that
+-- already exist still have vanilla's actions skill, and are given a hidden skill here that adds Establish Cult and
+-- switches Steal Technology off. The bundle that used to do this is removed from them.
+local sorceress_tree_skill = "corv_skill_dummy_agent_actions_dark_convent_sorceress"
+local sorceress_actions_skill = "corv_skill_dummy_dark_convent_sorceress_establish_cult"
+local old_sorceress_actions_bundle = "corv_bundle_dark_convent_sorceress_actions"
+local convent_subtype_prefix = "corv_dc_"
+
+local function give_sorceress_actions(character)
+    if not character:character_type("wizard")
+        or string.sub(character:character_subtype_key(), 1, #convent_subtype_prefix) ~= convent_subtype_prefix then
+        return
+    end
+    if not character:has_skill(sorceress_tree_skill) and not character:has_skill(sorceress_actions_skill) then
+        out("Dark Convent: giving Establish Cult to "..character:character_subtype_key())
+        cm:force_add_skill(cm:char_lookup_str(character), sorceress_actions_skill)
+    end
+    if character:has_effect_bundle(old_sorceress_actions_bundle) then
+        cm:remove_effect_bundle_from_character(old_sorceress_actions_bundle, character)
+    end
+end
+
+local function give_all_sorceress_actions()
+    local faction = cm:get_faction(faction_key)
+    if not faction or faction:is_dead() then
+        return
+    end
+    local characters = faction:character_list()
+    for i = 0, characters:num_items() - 1 do
+        give_sorceress_actions(characters:item_at(i))
     end
 end
 
@@ -355,6 +405,12 @@ local function refresh_slot_card(card, group, group_index, slot_index, faction)
         local purchase = find_uicomponent(purchase_holder, "button_purchase")
         purchase:SetState(affordable and "active" or "inactive")
         purchase:SetTooltipText(affordable and "Train a candidate||Send a candidate to the Dark Convent." or "Train a candidate||Not enough gold.", true)
+    end
+    if not unlocked then
+        local tech = slot_unlock_tech(group, slot_index)
+        local tech_name = tech and common.get_localised_string("technologies_onscreen_name_"..tech) or ""
+        card:SetTooltipText("Locked||"..(tech_name ~= "" and ("Research "..tech_name.." to unlock this training slot.")
+            or "This training slot is locked."), true)
     end
 end
 
@@ -560,6 +616,10 @@ end
 
 cm:add_first_tick_callback(function ()
     give_morathi_convent_trait()
+    local ok, err = pcall(give_all_sorceress_actions)
+    if not ok then
+        out("Dark Convent: error giving Sorceress actions: "..tostring(err))
+    end
 
     core:progress_on_loading_screen_dismissed(function ()
         cm:real_callback(button_check_callback, 500, "corvus_morathi_add_court_button")
@@ -623,6 +683,10 @@ cm:add_first_tick_callback(function ()
         function ()
             advance_training()
             refresh_training_ui()
+            local ok, err = pcall(give_all_sorceress_actions)
+            if not ok then
+                out("Dark Convent: error giving Sorceress actions: "..tostring(err))
+            end
         end,
         true)
 
@@ -653,6 +717,10 @@ cm:add_first_tick_callback(function ()
             local ok, err = pcall(remove_non_convent_traits, context:character())
             if not ok then
                 out("Dark Convent: error removing starting traits: "..tostring(err))
+            end
+            ok, err = pcall(give_sorceress_actions, context:character())
+            if not ok then
+                out("Dark Convent: error giving Sorceress actions: "..tostring(err))
             end
         end,
         true)
