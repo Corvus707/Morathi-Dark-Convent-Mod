@@ -27,6 +27,9 @@ local testing = true
 local spread_building = "corv_morathi_cult_util_spread_1"
 local spread_chance = testing and 100 or 5             -- % per turn
 local spread_chance_corrupted = testing and 100 or 10  -- % per turn while Slaanesh corruption in the province is 50 or more
+-- "Queen of Pleasure" (Morathi's Court tech tab) adds to both chances; its effect text shows the same value
+local spread_chance_tech = "corv_morathi_tech_morathi_followers"
+local spread_chance_tech_bonus = 5
 
 -- Rite of the Disciples
 local army_building = "corv_morathi_cult_util_army_2"
@@ -148,6 +151,9 @@ end
 local function try_spread(faction, cult)
     local region = cult:region()
     local chance = is_corrupted(region) and spread_chance_corrupted or spread_chance
+    if faction:has_technology(spread_chance_tech) then
+        chance = chance + spread_chance_tech_bonus
+    end
     if not cm:model():random_percent(chance) then
         return
     end

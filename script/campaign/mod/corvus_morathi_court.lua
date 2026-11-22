@@ -20,11 +20,11 @@ end
 -- The engine's character training (Kislev's Ice Court) can't be given to another faction, so training is scripted.
 -- Groups, dilemmas, choices and traits come from corvus_dark_convent_data.lua, generated from the training TSVs.
 
--- Technology each training slot needs, per group key and slot (Morathi's techs, db: morathi_techs.py). Slots not
--- listed are open from the start; locked slots show as locked with the technology's name.
+-- Technology each training slot needs, per group key and slot (the Sorceresses group in the "Morathi's Court" tech
+-- tab). Slots not listed are open from the start; locked slots show as locked with the technology's name.
 local slot_unlock_techs = {
-    corv_dark_convent_training_group_sorceress = { [2] = "corv_morathi_tech_convent_2" },
-    corv_dark_convent_training_group_supreme_sorceress = { [1] = "corv_morathi_tech_convent_1", [2] = "corv_morathi_tech_convent_3" },
+    corv_dark_convent_training_group_sorceress = { [2] = "corv_morathi_tech_sorceress_3" },
+    corv_dark_convent_training_group_supreme_sorceress = { [1] = "corv_morathi_tech_sorceress_1", [2] = "corv_morathi_tech_sorceress_5" },
 }
 local num_choice_rows = 5
 -- Prefix for UI-triggered actions, which go through the UITrigger event so every client in multiplayer applies them

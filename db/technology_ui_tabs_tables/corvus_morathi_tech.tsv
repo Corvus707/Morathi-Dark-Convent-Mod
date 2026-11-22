@@ -1,0 +1,4 @@
+key	sort_order	tier_offset
+#technology_ui_tabs_tables;1;db/technology_ui_tabs_tables/corvus_morathi_tech		
+def_military	0	0
+corv_morathi_court	1	20

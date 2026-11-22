@@ -1,0 +1,8 @@
+key	use_unit_exp_level_range	min_unit_exp_level_inclusive	max_unit_exp_level_inclusive	special_category
+#unit_sets_tables;2;db/unit_sets_tables/corvus_morathi_tech				
+corv_tech_sorceresses_dark	false	-1	-1	
+corv_tech_sorceresses_fire	false	-1	-1	
+corv_tech_sorceresses_shadow	false	-1	-1	
+corv_tech_sorceresses_beasts	false	-1	-1	
+corv_tech_sorceresses_death	false	-1	-1	
+corv_tech_spellcasters	false	-1	-1	

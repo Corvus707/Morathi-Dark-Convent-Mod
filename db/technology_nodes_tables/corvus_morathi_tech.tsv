@@ -1,0 +1,30 @@
+key	campaign_key	faction_key	indent	technology_key	technology_node_set	tier	research_points_required	cost_per_round	food_cost	optional_ui_group	resource_cost	required_parents	pixel_offset_x	pixel_offset_y
+#technology_nodes_tables;0;db/technology_nodes_tables/corvus_morathi_tech														
+corv_morathi_tech_manipulation_1		wh2_main_def_cult_of_pleasure	0	corv_morathi_tech_manipulation_1	def_mil	21	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_manipulation_2		wh2_main_def_cult_of_pleasure	0	corv_morathi_tech_manipulation_2	def_mil	22	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_manipulation_3		wh2_main_def_cult_of_pleasure	1	corv_morathi_tech_manipulation_3	def_mil	22	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_manipulation_4		wh2_main_def_cult_of_pleasure	1	corv_morathi_tech_manipulation_4	def_mil	21	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_manipulation_5		wh2_main_def_cult_of_pleasure	2	corv_morathi_tech_manipulation_5	def_mil	21	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_manipulation_6		wh2_main_def_cult_of_pleasure	2	corv_morathi_tech_manipulation_6	def_mil	22	600	0	0	corv_morathi_tech_group_manipulation		0	0	0
+corv_morathi_tech_sorceress_1		wh2_main_def_cult_of_pleasure	5	corv_morathi_tech_sorceress_1	def_mil	21	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_sorceress_2		wh2_main_def_cult_of_pleasure	5	corv_morathi_tech_sorceress_2	def_mil	22	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_sorceress_3		wh2_main_def_cult_of_pleasure	6	corv_morathi_tech_sorceress_3	def_mil	22	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_sorceress_4		wh2_main_def_cult_of_pleasure	6	corv_morathi_tech_sorceress_4	def_mil	21	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_sorceress_5		wh2_main_def_cult_of_pleasure	7	corv_morathi_tech_sorceress_5	def_mil	21	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_sorceress_6		wh2_main_def_cult_of_pleasure	7	corv_morathi_tech_sorceress_6	def_mil	22	600	0	0	corv_morathi_tech_group_sorceress		0	0	0
+corv_morathi_tech_morathi_manipulation		wh2_main_def_cult_of_pleasure	3	corv_morathi_tech_morathi_manipulation	def_mil	23	100	0	0	corv_morathi_tech_group_morathi		0	0	0
+corv_morathi_tech_morathi_followers		wh2_main_def_cult_of_pleasure	3	corv_morathi_tech_morathi_followers	def_mil	24	100	0	0	corv_morathi_tech_group_morathi		0	0	0
+corv_morathi_tech_morathi_sorceress		wh2_main_def_cult_of_pleasure	4	corv_morathi_tech_morathi_sorceress	def_mil	23	100	0	0	corv_morathi_tech_group_morathi		0	0	0
+corv_morathi_tech_morathi_magic		wh2_main_def_cult_of_pleasure	4	corv_morathi_tech_morathi_magic	def_mil	24	100	0	0	corv_morathi_tech_group_morathi		0	0	0
+corv_morathi_tech_followers_seduction		wh2_main_def_cult_of_pleasure	0	corv_morathi_tech_followers_seduction	def_mil	25	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_followers_diplomacy		wh2_main_def_cult_of_pleasure	0	corv_morathi_tech_followers_diplomacy	def_mil	26	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_followers_loyalty		wh2_main_def_cult_of_pleasure	1	corv_morathi_tech_followers_loyalty	def_mil	25	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_followers_seduce		wh2_main_def_cult_of_pleasure	1	corv_morathi_tech_followers_seduce	def_mil	26	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_followers_vassals		wh2_main_def_cult_of_pleasure	2	corv_morathi_tech_followers_vassals	def_mil	25	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_followers_passive		wh2_main_def_cult_of_pleasure	2	corv_morathi_tech_followers_passive	def_mil	26	600	0	0	corv_morathi_tech_group_followers		0	0	0
+corv_morathi_tech_magic_dark		wh2_main_def_cult_of_pleasure	5	corv_morathi_tech_magic_dark	def_mil	25	600	0	0	corv_morathi_tech_group_magic		0	0	0
+corv_morathi_tech_magic_fire		wh2_main_def_cult_of_pleasure	5	corv_morathi_tech_magic_fire	def_mil	26	600	0	0	corv_morathi_tech_group_magic		0	0	0
+corv_morathi_tech_magic_shadow		wh2_main_def_cult_of_pleasure	6	corv_morathi_tech_magic_shadow	def_mil	25	600	0	0	corv_morathi_tech_group_magic		0	0	0
+corv_morathi_tech_magic_beasts		wh2_main_def_cult_of_pleasure	6	corv_morathi_tech_magic_beasts	def_mil	26	600	0	0	corv_morathi_tech_group_magic		0	0	0
+corv_morathi_tech_magic_death		wh2_main_def_cult_of_pleasure	7	corv_morathi_tech_magic_death	def_mil	25	600	0	0	corv_morathi_tech_group_magic		0	0	0
+corv_morathi_tech_magic_slaanesh		wh2_main_def_cult_of_pleasure	7	corv_morathi_tech_magic_slaanesh	def_mil	26	600	0	0	corv_morathi_tech_group_magic		0	0	0

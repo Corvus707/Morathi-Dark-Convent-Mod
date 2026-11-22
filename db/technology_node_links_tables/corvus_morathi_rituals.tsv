@@ -1,6 +1,0 @@
-child_key	parent_key	initial_descent_tiers	parent_link_position	child_link_position	parent_link_position_offset	child_link_position_offset	visible_in_ui
-#technology_node_links_tables;0;db/technology_node_links_tables/corvus_morathi_rituals							
-corv_morathi_tech_manipulation_2	corv_morathi_tech_manipulation_1	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_manipulation_3	corv_morathi_tech_manipulation_2	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_convent_2	corv_morathi_tech_convent_1	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_convent_3	corv_morathi_tech_convent_2	0	3	1	0.0000	0.0000	true

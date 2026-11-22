@@ -364,24 +364,11 @@
 			maskimage="EAC1FA32-1F86-406C-B20A8C0762AE48FB"
 			currentstate="3E97C86B-D2E1-4C44-9DD3B9466803615B"
 			defaultstate="3E97C86B-D2E1-4C44-9DD3B9466803615B">
-			<callbackwithcontextlist>
-				<callback_with_context callback_id="MoviePlayer"/>
-			</callbackwithcontextlist>
-			<userproperties>
-				<property
-					name="loop"
-					value="1"/>
-				<property
-					name="movie_index"
-					value="1"/>
-				<property
-					name="path"
-					value="UI/ksl_ice_court.ca_vp8"/>
-			</userproperties>
 			<componentimages>
 				<component_image
 					this="E6F1B7BB-FEA1-4280-8A6AE6468EF7049F"
-					uniqueguid="E6F1B7BB-FEA1-4280-8A6AE6468EF7049F"/>
+					uniqueguid="E6F1B7BB-FEA1-4280-8A6AE6468EF7049F"
+						imagepath="ui/loading_ui/load_images/corv_dark_convent_background.png"/>
 				<component_image
 					this="EAC1FA32-1F86-406C-B20A8C0762AE48FB"
 					uniqueguid="EAC1FA32-1F86-406C-B20A8C0762AE48FB"
@@ -401,8 +388,7 @@
 							uniqueguid="457498BA-7866-41EA-851094D8BF8F5D07"
 							componentimage="E6F1B7BB-FEA1-4280-8A6AE6468EF7049F"
 							width="1184"
-							height="784"
-							colour="#000000FF"/>
+							height="784"/>
 						<image
 							this="83D3D2A0-FF91-4A52-B9780F67DAE101D3"
 							uniqueguid="83D3D2A0-FF91-4A52-B9780F67DAE101D3"
