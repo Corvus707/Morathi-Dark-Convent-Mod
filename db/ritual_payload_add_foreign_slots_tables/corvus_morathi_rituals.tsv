@@ -1,0 +1,3 @@
+payload	slot_set
+#ritual_payload_add_foreign_slots_tables;0;db/ritual_payload_add_foreign_slots_tables/corvus_morathi_rituals	
+morathi_actions_support_cult	corv_morathi_slot_set_cult

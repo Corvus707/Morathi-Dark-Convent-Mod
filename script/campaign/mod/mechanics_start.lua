@@ -7,9 +7,17 @@ local button_icon = "ui/skins/default/icon_gift_of_slaanesh.png"
 local button_tooltip = "Cult of Pleasure||Seduce enemies or manipulate the winds of magic to your advantage."
 local escape_key_name = "corvus_morathi_panel_escape"
 
--- Vanilla panels that may open alongside ours without closing it (e.g. while picking a ritual target)
+-- Vanilla panels that may open alongside ours without closing it. Clicking a settlement or army to pick a ritual
+-- target opens its panel, and closing ours would turn targeting off and lose the target.
 local panels_allowed_alongside = {
+    settlement_panel = true,
+    units_panel = true,
+    events = true,
 }
+
+-- Both ritual lists are shown together in one scrolling list (set in the layout): Manipulations
+-- (action_list_manipulations, morathi_actions_), the Dark Magic title, then Dark Magic (action_list, morathi_dark_magic_)
+local ritual_lists = { "action_list_manipulations", "action_list" }
 
 local function get_panel()
     return find_uicomponent(core:get_ui_root(), panel_name)
@@ -31,6 +39,84 @@ local function set_button_selected(selected)
     end
 end
 
+-- Depth-first search for a descendant by id
+local function find_descendant(uic, id)
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        if child:Id() == id then
+            return child
+        end
+        local found = find_descendant(child, id)
+        if found then
+            return found
+        end
+    end
+end
+
+local function show_ritual_lists()
+    local panel = get_panel()
+    if not panel then
+        return
+    end
+    local list_box
+    for _, id in ipairs(ritual_lists) do
+        local list = find_descendant(panel, id)
+        if list then
+            list:SetVisible(true)
+            list_box = UIComponent(list:Parent())
+        end
+    end
+    if list_box then
+        list_box:Layout()
+    end
+end
+
+-- ---- Performer: the character picked in the panel's character list ----
+-- The rituals script rewards (and wounds) the performer of a Manipulation. Selection is UI only, so the picked character
+-- is sent to the game script (UI trigger, so every client in multiplayer gets it) whenever the selection may have changed.
+local performer_trigger_prefix = "corv_morathi_ritual_performer:"
+local character_list_name = "character_list_holder"
+local sent_performer = nil
+
+-- cqi of the selected character in the list, or 0 when none is selected
+local function find_selected_character(uic)
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        local state = child:CurrentState() or ""
+        local id = child:GetContextObjectId("CcoCampaignCharacter")
+        if id and id ~= "" and string.find(state, "selected") then
+            return tonumber(id) or 0
+        end
+        local found = find_selected_character(child)
+        if found ~= 0 then
+            return found
+        end
+    end
+    return 0
+end
+
+local function send_selected_performer()
+    local panel = get_panel()
+    local list = panel and find_descendant(panel, character_list_name)
+    local cqi = list and find_selected_character(list) or 0
+    if cqi == sent_performer then
+        return
+    end
+    sent_performer = cqi
+    out("Morathi panel: performer "..cqi)
+    CampaignUI.TriggerCampaignScriptEvent(cm:get_faction(faction_key):command_queue_index(), performer_trigger_prefix..cqi)
+end
+
+-- After the click has been handled, so the list's selection state is up to date
+local function send_selected_performer_later()
+    cm:real_callback(function ()
+        local ok, err = pcall(send_selected_performer)
+        if not ok then
+            out("Error sending the ritual performer: "..tostring(err))
+        end
+    end, 100, "corvus_morathi_panel_performer")
+end
+
 local function close_panel()
     -- Hiding the panel fires its on_hide callback, which turns off map targeting
     local panel = get_panel()
@@ -50,6 +136,11 @@ local function open_panel()
     panel:SetVisible(true)
     set_button_selected(true)
     cm:steal_escape_key_with_callback(escape_key_name, close_panel)
+    local ok, err = pcall(show_ritual_lists)
+    if not ok then
+        out("Error showing ritual lists: "..tostring(err))
+    end
+    send_selected_performer_later()
 end
 
 local function get_or_create_button()
@@ -116,6 +207,16 @@ cm:add_first_tick_callback(function ()
             return context.string == "button_close" and is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
         end,
         close_panel,
+        true)
+
+    -- Any click in the panel may change the character selection (picking one, or the clear button)
+    core:add_listener(
+        "corvus_morathi_panel_performer_clicked",
+        "ComponentLClickUp",
+        function (context)
+            return is_panel_open() and uicomponent_descended_from(UIComponent(context.component), panel_name)
+        end,
+        send_selected_performer_later,
         true)
 
     core:add_listener(

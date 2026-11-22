@@ -1,0 +1,32 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_dark_convent_subtypes.loc		
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_sorceress_beasts	Although usually the domain of Clar Karond, there are Sorceresses who can wield the Wind of Ghur as well as any lash.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_sorceress_death	Death stalks all that come to Ghrond, and those who wield the power of Shyish are more skilled than most in the murder's arcane arts.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_supreme_sorceress_beasts	A Supreme Sorceress excels at not just Dark Magic, but also the ability to control and summon beasts - a true mistress of Ghur.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_supreme_sorceress_dark	Spells cast with 'Dhar', or Dark Magic, are the most destructive. They are powered by the unrefined Winds of Magic, so the cost to both the spellcaster and their victims is great indeed.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_supreme_sorceress_death	Is there any greater dealer of death than a Sorceress at the height of her powers? Perhaps… but none will take as great a joy in unleashing it.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_supreme_sorceress_fire	While most Druchii Sorcerers use the dark in their magic, the fire from pyromancy is bright. However, those in Naggaroth who wield 'Aqshy' do not think of it as glowing flame, instead looking to the black, choking smoke that always accompanies it.	false
+agent_subtypes_description_text_override_corv_dc_wh2_dlc10_def_supreme_sorceress_shadow	Most Sorceresses of Ghrond lurk in the utter darkness, but there are those who still walk close to the light, using illusions to spin cruel visions and trick predators and prey, so they get the souls they desire.	false
+agent_subtypes_description_text_override_corv_dc_wh2_main_def_sorceress_dark	Spells cast with 'Dhar', or Dark Magic, are the most destructive. They are powered by the unrefined Winds of Magic, so the cost to both the spellcaster and their victims is great indeed.	false
+agent_subtypes_description_text_override_corv_dc_wh2_main_def_sorceress_fire	While most Druchii Sorcerers use the dark in their magic, the fire from pyromancy is bright. However, those in Naggaroth that wield 'Aqshy' do not think of it as glowing flame, instead looking to the black, choking smoke that always accompanies fire.	false
+agent_subtypes_description_text_override_corv_dc_wh2_main_def_sorceress_shadow	Most Sorceresses of Ghrond lurk in the utter darkness, but there are those that walk close to the light still, using illusions to spin cruel visions and trick predators and prey to get the souls they desire.	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_sorceress_beasts	Sorceress (Beasts)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_sorceress_death	Sorceress (Death)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_supreme_sorceress_beasts	Supreme Sorceress (Beasts)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_supreme_sorceress_dark	Supreme Sorceress (Dark)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_supreme_sorceress_death	Supreme Sorceress (Death)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_supreme_sorceress_fire	Supreme Sorceress (Fire)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_dlc10_def_supreme_sorceress_shadow	Supreme Sorceress (Shadows)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_main_def_sorceress_dark	Sorceress (Dark)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_main_def_sorceress_fire	Sorceress (Fire)	false
+agent_subtypes_onscreen_name_override_corv_dc_wh2_main_def_sorceress_shadow	Sorceress (Shadows)	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_sorceress_beasts	Sorceress (Beasts) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_sorceress_death	Sorceress (Death) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_supreme_sorceress_beasts	Supreme Sorceress (Beasts) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_supreme_sorceress_dark	Supreme Sorceress (Dark) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_supreme_sorceress_death	Supreme Sorceress (Death) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_supreme_sorceress_fire	Supreme Sorceress (Fire) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_dlc10_skill_node_set_def_supreme_sorceress_shadow	Supreme Sorceress (Shadows) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_main_skill_node_set_def_sorceress_dark	Sorceress (Dark) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_main_skill_node_set_def_sorceress_fire	Sorceress (Fire) Skills	false
+character_skill_node_sets_enc_title_corv_dc_wh2_main_skill_node_set_def_sorceress_shadow	Sorceress (Shadow) Skills	false

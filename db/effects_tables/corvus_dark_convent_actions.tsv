@@ -1,0 +1,6 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_dark_convent_actions					
+corv_effect_agent_action_enable_wizard_establish_cult_dark_convent		0		campaign	true
+corv_effect_agent_action_success_chance_establish_cult_dark_convent	cult.png	10	cult.png	campaign	true
+corv_effect_agent_action_disable_wizard_steal_technology		0		campaign	true
+corv_effect_agent_action_establish_cult_dark_convent_cost_mod	treasury.png	10	treasury.png	campaign	false

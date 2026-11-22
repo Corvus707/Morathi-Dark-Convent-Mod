@@ -2,3 +2,5 @@ effect	icon	priority	icon_negative	category	is_positive_value_good
 #effects_tables;0;db/effects_tables/corvus_morathi_continued					
 morathi_pooled_resource_web_of_power_cost	vmp_manipulation.png	1	vmp_manipulation.png	campaign	true
 morathi_pooled_resource_web_of_power_buildings	vmp_manipulation.png	1	vmp_manipulation.png	campaign	true
+corv_effect_manipulation_characters	vmp_manipulation.png	1	vmp_manipulation.png	campaign	true
+corv_effect_devotees_characters	devotees.png	1	devotees.png	campaign	true

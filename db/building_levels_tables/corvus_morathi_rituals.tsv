@@ -1,0 +1,35 @@
+level_name	chain	level	create_time	create_cost	upkeep_cost	commodity	only_in_capital	faction_unique	first_in_world_bundle	resource_requirement	can_convert	building_instance_key	should_show_building_level_in_ui_for_technology	health_override	development_point_cost	can_be_damaged	primary_slot_building_building_level_requirement	audio_building_type	visible_in_ui	food_cost	slave_cap_contribution	resource_cost	additional_loot_value	resource_transaction_on_complete	split_chain_sort_order	override_startpos_settlement_display_building
+#building_levels_tables;3;db/building_levels_tables/corvus_morathi_rituals																										
+corv_morathi_cult_sym_slaves_1	corv_morathi_cult_sym_slaves	0	1	500	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_sym_slaves_2	corv_morathi_cult_sym_slaves	1	1	1000	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_sym_slaves_3	corv_morathi_cult_sym_slaves	2	1	2000	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_sym_manipulation_1	corv_morathi_cult_sym_manipulation	0	1	500	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_sym_manipulation_2	corv_morathi_cult_sym_manipulation	1	1	1000	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_sym_manipulation_3	corv_morathi_cult_sym_manipulation	2	1	2000	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_sym_devotees_1	corv_morathi_cult_sym_devotees	0	1	500	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_sym_devotees_2	corv_morathi_cult_sym_devotees	1	1	1000	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_sym_devotees_3	corv_morathi_cult_sym_devotees	2	1	2000	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_par_gold_1	corv_morathi_cult_par_gold	0	1	500	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_par_gold_2	corv_morathi_cult_par_gold	1	1	1000	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_par_gold_3	corv_morathi_cult_par_gold	2	1	2000	0		false	false			false	corv_morathi_cult_gold	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_par_manipulation_1	corv_morathi_cult_par_manipulation	0	1	500	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_par_manipulation_2	corv_morathi_cult_par_manipulation	1	1	1000	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_par_manipulation_3	corv_morathi_cult_par_manipulation	2	1	2000	0		false	false			false	corv_morathi_cult_manipulation	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_par_devotees_1	corv_morathi_cult_par_devotees	0	1	500	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_par_devotees_2	corv_morathi_cult_par_devotees	1	1	1000	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_par_devotees_3	corv_morathi_cult_par_devotees	2	1	2000	0		false	false			false	corv_morathi_cult_devotees	false	0.0000	0	true	2		true	0	0		0		-1	false
+corv_morathi_cult_util_spread_1	corv_morathi_cult_util_spread	0	1	500	200		false	false			false	corv_morathi_cult_util_spread	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_util_army_1	corv_morathi_cult_util_army	0	1	500	0		false	false			false	corv_morathi_cult_util_army	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_util_army_2	corv_morathi_cult_util_army	1	1	1500	0		false	false			false	corv_morathi_cult_util_army	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_util_vault_1	corv_morathi_cult_util_vault	0	1	2000	200		false	false			false	corv_morathi_cult_util_vault	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_util_loot_1	corv_morathi_cult_util_loot	0	1	500	0		false	false			false	corv_morathi_cult_util_loot	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_util_loot_2	corv_morathi_cult_util_loot	1	1	1500	0		false	false			false	corv_morathi_cult_util_loot	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_util_influence_1	corv_morathi_cult_util_influence	0	1	500	0		false	false			false	corv_morathi_cult_util_influence	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_emp_seduction_1	corv_morathi_cult_emp_seduction	0	1	500	0		false	false			false	corv_morathi_cult_emp_seduction	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_emp_seduction_2	corv_morathi_cult_emp_seduction	1	1	1000	0		false	false			false	corv_morathi_cult_emp_seduction	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_emp_winds_1	corv_morathi_cult_emp_winds	0	1	500	0		false	false			false	corv_morathi_cult_emp_winds	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_emp_winds_2	corv_morathi_cult_emp_winds	1	1	1000	0		false	false			false	corv_morathi_cult_emp_winds	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_emp_druchii_1	corv_morathi_cult_emp_druchii	0	1	500	0		false	false			false	corv_morathi_cult_emp_druchii	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_emp_druchii_2	corv_morathi_cult_emp_druchii	1	1	1000	0		false	false			false	corv_morathi_cult_emp_druchii	false	0.0000	0	true	1		true	0	0		0		-1	false
+corv_morathi_cult_emp_daemons_1	corv_morathi_cult_emp_daemons	0	1	500	0		false	false			false	corv_morathi_cult_emp_daemons	false	0.0000	0	true	0		true	0	0		0		-1	false
+corv_morathi_cult_emp_daemons_2	corv_morathi_cult_emp_daemons	1	1	1000	0		false	false			false	corv_morathi_cult_emp_daemons	false	0.0000	0	true	1		true	0	0		0		-1	false

@@ -1,7 +1,7 @@
 {
   "settings_text": {
     "diagnostics_files_to_ignore": "",
-    "import_files_to_ignore": "\ncorvus_morathi.sublime-project\ncorvus_morathi.sublime-workspace\n.vscode\n.luarc.json\n.git\n.gitignore"
+    "import_files_to_ignore": "\ncorvus_morathi.sublime-project\ncorvus_morathi.sublime-workspace\n.vscode\n.luarc.json\n.git\n.gitignore\nvanilla_ref"
   },
   "settings_string": {
     "compression_format": "None"

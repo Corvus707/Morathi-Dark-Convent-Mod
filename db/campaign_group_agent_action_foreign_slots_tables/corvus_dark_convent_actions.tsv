@@ -1,0 +1,3 @@
+campaign_group	slot_set
+#campaign_group_agent_action_foreign_slots_tables;0;db/campaign_group_agent_action_foreign_slots_tables/corvus_dark_convent_actions	
+corv_agent_action_establish_cult_dark_convent	corv_morathi_slot_set_cult
