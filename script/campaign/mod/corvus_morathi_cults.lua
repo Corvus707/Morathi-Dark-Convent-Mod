@@ -193,7 +193,8 @@ local function save_disciple_armies(armies)
     cm:set_saved_value(disciple_armies_saved_key, table.concat(parts, ";"))
 end
 
-local function raise_disciple_army(region, units)
+-- extra_bundle: an optional permanent bundle for the army (the upgraded Devotee Uprising's)
+local function raise_disciple_army(region, units, extra_bundle)
     local x, y = cm:find_valid_spawn_location_for_character_from_settlement(faction_key, region:name(), false, true, 5)
     if x == -1 then
         log("no spawn location for the disciple army near "..region:name())
@@ -202,6 +203,9 @@ local function raise_disciple_army(region, units)
     cm:create_force(faction_key, table.concat(units or army_units, ","), region:name(), x, y, true,
         function (char_cqi, force_cqi)
             cm:apply_effect_bundle_to_force(disciple_bundle, force_cqi, 0)
+            if extra_bundle then
+                cm:apply_effect_bundle_to_force(extra_bundle, force_cqi, 0)
+            end
             local armies = load_disciple_armies()
             armies[force_cqi] = cm:model():turn_number()
             save_disciple_armies(armies)
@@ -209,7 +213,8 @@ local function raise_disciple_army(region, units)
         end)
 end
 
--- Shared with the rituals script (Devotee Uprising): a disciple army near the region, with an optional unit list
+-- Shared with the rituals script (Devotee Uprising): a disciple army near the region, with an optional unit list and
+-- bundle
 corvus_morathi_cults_api = corvus_morathi_cults_api or {}
 corvus_morathi_cults_api.raise_disciple_army = raise_disciple_army
 

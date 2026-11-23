@@ -1,12 +1,2 @@
 child_key	parent_key	initial_descent_tiers	parent_link_position	child_link_position	parent_link_position_offset	child_link_position_offset	visible_in_ui
 #technology_node_links_tables;0;db/technology_node_links_tables/corvus_morathi_tech							
-corv_morathi_tech_manipulation_2	corv_morathi_tech_manipulation_1	0	2	4	0.0000	0.0000	true
-corv_morathi_tech_manipulation_3	corv_morathi_tech_manipulation_2	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_manipulation_4	corv_morathi_tech_manipulation_3	0	4	2	0.0000	0.0000	true
-corv_morathi_tech_manipulation_5	corv_morathi_tech_manipulation_4	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_manipulation_6	corv_morathi_tech_manipulation_5	0	2	4	0.0000	0.0000	true
-corv_morathi_tech_sorceress_2	corv_morathi_tech_sorceress_1	0	2	4	0.0000	0.0000	true
-corv_morathi_tech_sorceress_3	corv_morathi_tech_sorceress_2	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_sorceress_4	corv_morathi_tech_sorceress_3	0	4	2	0.0000	0.0000	true
-corv_morathi_tech_sorceress_5	corv_morathi_tech_sorceress_4	0	3	1	0.0000	0.0000	true
-corv_morathi_tech_sorceress_6	corv_morathi_tech_sorceress_5	0	2	4	0.0000	0.0000	true

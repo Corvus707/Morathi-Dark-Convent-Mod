@@ -1,0 +1,6 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_shadow_gate.loc		
+building_chains_chain_tooltip_corv_morathi_cult_util_shadow	Utility Cult	false
+building_culture_variants_name_corv_morathi_cult_util_shadow_1wh2_main_def_dark_elves	Shadow Gate	false
+building_short_description_texts_short_description_corv_morathi_cult_util_shadow_1	A door of living shadow, opened only for the Hag Queen.	false
+building_description_texts_long_description_corv_morathi_cult_util_shadow_1	Allows Morathi to use the Shadow Walk ritual to travel to this cult.	false

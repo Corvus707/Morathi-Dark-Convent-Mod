@@ -1,0 +1,5 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_dark_dalliance.loc		
+effects_description_wh3_dlc27_effect_force_stat_melee_attack_sla_infantry_def	Melee attack: %+n for all Slaanesh units	false
+effects_description_wh3_dlc27_effect_force_stat_speed_sla_infantry_def	Speed: %+n% for all Slaanesh units	false
+effects_description_wh3_dlc27_effect_force_stat_physical_resistance_sla_infantry_def	Physical resistance: %+n% for all Slaanesh units	false

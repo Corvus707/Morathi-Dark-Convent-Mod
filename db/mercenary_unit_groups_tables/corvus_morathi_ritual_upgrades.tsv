@@ -1,0 +1,4 @@
+key	chance_to_replenish	max_count	unit_record	use_partial_replenishment	max_replenish_per_turn	ui_order
+#mercenary_unit_groups_tables;3;db/mercenary_unit_groups_tables/corvus_morathi_ritual_upgrades						
+corv_morathi_summon_exalted_daemonette	0.0000	10	wh3_main_sla_inf_daemonette_1	false	0.0000	2
+corv_morathi_summon_pleasureseekers	0.0000	4	wh3_dlc27_sla_cav_pleasureseekers	false	0.0000	3

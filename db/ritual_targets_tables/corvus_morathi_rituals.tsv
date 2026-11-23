@@ -1,3 +1,4 @@
 key	faction_criteria	military_force_criteria	region_criteria	enable_outline_highlight	highlight_colour_selected_target	highlight_colour_no_target_selected	highlight_colour_with_target_selected	character_criteria	max_range_ap
 #ritual_targets_tables;4;db/ritual_targets_tables/corvus_morathi_rituals									
 corv_ritual_target_region_no_morathi_cult			corv_ritual_target_region_no_morathi_cult	false	16777215	16777215	16777215		-1
+corv_ritual_target_morathi_cult			corv_ritual_target_region_morathi_cult	false	FFFFFF	FFFFFF	FFFFFF		-1

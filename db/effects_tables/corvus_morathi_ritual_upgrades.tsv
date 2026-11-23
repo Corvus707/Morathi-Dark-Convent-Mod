@@ -1,0 +1,3 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_morathi_ritual_upgrades					
+corv_effect_veil_of_shadows_decay_upgraded	attribute_stalk.png	320	attribute_stalk.png	campaign	false

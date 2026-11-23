@@ -13,7 +13,7 @@ corv_effect_tech_ability_ritual_of_the_beast_beasts	magic_character.png	2	magic_
 corv_effect_tech_ability_regeneration_death	magic_character.png	2	magic_character.png	battle	true
 corv_effect_tech_slaanesh_magic	magic_character.png	2	magic_character.png	battle	true
 corv_effect_tech_morathi_slaanesh_upgraded	magic_character.png	2	magic_character.png	battle	true
-corv_effect_tech_todo_rituals_upgraded	wizard.png	2	wizard.png	campaign	true
+corv_effect_tech_rituals_upgraded	wizard.png	2	wizard.png	campaign	true
 corv_effect_tech_todo_absolute_power	magic_character.png	2	magic_character.png	battle	true
 corv_effect_tech_todo_fire_weakness	magic_character.png	2	magic_character.png	battle	true
 corv_effect_tech_todo_flammable_aura	magic_character.png	2	magic_character.png	battle	true
@@ -22,6 +22,6 @@ corv_effect_tech_todo_unsettling_radiance	magic_character.png	2	magic_character.
 corv_effect_tech_todo_seductive_influence	wizard.png	2	wizard.png	campaign	true
 corv_effect_tech_todo_allies_vassals	wizard.png	2	wizard.png	campaign	true
 corv_effect_tech_todo_druchii_daemon_passive	wizard.png	2	wizard.png	battle	true
-corv_effect_tech_todo_morathi_rituals	wizard.png	2	wizard.png	campaign	true
+corv_effect_tech_morathi_rituals	wizard.png	2	wizard.png	campaign	true
 corv_effect_tech_todo_morathi_sorceress	magic_character.png	2	magic_character.png	battle	true
 corv_effect_tech_todo_charmed	wizard.png	2	wizard.png	battle	true

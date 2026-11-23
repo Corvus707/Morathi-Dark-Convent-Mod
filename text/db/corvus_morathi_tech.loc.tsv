@@ -111,7 +111,7 @@ effects_description_corv_effect_tech_ability_ritual_of_the_beast_beasts	Ability:
 effects_description_corv_effect_tech_ability_regeneration_death	Passive ability: "{{tr:unit_abilities_onscreen_name_wh_main_unit_passive_regeneration}}" for Sorceresses and Supreme Sorceresses of Death	false
 effects_description_corv_effect_tech_slaanesh_magic	All Lore of Slaanesh spells, "{{tr:unit_abilities_onscreen_name_wh3_main_lore_passive_blissful_rapture}}" and "{{tr:unit_abilities_onscreen_name_wh3_main_lord_passive_feasting_on_fear}}" for all Dark Elf spellcasters	false
 effects_description_corv_effect_tech_morathi_slaanesh_upgraded	Upgraded Lore of Slaanesh spells for Morathi	false
-effects_description_corv_effect_tech_todo_rituals_upgraded	[NOT YET IMPLEMENTED] Morathi's rituals are upgraded	false
+effects_description_corv_effect_tech_rituals_upgraded	Upgrades every Dark Magic and Seduction ritual except Shadow Walk, Establish Cult and Cataclysm (see each ritual for its upgrade)	false
 effects_description_corv_effect_tech_todo_absolute_power	[NOT YET IMPLEMENTED] Dark Sorceresses gain "Absolute Power"	false
 effects_description_corv_effect_tech_todo_fire_weakness	[NOT YET IMPLEMENTED] Fire Sorceresses: all enemies gain +20% weakness to fire	false
 effects_description_corv_effect_tech_todo_flammable_aura	[NOT YET IMPLEMENTED] Fire Sorceresses: aura that gives allies flaming attacks	false
@@ -120,7 +120,7 @@ effects_description_corv_effect_tech_todo_unsettling_radiance	[NOT YET IMPLEMENT
 effects_description_corv_effect_tech_todo_seductive_influence	[NOT YET IMPLEMENTED] Seductive Influence costs -20% Devotees and has -5 turns cooldown	false
 effects_description_corv_effect_tech_todo_allies_vassals	[NOT YET IMPLEMENTED] Allies and vassals spread Slaanesh corruption and gain +5% physical resistance	false
 effects_description_corv_effect_tech_todo_druchii_daemon_passive	[NOT YET IMPLEMENTED] Dark Elf units near daemons gain +8 melee attack and +8 melee defence; daemons near Dark Elf units gain +10% weapon strength and +10% physical resistance	false
-effects_description_corv_effect_tech_todo_morathi_rituals	[NOT YET IMPLEMENTED] Morathi's exclusive rituals are improved	false
+effects_description_corv_effect_tech_morathi_rituals	Upgrades Morathi's Shadow Walk, Establish Cult and Cataclysm rituals (see each ritual for its upgrade)	false
 effects_description_corv_effect_tech_todo_morathi_sorceress	[NOT YET IMPLEMENTED] Morathi: empowers herself near friendly spellcasters, drains enemy spellcasters, and Arcane Conduit is upgraded	false
 effects_description_corv_effect_tech_todo_charmed	[NOT YET IMPLEMENTED] Morathi's army gains "Charmed"	false
 pooled_resource_factors_display_name_positive_morathi_manipulation_technology	Technology	false
