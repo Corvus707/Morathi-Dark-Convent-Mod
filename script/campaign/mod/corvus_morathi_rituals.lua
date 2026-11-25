@@ -1,15 +1,14 @@
 -- Morathi's panel rituals (Dark Magic and Seduction pages). The rituals and their effect text are defined in the db
 -- (build_morathi_rituals.py); their payloads are display-only, so the effects are applied here when a ritual completes.
--- Level requirements are enforced by locking each ritual until Morathi (or a Sorceress) is high enough level.
--- Values are placeholders.
+-- Who can perform each ritual and the minimum level are the db's (ritual_performing_characters, corvus_morathi_continued):
+-- Morathi for her own rituals (morathi_only below), a Sorceress hero for the rest. The game greys out and explains
+-- rituals without a qualifying performer. Values are placeholders.
 
 local faction_key = "wh2_main_def_cult_of_pleasure"
 local morathi_subtype = "wh2_main_def_morathi"
 
--- TESTING: unlock every ritual regardless of level. Set back to false before release.
-local skip_level_requirements = true
-
--- Ritual key -> required level, and whether only Morathi counts (matches build_morathi_rituals.py)
+-- Ritual key -> required level, and whether only Morathi can perform it (the same as the db's performers; this script
+-- only uses it to recognise its rituals)
 local ritual_requirements = {
     morathi_dark_magic_withering_curse = { level = 1 },
     morathi_dark_magic_amplify_magic = { level = 5 },
@@ -696,51 +695,24 @@ local function on_ritual_completed(context)
     reward_performer(key, performer)
 end
 
--- ---- level requirements --------------------------------------------------------------------------------------------
+-- ---- unlocking -----------------------------------------------------------------------------------------------------
 
--- ritual key -> true when unlocked, so locks are only changed when they need to be
-local unlocked = {}
-
--- Morathi and Sorceress heroes (vanilla and Dark Convent), the same characters the panel lists
-local function is_caster(character)
-    local subtype = character:character_subtype_key()
-    return subtype == morathi_subtype or (character:character_type_key() == "wizard" and string.match(subtype, "sorceress") ~= nil)
-end
-
-local function update_ritual_locks()
+-- Level requirements used to be script locks; the db's performers handle them now. Saves made before that may still
+-- have rituals locked, so every ritual is unlocked when the campaign loads.
+local function unlock_all_rituals()
     local faction = cm:get_faction(faction_key)
     if not faction or faction:is_dead() then
         return
     end
-    local morathi_rank, caster_rank = 0, 0
-    local characters = faction:character_list()
-    for i = 0, characters:num_items() - 1 do
-        local character = characters:item_at(i)
-        if is_caster(character) then
-            caster_rank = math.max(caster_rank, character:rank())
-            if character:character_subtype_key() == morathi_subtype then
-                morathi_rank = character:rank()
-            end
-        end
-    end
-    for key, requirement in pairs(ritual_requirements) do
-        local rank = requirement.morathi_only and morathi_rank or caster_rank
-        local should_unlock = skip_level_requirements or rank >= requirement.level
-        if unlocked[key] ~= should_unlock then
-            unlocked[key] = should_unlock
-            if should_unlock then
-                cm:unlock_ritual(faction, key, 0)
-            else
-                cm:lock_ritual(faction, key)
-            end
-        end
+    for key in pairs(ritual_requirements) do
+        cm:unlock_ritual(faction, key, 0)
     end
 end
 
 -- ---- listeners -----------------------------------------------------------------------------------------------------
 
 cm:add_first_tick_callback(function ()
-    update_ritual_locks()
+    unlock_all_rituals()
 
     core:add_listener(
         "corvus_morathi_rituals_completed",
@@ -783,7 +755,6 @@ cm:add_first_tick_callback(function ()
                     spied_armies[target_key] = nil
                 end
             end
-            update_ritual_locks()
         end,
         true)
 
@@ -810,14 +781,5 @@ cm:add_first_tick_callback(function ()
             selected_performer_cqi = cqi ~= 0 and cqi or nil
             out("Morathi rituals: performer is now "..tostring(selected_performer_cqi or "Morathi"))
         end,
-        true)
-
-    core:add_listener(
-        "corvus_morathi_rituals_rank_up",
-        "CharacterRankUp",
-        function (context)
-            return context:character():faction():name() == faction_key
-        end,
-        update_ritual_locks,
         true)
 end)

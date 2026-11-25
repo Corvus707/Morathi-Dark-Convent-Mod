@@ -21,7 +21,7 @@ local starting_cult_regions = {
 local starting_building = nil
 
 -- TESTING: spreading always succeeds (matches CULT_TESTING in morathi_cults.py). Set to false before release.
-local testing = true
+local testing = false
 
 -- Spreading Whispers
 local spread_building = "corv_morathi_cult_util_spread_1"

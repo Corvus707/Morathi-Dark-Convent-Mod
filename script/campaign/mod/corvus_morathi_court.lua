@@ -31,9 +31,9 @@ local num_choice_rows = 5
 local action_prefix = "corv_dark_convent"
 local candidate_age = 22
 -- TESTING: offer the next dilemma straight away instead of on the next turn. Set back to false when done.
-local skip_dilemma_turn_wait = true
+local skip_dilemma_turn_wait = false
 -- TESTING: finish training as soon as the last dilemma is answered, ignoring the turns left. Set back to false when done.
-local skip_training_duration = true
+local skip_training_duration = false
 -- Morathi's trait: Sorceress heroes recruitable in any of her provinces
 local morathi_subtype = "wh2_main_def_morathi"
 local morathi_trait = "corv_trait_morathi_dark_convent"

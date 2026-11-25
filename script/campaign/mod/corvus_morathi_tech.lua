@@ -10,7 +10,7 @@
 local faction_key = "wh2_main_def_cult_of_pleasure"
 
 -- TESTING: Dominate costs no Devotees and has no cooldown. Set to false before release (1000 Devotees, 10 turns).
-local free_dominate = true
+local free_dominate = false
 local free_dominate_bundle = "corv_testing_free_dominate"
 
 local unsettling_radiance_tech = "corv_morathi_tech_magic_death"

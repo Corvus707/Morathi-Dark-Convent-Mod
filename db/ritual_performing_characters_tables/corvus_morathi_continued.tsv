@@ -1,2 +1,18 @@
 key	agent_subtype	agent_type	recovery_time	minimum_level	effects_while_performing
 #ritual_performing_characters_tables;1;db/ritual_performing_characters_tables/corvus_morathi_continued					
+morathi_actions_kidnap_slaves		wizard	0	1	
+morathi_actions_druchii_spies		wizard	0	1	
+morathi_actions_support_cult	wh2_main_def_morathi		0	1	
+morathi_dark_magic_withering_curse		wizard	0	1	
+morathi_dark_magic_shadow_walk	wh2_main_def_morathi		0	1	
+morathi_actions_easier_seduction		wizard	0	5	
+morathi_dark_magic_amplify_magic		wizard	0	5	
+morathi_dark_magic_lesser_summoning		wizard	0	5	
+morathi_actions_mark		wizard	0	10	
+morathi_dark_magic_unholy_haste		wizard	0	10	
+morathi_actions_corruption		wizard	0	15	
+morathi_dark_magic_veil_of_shadows		wizard	0	15	
+morathi_actions_steal_secrets		wizard	0	20	
+morathi_dark_magic_greater_summoning		wizard	0	20	
+morathi_actions_devotee_uprising		wizard	0	25	
+morathi_dark_magic_cataclysm	wh2_main_def_morathi		0	25	
