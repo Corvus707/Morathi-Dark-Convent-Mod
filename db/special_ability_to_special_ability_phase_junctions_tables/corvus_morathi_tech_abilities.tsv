@@ -1,0 +1,11 @@
+order	special_ability	target_self	target_friends	target_enemies	phase
+#special_ability_to_special_ability_phase_junctions_tables;2;db/special_ability_to_special_ability_phase_junctions_tables/corvus_morathi_tech_abilities					
+1	corv_tech_fire_kindled_weakness	false	false	true	corv_tech_fire_kindled_weakness
+1	corv_tech_fire_flammable_aura	true	true	false	corv_tech_fire_flammable_aura
+1	corv_tech_shadow_stalk_aura	true	true	false	corv_tech_shadow_stalk_aura
+1	corv_tech_pain	false	true	false	corv_tech_pain
+1	corv_tech_pleasure	false	true	false	corv_tech_pleasure
+1	corv_morathi_drain_winds	true	false	false	corv_morathi_drain_winds_self
+2	corv_morathi_drain_winds	false	false	true	corv_morathi_drain_winds_enemy
+1	corv_morathi_dark_arcane_conduit	true	false	false	corv_morathi_dark_arcane_conduit
+2	corv_morathi_dark_arcane_conduit	false	false	true	corv_morathi_dark_arcane_conduit_damage

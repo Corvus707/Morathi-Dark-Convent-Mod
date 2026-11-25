@@ -7,5 +7,5 @@ corv_ritual_active			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_veil_of_shadows_upgraded			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_cataclysm_attrition			force	1	edict_def_read_dark_portents.png	false	true	false
 corv_ritual_easier_seduction_upgraded			force	1	edict_def_read_dark_portents.png	false	false	true
-corv_ritual_steal_secrets_upgraded			faction	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_steal_secrets_upgraded			faction	1	edict_def_read_dark_portents.png	true	false	true
 corv_ritual_uprising_empowered			force	1	disciple_army.png	false	true	false

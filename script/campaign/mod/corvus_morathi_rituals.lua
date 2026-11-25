@@ -13,8 +13,8 @@ local skip_level_requirements = true
 local ritual_requirements = {
     morathi_dark_magic_withering_curse = { level = 1 },
     morathi_dark_magic_amplify_magic = { level = 5 },
-    -- Shadow Walk also needs a cult with a Shadow Gate (the ritual can only target cults, see shadow_gate_building)
-    morathi_dark_magic_shadow_walk = { level = 1, morathi_only = true, needs_shadow_gate = true },
+    -- Shadow Walk can only target regions with one of Morathi's cults (db: corv_ritual_target_morathi_cult)
+    morathi_dark_magic_shadow_walk = { level = 1, morathi_only = true },
     morathi_dark_magic_lesser_summoning = { level = 5 },
     morathi_dark_magic_unholy_haste = { level = 10 },
     morathi_dark_magic_veil_of_shadows = { level = 15 },
@@ -54,6 +54,9 @@ local curse_turns = 3
 local amplify_turns = 3
 local amplify_bundle = "corv_ritual_amplify_magic"
 local amplify_bundle_upgraded = "corv_ritual_amplify_magic_upgraded"
+-- Shown in the province's effects (display only; db: corvus_morathi_amplify)
+local amplify_province_bundle = "corv_ritual_amplify_magic_province"
+local amplify_province_bundle_upgraded = "corv_ritual_amplify_magic_province_upgraded"
 -- Cataclysm (upgraded): more damage, light attrition on the enemy armies it hits, enemy walls destroyed (breaches, as
 -- vanilla's Sayl manipulation) and enemy buildings damaged (health lost, never below the minimum)
 local cataclysm_damage_upgraded = 0.45
@@ -65,8 +68,9 @@ local cataclysm_min_building_health = 10
 -- Diplomatic attitude change, -6 to 6 (cm:apply_dilemma_diplomatic_bonus)
 local kidnap_relations = -3
 local mark_relations = 3
--- Mark (upgraded): the target's faction with each of Morathi's enemies
-local mark_enemy_relations = -2
+-- Mark (upgraded): the target's faction and each of Morathi's enemies fall out with each other. A vanilla AI diplomatic
+-- event: PAST_EVENT_NEGATIVE_MODERATE is -25 relations (cai_personality_diplomatic_event_values)
+local mark_enemy_event = "PAST_EVENT_NEGATIVE_MODERATE"
 -- Kidnap Slaves (upgraded)
 local kidnap_devotees = 100
 -- Corruption (upgraded): enough Slaanesh corruption to max out the province (as vanilla's endgame scripts do)
@@ -184,37 +188,6 @@ end
 
 local function is_upgraded(faction, ritual_key)
     return faction:has_technology(morathi_upgraded_rituals[ritual_key] and morathi_upgrade_tech or upgrade_tech)
-end
-
--- Cult building that lets Morathi Shadow Walk to its cult (db: corvus_morathi_shadow_gate)
-local shadow_gate_building = "corv_morathi_cult_util_shadow_1"
-
-local function cult_has_building(cult, building)
-    local slots = cult:slots()
-    for i = 0, slots:num_items() - 1 do
-        local slot = slots:item_at(i)
-        if slot:has_building() and slot:building() == building then
-            return true
-        end
-    end
-    return false
-end
-
--- The faction's cult in this region has the building
-local function region_cult_has_building(faction, region, building)
-    local cult = region:foreign_slot_manager_for_faction(faction:name())
-    return not cult:is_null_interface() and cult_has_building(cult, building)
-end
-
--- Any of the faction's cults has the building
-local function any_cult_has_building(faction, building)
-    local cults = faction:foreign_slot_managers()
-    for i = 0, cults:num_items() - 1 do
-        if cult_has_building(cults:item_at(i), building) then
-            return true
-        end
-    end
-    return false
 end
 
 local function get_morathi(faction)
@@ -437,20 +410,22 @@ local ritual_effects = {
         end
     end,
     -- Amplifies the target region's province: every army in it (friend or foe) has the spell bonuses while there
-    -- (refresh_amplified_armies picks the upgraded bundle)
-    morathi_dark_magic_amplify_magic = function (_, _, region)
+    -- (refresh_amplified_armies picks the upgraded bundle). Each region of the province shows it in its effects.
+    morathi_dark_magic_amplify_magic = function (_, _, region, _, _, upgraded)
         if region then
             amplified_provinces[region:province_name()] = amplify_turns
             refresh_amplified_armies()
+            local display = upgraded and amplify_province_bundle_upgraded or amplify_province_bundle
+            for _, r in ipairs(province_regions(region)) do
+                cm:remove_effect_bundle_from_region(amplify_province_bundle, r:name())
+                cm:remove_effect_bundle_from_region(amplify_province_bundle_upgraded, r:name())
+                cm:apply_effect_bundle_to_region(display, r:name(), amplify_turns)
+            end
         end
     end,
     -- Upgraded (Queen of Whispers): no Tired/Silenced, +20% movement instead
     morathi_dark_magic_shadow_walk = function (faction, _, region, _, _, upgraded)
-        -- The ritual targets any of Morathi's cults; only a cult with a Shadow Gate opens the way
-        if region and not region_cult_has_building(faction, region, shadow_gate_building) then
-            out("Morathi rituals: Shadow Walk to "..region:name().." failed, the cult there has no Shadow Gate")
-            return
-        end
+        -- The ritual targets any of Morathi's cults (db: corv_ritual_target_morathi_cult)
         local morathi = get_morathi(faction)
         if morathi and region then
             local x, y = cm:find_valid_spawn_location_for_character_from_settlement(faction_key, region:name(), false, true, 5)
@@ -590,10 +565,11 @@ local ritual_effects = {
             for i = 0, factions:num_items() - 1 do
                 local enemy = factions:item_at(i)
                 if not enemy:is_dead() and enemy:name() ~= target:name() and enemy:at_war_with(faction) then
-                    pcall(cm.apply_dilemma_diplomatic_bonus, cm, target:name(), enemy:name(), mark_enemy_relations)
+                    pcall(cm.cai_add_diplomatic_event, cm, target:name(), enemy:name(), mark_enemy_event)
+                    pcall(cm.cai_add_diplomatic_event, cm, enemy:name(), target:name(), mark_enemy_event)
                 end
             end
-            out("Morathi rituals: "..target:name().." loses relations with Morathi's enemies")
+            out("Morathi rituals: "..target:name().." and Morathi's enemies lose 25 relations with each other")
         end
     end,
     -- Upgraded: Slaanesh corruption in the province to maximum
@@ -747,11 +723,9 @@ local function update_ritual_locks()
             end
         end
     end
-    local has_shadow_gate = any_cult_has_building(faction, shadow_gate_building)
     for key, requirement in pairs(ritual_requirements) do
         local rank = requirement.morathi_only and morathi_rank or caster_rank
-        local should_unlock = (skip_level_requirements or rank >= requirement.level)
-            and (not requirement.needs_shadow_gate or has_shadow_gate)
+        local should_unlock = skip_level_requirements or rank >= requirement.level
         if unlocked[key] ~= should_unlock then
             unlocked[key] = should_unlock
             if should_unlock then
@@ -844,14 +818,6 @@ cm:add_first_tick_callback(function ()
         function (context)
             return context:character():faction():name() == faction_key
         end,
-        update_ritual_locks,
-        true)
-
-    -- A Shadow Gate finishing unlocks Shadow Walk straight away (losing the last one is caught at turn start)
-    core:add_listener(
-        "corvus_morathi_rituals_shadow_gate_built",
-        "ForeignSlotBuildingCompleteEvent",
-        true,
         update_ritual_locks,
         true)
 end)

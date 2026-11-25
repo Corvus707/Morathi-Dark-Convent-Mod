@@ -9,12 +9,12 @@ rituals_description_morathi_dark_magic_withering_curse	The Hag Queen's curse eat
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_1	For 3 turns, every army in the target province, friend or foe, has +20% spell intensity and -20 Winds of Magic reserve per turn. Armies gain it while in the province and lose it when they leave	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_2	Requires Morathi or a Sorceress of level 5 or higher	false
 rituals_display_name_morathi_dark_magic_amplify_magic	Amplify Magic	false
-rituals_description_morathi_dark_magic_amplify_magic	Morathi draws the winds of magic into one of her provinces.\\n\\n• For 3 turns, every army in the target province, friend or foe, has +20% spell intensity and -20 Winds of Magic reserve per turn. Armies gain it while in the province and lose it when they leave\\n\\n• Upgrade (Rites of Dominion): +40% spell intensity, and only -10 Winds of Magic reserve per turn	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_1	Morathi teleports to the target cult, which must have a Shadow Gate	false
+rituals_description_morathi_dark_magic_amplify_magic	Morathi draws the winds of magic into any province, her own or her enemies'.\\n\\n• For 3 turns, every army in the target province, friend or foe, has +20% spell intensity and -20 Winds of Magic reserve per turn. Armies gain it while in the province and lose it when they leave\\n\\n• Upgrade (Rites of Dominion): +40% spell intensity, and only -10 Winds of Magic reserve per turn	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_1	Morathi teleports to the target cult	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_2	Morathi's army is Tired and Silenced for 2 turns	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_3	Requires Morathi of level 1 or higher and a cult with a Shadow Gate	false
+campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_3	Requires Morathi of level 1 or higher	false
 rituals_display_name_morathi_dark_magic_shadow_walk	Shadow Walk	false
-rituals_description_morathi_dark_magic_shadow_walk	Morathi steps through shadow to stand among her faithful.\\n\\n• Morathi teleports to the target cult, which must have a Shadow Gate\\n• Morathi's army is Tired and Silenced for 2 turns\\n\\n• Upgrade (Queen of Whispers): no longer Tired or Silenced; instead Morathi's army gains +20% campaign movement range for 2 turns	false
+rituals_description_morathi_dark_magic_shadow_walk	Morathi steps through shadow to stand among her faithful.\\n\\n• Morathi teleports to the target cult\\n• Morathi's army is Tired and Silenced for 2 turns\\n\\n• Upgrade (Queen of Whispers): no longer Tired or Silenced; instead Morathi's army gains +20% campaign movement range for 2 turns	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_1	Adds 2 Daemonettes to your Daemonic Summoning pool, recruitable by your armies	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_2	Deals light damage to the target army	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_3	Requires Morathi or a Sorceress of level 5 or higher	false
@@ -29,7 +29,7 @@ campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_2	Drawback: its units take damage over time in battle while above 25% health	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_3	Requires Morathi or a Sorceress of level 15 or higher	false
 rituals_display_name_morathi_dark_magic_veil_of_shadows	Veil of Shadows	false
-rituals_description_morathi_dark_magic_veil_of_shadows	Shadows cloak the host as it marches to war.\\n\\n• The whole target army gains Vanguard Deployment and Stalk for 2 turns\\n• Drawback: its units take damage over time in battle while above 25% health\\n\\n• Upgrade (Rites of Dominion): also grants Unspottable, and the damage over time is slower and stops at 50% health	false
+rituals_description_morathi_dark_magic_veil_of_shadows	Shadows cloak the host as it marches to war.\\n\\n• The whole target army gains Vanguard Deployment and Stalk for 2 turns\\n• Drawback: its units take damage over time in battle while above 25% health\\n\\n• Upgrade (Rites of Dominion): also grants Unspottable, and the damage over time stops at 50% health instead of 25%	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_1	Adds a Keeper of Secrets to your Daemonic Summoning pool, recruitable by your armies	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_2	Deals major damage to the target army	false
 campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_3	Requires Morathi or a Sorceress of level 20 or higher	false
@@ -73,7 +73,7 @@ campaign_payload_ui_details_description_dummy_morathi_actions_mark_3	Performer: 
 campaign_payload_ui_details_description_dummy_morathi_actions_mark_4	Performer is wounded for 3 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_mark_5	Requires Morathi or a Sorceress of level 10 or higher	false
 rituals_display_name_morathi_actions_mark	Gift of Slaanesh	false
-rituals_description_morathi_actions_mark	A single touch, and they are His forever.\\n\\n• The target lord receives the Gift of Slaanesh: +3 Seductive Influence per turn over their faction, +5 Slaanesh corruption in their province and -10% bribery cost for enemies in their province\\n• Improves relations with the target's faction\\n• Performer: +2500 experience\\n• Performer is wounded for 3 turns\\n\\n• Upgrade (Rites of Dominion): the target's faction also loses relations with all of your enemies	false
+rituals_description_morathi_actions_mark	A single touch, and they are His forever.\\n\\n• The target lord receives the Gift of Slaanesh: +3 Seductive Influence per turn over their faction, +5 Slaanesh corruption in their province and -10% bribery cost for enemies in their province\\n• Improves relations with the target's faction\\n• Performer: +2500 experience\\n• Performer is wounded for 3 turns\\n\\n• Upgrade (Rites of Dominion): the target's faction and every faction at war with you lose 25 relations with each other	false
 campaign_payload_ui_details_description_dummy_morathi_actions_corruption_1	+10 Slaanesh corruption in the target province for 5 turns	false
 campaign_payload_ui_details_description_dummy_morathi_actions_corruption_2	Performer: +4000 experience	false
 campaign_payload_ui_details_description_dummy_morathi_actions_corruption_3	Performer is wounded for 3 turns	false

@@ -632,14 +632,21 @@ local function button_check_callback()
 end
 
 cm:add_first_tick_callback(function ()
-    give_morathi_convent_trait()
-    local ok, err = pcall(give_all_sorceress_actions)
+    -- Errors here must not stop the button and listeners below from being set up
+    local ok, err = pcall(give_morathi_convent_trait)
+    if not ok then
+        out("Dark Convent: error giving Morathi's trait: "..tostring(err))
+    end
+    ok, err = pcall(give_all_sorceress_actions)
     if not ok then
         out("Dark Convent: error giving Sorceress actions: "..tostring(err))
     end
 
+    -- The resource bar may not exist yet when the loading screen closes (e.g. returning from a manual battle), and
+    -- the game can rebuild it, so the button is checked every second and recreated whenever it is missing.
+    -- button_check_callback only looks the holder up when it's there, so this is cheap.
     core:progress_on_loading_screen_dismissed(function ()
-        cm:real_callback(button_check_callback, 500, "corvus_morathi_add_court_button")
+        cm:repeat_real_callback(button_check_callback, 1000, "corvus_morathi_add_court_button")
     end)
 
     core:add_listener(

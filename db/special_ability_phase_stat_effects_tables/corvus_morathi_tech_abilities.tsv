@@ -1,0 +1,10 @@
+phase	stat	value	how
+#special_ability_phase_stat_effects_tables;3;db/special_ability_phase_stat_effects_tables/corvus_morathi_tech_abilities			
+corv_tech_fire_kindled_weakness	stat_weakness_flame	-20.0000	add
+corv_tech_shadow_stalk_aura	scalar_speed	1.1000	mult
+corv_tech_pain	stat_melee_attack	8.0000	add
+corv_tech_pain	stat_melee_defence	8.0000	add
+corv_tech_pleasure	stat_melee_damage_base	1.1000	mult
+corv_tech_pleasure	stat_melee_damage_ap	1.1000	mult
+corv_tech_pleasure	stat_resistance_physical	10.0000	add
+corv_morathi_dark_arcane_conduit	scalar_spell_mastery	1.1500	mult

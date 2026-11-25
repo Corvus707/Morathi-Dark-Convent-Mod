@@ -1,0 +1,4 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_morathi_tech_script					
+corv_effect_testing_dominate_cost	wizard.png	2	wizard.png	campaign	false
+corv_effect_testing_dominate_cooldown	wizard.png	2	wizard.png	campaign	false

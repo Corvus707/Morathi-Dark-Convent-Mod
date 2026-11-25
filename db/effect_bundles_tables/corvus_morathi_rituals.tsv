@@ -4,7 +4,7 @@ corv_ritual_withering_curse			force	1	edict_def_read_dark_portents.png	false	tru
 corv_ritual_amplify_magic			force	1	edict_def_read_dark_portents.png	false	false	false
 corv_ritual_tired_silenced			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_tired			force	1	edict_def_read_dark_portents.png	false	false	true
-corv_ritual_steal_secrets_research			faction	1	edict_def_read_dark_portents.png	false	false	true
+corv_ritual_steal_secrets_research			faction	1	edict_def_read_dark_portents.png	true	false	true
 corv_ritual_steal_secrets_experience			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_veil_of_shadows			force	1	edict_def_read_dark_portents.png	false	false	true
 corv_ritual_exhausted			force	1	edict_def_read_dark_portents.png	false	false	true

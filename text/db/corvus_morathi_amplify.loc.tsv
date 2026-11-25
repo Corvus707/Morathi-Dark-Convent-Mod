@@ -1,0 +1,8 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_amplify.loc		
+effects_description_corv_effect_amplify_province_spell_mastery	Spell intensity for every army in this province: %+n%	false
+effects_description_corv_effect_amplify_province_winds	Winds of Magic reserve per turn for every army in this province: %+n	false
+effect_bundles_localised_title_corv_ritual_amplify_magic_province	Amplified Magic	false
+effect_bundles_localised_description_corv_ritual_amplify_magic_province	Morathi has drawn the winds of magic into this province. Every army here, friend or foe, is affected.	false
+effect_bundles_localised_title_corv_ritual_amplify_magic_province_upgraded	Amplified Magic	false
+effect_bundles_localised_description_corv_ritual_amplify_magic_province_upgraded	Morathi has drawn the winds of magic into this province. Every army here, friend or foe, is affected.	false

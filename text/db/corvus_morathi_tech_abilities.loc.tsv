@@ -1,0 +1,28 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_tech_abilities.loc		
+unit_abilities_onscreen_name_corv_tech_fire_kindled_weakness	Kindled Weakness	false
+unit_abilities_tooltip_text_corv_tech_fire_kindled_weakness	The Sorceress's fires burn hotter than nature allows. Every enemy on the field is more vulnerable to fire.	false
+unit_abilities_onscreen_name_corv_tech_fire_flammable_aura	Kindling Aura	false
+unit_abilities_tooltip_text_corv_tech_fire_flammable_aura	Nearby allies' weapons are wreathed in flame.	false
+unit_abilities_onscreen_name_corv_tech_shadow_stalk_aura	Shroud of Ulgu	false
+unit_abilities_tooltip_text_corv_tech_shadow_stalk_aura	Shadows gather around the Sorceress, hiding nearby allies and quickening their steps.	false
+unit_abilities_onscreen_name_corv_tech_pain	Pain	false
+unit_abilities_tooltip_text_corv_tech_pain	Dark Elf units near this daemon of Slaanesh feel Pain, and fight with ecstatic skill.	false
+unit_abilities_onscreen_name_corv_tech_pleasure	Pleasure	false
+unit_abilities_tooltip_text_corv_tech_pleasure	Daemons near this Dark Elf unit feel Pleasure, striking harder and shrugging off blows.	false
+unit_abilities_onscreen_name_corv_morathi_drain_winds	Drain the Winds	false
+unit_abilities_tooltip_text_corv_morathi_drain_winds	While an enemy spellcaster is near, Morathi steals the Winds of Magic from their reserves.	false
+unit_abilities_onscreen_name_corv_morathi_dark_arcane_conduit	Dark Arcane Conduit	false
+unit_abilities_tooltip_text_corv_morathi_dark_arcane_conduit	Morathi channels the Winds of Magic with terrifying ease, and the overflow scorches enemies within 35m.	false
+special_ability_phases_onscreen_name_corv_tech_fire_kindled_weakness	Kindled Weakness	false
+special_ability_phases_onscreen_name_corv_tech_fire_flammable_aura	Kindling Aura	false
+special_ability_phases_onscreen_name_corv_tech_shadow_stalk_aura	Shroud of Ulgu	false
+special_ability_phases_onscreen_name_corv_tech_pain	Pain	false
+special_ability_phases_onscreen_name_corv_tech_pleasure	Pleasure	false
+special_ability_phases_onscreen_name_corv_morathi_drain_winds_self	Drain the Winds	false
+special_ability_phases_onscreen_name_corv_morathi_drain_winds_enemy	Drain the Winds	false
+special_ability_phases_onscreen_name_corv_morathi_dark_arcane_conduit	Dark Arcane Conduit	false
+special_ability_phases_onscreen_name_corv_morathi_dark_arcane_conduit_damage	Dark Arcane Conduit	false
+effects_description_corv_effect_pleasure_and_pain_united	Daemons of Slaanesh give nearby Dark Elf units Pain (+8 melee attack, +8 melee defence); Dark Elf units give nearby daemons Pleasure (+10% weapon strength, +10% physical resistance)	false
+effect_bundles_localised_title_corv_tech_pleasure_and_pain_united	Pleasure and Pain United	false
+effect_bundles_localised_description_corv_tech_pleasure_and_pain_united	Druchii and daemon fight as one.	false

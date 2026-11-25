@@ -1,0 +1,5 @@
+key	localised_description	localised_title	bundle_target	priority	ui_icon	is_global_effect	show_in_3d_space	owner_only
+#effect_bundles_tables;4;db/effect_bundles_tables/corvus_morathi_tech_script								
+corv_tech_unsettling_radiance			character	1	edict_def_read_dark_portents.png	false	false	false
+corv_testing_free_dominate			faction	1	edict_def_read_dark_portents.png	false	false	true
+corv_tech_willing_thralls			faction	1	edict_def_read_dark_portents.png	false	false	false

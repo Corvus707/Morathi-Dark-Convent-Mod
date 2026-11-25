@@ -1,0 +1,10 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_tech_script.loc		
+effect_bundles_localised_title_corv_tech_unsettling_radiance	Unsettling Radiance	false
+effect_bundles_localised_description_corv_tech_unsettling_radiance	Tell me dying one... are you afraid? I can assure you, you should be.	false
+effect_bundles_localised_title_corv_testing_free_dominate	TESTING: Free Dominate	false
+effect_bundles_localised_description_corv_testing_free_dominate	Testing only: Dominate costs nothing and has no cooldown.	false
+effects_description_corv_effect_testing_dominate_cost	Devotee cost: %+n% for {{tr:rituals_display_name_corv_morathi_ritual_dominate}}	false
+effects_description_corv_effect_testing_dominate_cooldown	Cooldown: %+n turn(s) for {{tr:rituals_display_name_corv_morathi_ritual_dominate}}	false
+effect_bundles_localised_title_corv_tech_willing_thralls	Willing Thralls	false
+effect_bundles_localised_description_corv_tech_willing_thralls	Bound to Morathi, this faction spreads the corruption of the Dark Prince through its lands.	false

@@ -1,0 +1,4 @@
+key	use_unit_exp_level_range	min_unit_exp_level_inclusive	max_unit_exp_level_inclusive	special_category
+#unit_sets_tables;2;db/unit_sets_tables/corvus_morathi_tech_abilities				
+corv_tech_slaanesh_daemons	false	-1	-1	
+corv_tech_druchii_roster	false	-1	-1	

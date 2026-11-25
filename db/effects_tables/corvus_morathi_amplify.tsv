@@ -1,0 +1,4 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_morathi_amplify					
+corv_effect_amplify_province_spell_mastery	wizard.png	2	wizard.png	campaign	true
+corv_effect_amplify_province_winds	wizard.png	2	wizard.png	campaign	true

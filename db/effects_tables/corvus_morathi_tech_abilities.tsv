@@ -1,0 +1,3 @@
+effect	icon	priority	icon_negative	category	is_positive_value_good
+#effects_tables;0;db/effects_tables/corvus_morathi_tech_abilities					
+corv_effect_pleasure_and_pain_united	wizard.png	2	wizard.png	battle	true

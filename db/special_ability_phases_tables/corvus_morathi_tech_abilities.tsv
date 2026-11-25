@@ -1,0 +1,11 @@
+id	duration	effect_type	requested_stance	cant_move	freeze_fatigue	fatigue_change_ratio	inspiration_aura_range_mod	ability_recharge_change	hp_change_frequency	damage_amount	max_damaged_entities	resurrect	mana_regen_mod	mana_max_depletion_mod	imbue_magical	imbue_ignition	imbue_contact	phase_display	phase_audio	is_hidden_in_ui	affects_allies	affects_enemies	replenish_ammo	composite_scene_group	spreading	freeze_recharge	heal_amount	barrier_heal_amount	remove_magical	execute_ratio
+#special_ability_phases_tables;44;db/special_ability_phases_tables/corvus_morathi_tech_abilities																														
+corv_tech_fire_kindled_weakness	-1.0000	negative		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.0000	false	0				false	false	true	0.0000			false	0.0000	0.0000	false	0.0000
+corv_tech_fire_flammable_aura	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.0000	false	10				false	true	false	0.0000			false	0.0000	0.0000	false	0.0000
+corv_tech_shadow_stalk_aura	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.0000	false	0				false	true	false	0.0000			false	0.0000	0.0000	false	0.0000
+corv_tech_pain	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.0000	false	0				false	true	false	0.0000			false	0.0000	0.0000	false	0.0000
+corv_tech_pleasure	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.0000	false	0				false	true	false	0.0000			false	0.0000	0.0000	false	0.0000
+corv_morathi_drain_winds_self	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	0.1000	false	0				false	true	true	0.0000			false	0.0000	0.0000	false	0.0000
+corv_morathi_drain_winds_enemy	-1.0000	negative		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.0000	-0.1000	false	0				false	false	true	0.0000			false	0.0000	0.0000	false	0.0000
+corv_morathi_dark_arcane_conduit	-1.0000	positive		false	false	0.0000	0.0000	0.0000	0.0000	0	-1	false	0.8000	0.0000	false	0				false	true	true	0.0000			false	0.0000	0.0000	false	0.0000
+corv_morathi_dark_arcane_conduit_damage	-1.0000	negative		false	false	0.0000	0.0000	0.0000	1.0000	4	6	false	0.0000	0.0000	false	0				false	false	true	0.0000			false	0.0000	0.0000	false	0.0000
