@@ -1,21 +1,5 @@
 key	text	tooltip
 #Loc;1;text/db/corvus_morathi_ritual_upgrades.loc		
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_withering_curse_upgrade	Upgrade (Rites of Dominion): deals more damage, and the target army suffers +50% attrition casualties	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_amplify_magic_upgrade	Upgrade (Rites of Dominion): +40% spell intensity, and only -10 Winds of Magic reserve per turn	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_shadow_walk_upgrade	Upgrade (Queen of Whispers): no longer Tired or Silenced; instead Morathi's army gains +20% campaign movement range for 2 turns	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_lesser_summoning_upgrade	Upgrade (Rites of Dominion): adds 2 Exalted Daemonettes instead of Daemonettes	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_unholy_haste_upgrade	Upgrade (Rites of Dominion): the target army is Active instead of Tired	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_veil_of_shadows_upgrade	Upgrade (Rites of Dominion): also grants Unspottable, and the damage over time stops at 50% health instead of 25%	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_greater_summoning_upgrade	Upgrade (Rites of Dominion): also adds 1 Pleasureseekers	false
-campaign_payload_ui_details_description_dummy_morathi_dark_magic_cataclysm_upgrade	Upgrade (Queen of Whispers): deals even more damage, enemy armies in the province suffer light attrition for 3 turns, and enemy settlements in it have their walls destroyed and buildings damaged	false
-campaign_payload_ui_details_description_dummy_morathi_actions_kidnap_slaves_upgrade	Upgrade (Rites of Dominion): also +100 Devotees	false
-campaign_payload_ui_details_description_dummy_morathi_actions_druchii_spies_upgrade	Upgrade (Rites of Dominion): also reveals all of their armies for 5 turns	false
-campaign_payload_ui_details_description_dummy_morathi_actions_easier_seduction_upgrade	Upgrade (Rites of Dominion): +2 unit seduction instead of +1, and -40% seduction cost	false
-campaign_payload_ui_details_description_dummy_morathi_actions_support_cult_upgrade	Upgrade (Queen of Whispers): the cult starts with Morathi's Sanctum, a unique building (-100 discovery chance, +10 Slaanesh corruption)	false
-campaign_payload_ui_details_description_dummy_morathi_actions_mark_upgrade	Upgrade (Rites of Dominion): the target's faction and every faction at war with you lose 25 relations with each other	false
-campaign_payload_ui_details_description_dummy_morathi_actions_corruption_upgrade	Upgrade (Rites of Dominion): sets Slaanesh corruption in the target province to maximum	false
-campaign_payload_ui_details_description_dummy_morathi_actions_steal_secrets_upgrade	Upgrade (Rites of Dominion): the experience bonus applies to all of your armies	false
-campaign_payload_ui_details_description_dummy_morathi_actions_devotee_uprising_upgrade	Upgrade (Rites of Dominion): larger disciple armies (9 units instead of 5) with +10 melee attack, melee defence and leadership	false
 effect_bundles_localised_title_corv_ritual_withering_curse_upgraded	Withering Curse	false
 effect_bundles_localised_title_corv_ritual_amplify_magic_upgraded	Amplified Magic	false
 effect_bundles_localised_title_corv_ritual_shadow_walk_upgraded	Shadow-Walked	false

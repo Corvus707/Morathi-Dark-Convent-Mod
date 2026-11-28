@@ -32,6 +32,7 @@
 													</cost_list>
 												</mission_cost>
 												<mission_name this="32F9002B-A133-4DE9-8881A78BD3F967E2"/>
+												<dy_rank_requirement this="67B350A3-BDE5-8642-491D1E2892300EC3"/>
 											</template_action>
 										</action_list_manipulations>
 										<tx_dark_magic_title this="C5649E53-81DA-4278-922F5E827E5A5807"/>
@@ -51,6 +52,7 @@
 													</cost_list>
 												</mission_cost>
 												<mission_name this="050914A1-C446-45DC-B62DD5656D6FA6B6"/>
+												<dy_rank_requirement this="DBCF61BC-DC74-FB68-F2F9255BBC2DEA3C"/>
 											</template_action>
 										</action_list>
 									</list_box>
@@ -137,6 +139,9 @@
 										<mission_holder this="097150E8-CA04-4B4F-B2BAD8E6068D38C6">
 											<mission_title this="FC24E721-B8D5-4C42-A58F47F75A668181"/>
 											<mission_text this="CC8AE281-E926-4FFD-A95B2208E14DF3F3"/>
+											<payload_list this="47A3D2EF-9B15-5418-3B883406946961B1">
+												<template_payload_line this="416F8233-8B3A-3935-969256A18E36EF66"/>
+											</payload_list>
 										</mission_holder>
 										<no_mission_selected this="66F84CB1-DE86-4C36-B327EF818A561F82">
 											<mission_text this="83AF5C96-231A-417A-8909CCF79CD7EE1B"/>
@@ -681,7 +686,7 @@
 					interactive="true"
 					uniqueguid="55C0292B-1753-439B-AB03CF4303771CAE">
 					<component_text
-						text="[PLACEHOLDER] The Hag Queen weaves dark magic and seduction alike. Choose an action, the character to perform it and its target."
+						text="The Hag Queen weaves dark magic and seduction alike. Choose an action, the character to perform it and its target."
 						texthalign="Center"
 						textyoffset="6.00,0.00"
 						texthbehaviour="Resize"
@@ -2010,7 +2015,7 @@
 				<callback_with_context
 					callback_id="ContextTextLabel"
 					context_object_id="CcoRitualRecord"
-					context_function_id="RequiredPerformingCharacterMinimumLevel"/>
+					context_function_id="GetIfElse(Key == &quot;morathi_actions_devotee_uprising&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(Key == &quot;morathi_actions_steal_secrets&quot; || Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(Key == &quot;morathi_actions_corruption&quot; || Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(Key == &quot;morathi_actions_mark&quot; || Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(Key == &quot;morathi_actions_easier_seduction&quot; || Key == &quot;morathi_dark_magic_amplify_magic&quot; || Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1)))))"/>
 			</callbackwithcontextlist>
 			<states>
 				<newstate
@@ -2161,6 +2166,104 @@
 				</columnwidths>
 			</LayoutEngine>
 		</mission_holder>
+		<payload_list
+			this="47A3D2EF-9B15-5418-3B883406946961B1"
+			id="payload_list"
+			offset="0.00,0.00"
+			priority="50"
+			tooltipslocalised="true"
+			uniqueguid="47A3D2EF-9B15-5418-3B883406946961B1"
+			currentstate="1A2584B4-82F0-C5FD-7636867853AA4CE4"
+			defaultstate="1A2584B4-82F0-C5FD-7636867853AA4CE4">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextList"
+					context_object_id="CcoRitualRecord"
+					context_function_id="Join(DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_1&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_2&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_3&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_4&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_5&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_6&quot;, Key)), DatabaseRecordContext(&quot;CcoCampaignPayloadUiDetailsRecord&quot;, Format(&quot;dummy_%s_7&quot;, Key))).Filter(IsContextValid(this))">
+					<child_m_user_properties>
+						<property
+							name="hide_if_empty"
+							value="1"/>
+					</child_m_user_properties>
+				</callback_with_context>
+			</callbackwithcontextlist>
+			<states>
+				<default
+					this="1A2584B4-82F0-C5FD-7636867853AA4CE4"
+					name="default"
+					width="420"
+					height="36"
+					uniqueguid="1A2584B4-82F0-C5FD-7636867853AA4CE4"/>
+			</states>
+			<LayoutEngine
+				type="List"
+				sizetocontent="true">
+				<columnwidths>
+					<column width="420"/>
+				</columnwidths>
+			</LayoutEngine>
+		</payload_list>
+		<template_payload_line
+			this="416F8233-8B3A-3935-969256A18E36EF66"
+			id="template_payload_line"
+			offset="0.00,0.00"
+			allowhorizontalresize="false"
+			priority="50"
+			tooltipslocalised="true"
+			uniqueguid="416F8233-8B3A-3935-969256A18E36EF66"
+			currentstate="8C1FA447-B940-2A4E-4258C10C792F8A04"
+			defaultstate="8C1FA447-B940-2A4E-4258C10C792F8A04">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextTextLabel"
+					context_object_id="CcoCampaignPayloadUiDetailsRecord"
+					context_function_id="Description"/>
+				<callback_with_context
+					callback_id="ContextImageSetter"
+					context_object_id="CcoCampaignPayloadUiDetailsRecord"
+					context_function_id="Icon"/>
+			</callbackwithcontextlist>
+			<componentimages>
+				<component_image
+					this="8143EA85-158B-946C-7F47757823F1EE98"
+					uniqueguid="8143EA85-158B-946C-7F47757823F1EE98"
+					imagepath="ui/skins/default/treasury.png"/>
+			</componentimages>
+			<states>
+				<gold
+					this="8C1FA447-B940-2A4E-4258C10C792F8A04"
+					name="gold"
+					width="420"
+					height="36"
+					uniqueguid="8C1FA447-B940-2A4E-4258C10C792F8A04">
+					<imagemetrics>
+						<image
+							this="5C871F55-10BE-8BFC-A2E7D390F3C44F0A"
+							uniqueguid="5C871F55-10BE-8BFC-A2E7D390F3C44F0A"
+							componentimage="8143EA85-158B-946C-7F47757823F1EE98"
+							offset="8.00,7.00"
+							width="24"
+							height="24"
+							dockpoint="Top Left"
+							dock_offset="8.00,7.00"
+							canresizeheight="false"
+							canresizewidth="false"/>
+					</imagemetrics>
+					<component_text
+						text=""
+						textvalign="Center"
+						textxoffset="34.00,15.00"
+						textyoffset="10.00,15.00"
+						texthbehaviour="Resize"
+						textlabel="StateText_43b9aa5f"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						font_colour_override_preset_key="green"/>
+				</gold>
+			</states>
+		</template_payload_line>
 		<mission_title
 			this="FC24E721-B8D5-4C42-A58F47F75A668181"
 			id="mission_title"
@@ -5115,8 +5218,11 @@
 				<callback_with_context
 					callback_id="ContextInactiveStateSetter"
 					context_object_id="CcoCampaignRitualInteraction"
-					context_function_id="CanPerformAction">
+					context_function_id="(r = Component(&quot;corvus_morathi_panel&quot;).CurrentSelection.SelectedObjectList.FirstContext, c = Component(&quot;character_list_holder&quot;).CurrentSelection.SelectedObjectList.FirstContext) =&gt; { CanPerformAction &amp;&amp; IsContextValid(r) &amp;&amp; IsContextValid(c) &amp;&amp; c.Rank &gt;= GetIfElse(r.RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_corruption&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_mark&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))) &amp;&amp; GetIfElse(r.RitualContext.Key == &quot;morathi_actions_support_cult&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, c.AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, c.IsAgent) }">
 					<child_m_user_properties>
+						<property
+							name="event7"
+							value="SelectionParentSelectionChanged"/>
 						<property
 							name="event0"
 							value="TargettingInterfaceTargetSet"/>
@@ -5143,7 +5249,7 @@
 				<callback_with_context
 					callback_id="ContextTooltipSetter"
 					context_object_id="CcoCampaignRitualInteraction"
-					context_function_id="ActionPerformTooltip">
+					context_function_id="(r = Component(&quot;corvus_morathi_panel&quot;).CurrentSelection.SelectedObjectList.FirstContext, c = Component(&quot;character_list_holder&quot;).CurrentSelection.SelectedObjectList.FirstContext) =&gt; { GetIfElse(IsContextValid(r) &amp;&amp; IsContextValid(c) &amp;&amp; c.Rank &gt;= GetIfElse(r.RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_corruption&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_mark&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))) &amp;&amp; GetIfElse(r.RitualContext.Key == &quot;morathi_actions_support_cult&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, c.AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, c.IsAgent), GetIfElse(PlayersFaction.PooledResourceManagerContext.CanAfford(r.ResourceTransactionContext) == false, Loc(&quot;corv_morathi_cannot_afford&quot;), ActionPerformTooltip), Loc(&quot;corv_morathi_select_performer&quot;)) }">
 					<child_m_user_properties>
 						<property
 							name="event0"
@@ -5363,7 +5469,7 @@
 				<callback_with_context
 					callback_id="ContextVisibilitySetter"
 					context_object_id="CcoCampaignRitualInteraction"
-					context_function_id="IsContextValid(ActionCost) &amp;&amp; (IsContextValid(RitualContext.RitualChainContext) == false || IsContextValid(RitualContext.RitualChainContext.NextInChainContext))">
+					context_function_id="IsContextValid(ActionCost) &amp;&amp; ActionCost.PooledResourceTransactionList.IsEmpty == false &amp;&amp; (IsContextValid(RitualContext.RitualChainContext) == false || IsContextValid(RitualContext.RitualChainContext.NextInChainContext))">
 					<child_m_user_properties>
 						<property
 							name="event0"
@@ -7089,13 +7195,10 @@
 					<child_m_user_properties>
 						<property
 							name="default_selection_condition"
-							value="IsAvailable"/>
+							value="(lvl = GetIfElse(RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(RitualContext.Key == &quot;morathi_actions_corruption&quot; || RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(RitualContext.Key == &quot;morathi_actions_mark&quot; || RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || RitualContext.Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }"/>
 						<property
 							name="selection_parent"
 							value="corvus_morathi_panel"/>
-						<property
-							name="support_inactive_states"
-							value=""/>
 					</child_m_user_properties>
 				</callback_with_context>
 				<callback_with_context
@@ -7140,22 +7243,9 @@
 					callback_id="ContextObjectStore"
 					context_object_id="CcoCampaignRitual"/>
 				<callback_with_context
-					callback_id="ContextInactiveStateSetter"
-					context_object_id="CcoCampaignRitual"
-					context_function_id="IsAvailable &amp;&amp; CanAfford &amp;&amp; IsOnCooldown == false">
-					<child_m_user_properties>
-						<property
-							name="event0"
-							value="CampaignTechnologyResearchComplete"/>
-						<property
-							name="event1"
-							value="PooledResourceTransaction"/>
-					</child_m_user_properties>
-				</callback_with_context>
-				<callback_with_context
 					callback_id="ContextTooltipSetter"
 					context_object_id="CcoCampaignRitual"
-					context_function_id="GetIfElse(IsOnCooldown, Loc(&quot;wh3_dlc27_hef_sotwt_cooldown&quot;), GetIfElse(PlayersFaction.PooledResourceManagerContext.CanAfford(ResourceTransactionContext) == false, Loc(&quot;cotw_cannot_afford&quot;), RitualContext.Description))">
+					context_function_id="GetIfElse(((lvl = GetIfElse(RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(RitualContext.Key == &quot;morathi_actions_corruption&quot; || RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(RitualContext.Key == &quot;morathi_actions_mark&quot; || RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || RitualContext.Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }) == false, Loc(&quot;corv_morathi_no_performer&quot;), GetIfElse(IsOnCooldown, Loc(&quot;wh3_dlc27_hef_sotwt_cooldown&quot;), GetIfElse(PlayersFaction.PooledResourceManagerContext.CanAfford(ResourceTransactionContext) == false, Loc(&quot;corv_morathi_cannot_afford&quot;), RitualContext.Description)))">
 					<child_m_user_properties>
 						<property
 							name="event0"
@@ -8016,6 +8106,27 @@
 			uniqueguid="170D507D-BC84-4CEE-A4E36719042A8CE8"
 			currentstate="1640D1EF-F7E7-4D12-B7211A413DA3458D"
 			defaultstate="1640D1EF-F7E7-4D12-B7211A413DA3458D">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextStateSetter"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse(PlayersFaction.RitualContextForKey(Key, true).CanAfford, &quot;standard&quot;, &quot;red&quot;)">
+					<child_m_user_properties>
+						<property
+							name="event0"
+							value="PooledResourceTransaction"/>
+						<property
+							name="event1"
+							value="PanelOpened"/>
+						<property
+							name="event2"
+							value="CampaignTurnStart"/>
+						<property
+							name="event3"
+							value="RitualComplete"/>
+					</child_m_user_properties>
+				</callback_with_context>
+			</callbackwithcontextlist>
 			<componentimages>
 				<component_image
 					this="A605311C-6B7F-445B-8953F9DBF59F6716"
@@ -8167,6 +8278,131 @@
 				</newstate>
 			</states>
 		</mission_name>
+		<dy_rank_requirement
+			this="DBCF61BC-DC74-FB68-F2F9255BBC2DEA3C"
+			id="dy_rank_requirement"
+			offset="53.00,36.00"
+			allowhorizontalresize="false"
+			allowverticalresize="false"
+			docking="Center"
+			dock_offset="-61.00,15.00"
+			component_anchor_point="0.50,0.50"
+			priority="60"
+			tooltipslocalised="true"
+			uniqueguid="DBCF61BC-DC74-FB68-F2F9255BBC2DEA3C"
+			currentstate="A75D56FF-F392-10CD-5E72D20A32FE48BD"
+			defaultstate="A75D56FF-F392-10CD-5E72D20A32FE48BD">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextTextLabel"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse(Key == &quot;morathi_actions_devotee_uprising&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(Key == &quot;morathi_actions_steal_secrets&quot; || Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(Key == &quot;morathi_actions_corruption&quot; || Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(Key == &quot;morathi_actions_mark&quot; || Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(Key == &quot;morathi_actions_easier_seduction&quot; || Key == &quot;morathi_dark_magic_amplify_magic&quot; || Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1)))))"/>
+				<callback_with_context
+					callback_id="ContextStateSetter"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse((lvl = GetIfElse(Key == &quot;morathi_actions_devotee_uprising&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(Key == &quot;morathi_actions_steal_secrets&quot; || Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(Key == &quot;morathi_actions_corruption&quot; || Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(Key == &quot;morathi_actions_mark&quot; || Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(Key == &quot;morathi_actions_easier_seduction&quot; || Key == &quot;morathi_dark_magic_amplify_magic&quot; || Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = Key == &quot;morathi_dark_magic_shadow_walk&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot; || Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }, &quot;reached&quot;, &quot;not_reached&quot;)">
+					<child_m_user_properties>
+						<property
+							name="event0"
+							value="PanelOpened"/>
+						<property
+							name="event1"
+							value="CampaignTurnStart"/>
+						<property
+							name="event2"
+							value="RitualComplete"/>
+					</child_m_user_properties>
+				</callback_with_context>
+			</callbackwithcontextlist>
+			<states>
+				<not_reached
+					this="D4A64B58-3BF0-947F-B71AF4A4FCDD8435"
+					name="not_reached"
+					width="20"
+					height="24"
+					tooltip="No characters with required rank available"
+					tooltiplabel="dy_rank_requirement_not_reached_Tooltip_65000a"
+					interactive="true"
+					disabled="true"
+					uniqueguid="D4A64B58-3BF0-947F-B71AF4A4FCDD8435">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_4d3eb7a8"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						font_colour_override_preset_key="red"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</not_reached>
+				<not_reached_legendary
+					this="2FDA45D6-3EDA-DF81-766796C78B63E2B0"
+					name="not_reached_legendary"
+					width="20"
+					height="24"
+					interactive="true"
+					disabled="true"
+					uniqueguid="2FDA45D6-3EDA-DF81-766796C78B63E2B0">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_f725983c"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						font_colour_override_preset_key="red"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</not_reached_legendary>
+				<reached
+					this="A75D56FF-F392-10CD-5E72D20A32FE48BD"
+					name="reached"
+					width="20"
+					height="24"
+					tooltip="Required rank of performing character"
+					tooltiplabel="dy_rank_requirement_reached_Tooltip_e0050"
+					interactive="true"
+					disabled="true"
+					uniqueguid="A75D56FF-F392-10CD-5E72D20A32FE48BD">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_ed4ebbfb"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</reached>
+				<reached_legendary
+					this="A14E0978-76D9-27E1-CB2CB2F1C16E0950"
+					name="reached_legendary"
+					width="20"
+					height="24"
+					interactive="true"
+					disabled="true"
+					uniqueguid="A14E0978-76D9-27E1-CB2CB2F1C16E0950">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_5c55ecfc"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</reached_legendary>
+			</states>
+		</dy_rank_requirement>
 		<parchment_slider_vertical
 			this="B06B5736-055E-4F04-A17EAECCA314DD17"
 			id="parchment_slider_vertical"
@@ -8587,13 +8823,10 @@
 					<child_m_user_properties>
 						<property
 							name="default_selection_condition"
-							value="IsAvailable"/>
+							value="(lvl = GetIfElse(RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(RitualContext.Key == &quot;morathi_actions_corruption&quot; || RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(RitualContext.Key == &quot;morathi_actions_mark&quot; || RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || RitualContext.Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }"/>
 						<property
 							name="selection_parent"
 							value="corvus_morathi_panel"/>
-						<property
-							name="support_inactive_states"
-							value=""/>
 					</child_m_user_properties>
 				</callback_with_context>
 				<callback_with_context
@@ -8638,22 +8871,9 @@
 					callback_id="ContextObjectStore"
 					context_object_id="CcoCampaignRitual"/>
 				<callback_with_context
-					callback_id="ContextInactiveStateSetter"
-					context_object_id="CcoCampaignRitual"
-					context_function_id="IsAvailable &amp;&amp; CanAfford &amp;&amp; IsOnCooldown == false">
-					<child_m_user_properties>
-						<property
-							name="event0"
-							value="CampaignTechnologyResearchComplete"/>
-						<property
-							name="event1"
-							value="PooledResourceTransaction"/>
-					</child_m_user_properties>
-				</callback_with_context>
-				<callback_with_context
 					callback_id="ContextTooltipSetter"
 					context_object_id="CcoCampaignRitual"
-					context_function_id="GetIfElse(IsOnCooldown, Loc(&quot;wh3_dlc27_hef_sotwt_cooldown&quot;), GetIfElse(PlayersFaction.PooledResourceManagerContext.CanAfford(ResourceTransactionContext) == false, Loc(&quot;cotw_cannot_afford&quot;), RitualContext.Description))">
+					context_function_id="GetIfElse(((lvl = GetIfElse(RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(RitualContext.Key == &quot;morathi_actions_corruption&quot; || RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(RitualContext.Key == &quot;morathi_actions_mark&quot; || RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || RitualContext.Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }) == false, Loc(&quot;corv_morathi_no_performer&quot;), GetIfElse(IsOnCooldown, Loc(&quot;wh3_dlc27_hef_sotwt_cooldown&quot;), GetIfElse(PlayersFaction.PooledResourceManagerContext.CanAfford(ResourceTransactionContext) == false, Loc(&quot;corv_morathi_cannot_afford&quot;), RitualContext.Description)))">
 					<child_m_user_properties>
 						<property
 							name="event0"
@@ -9514,6 +9734,27 @@
 			uniqueguid="BAAA548F-BF28-4C6B-98C098F399436F39"
 			currentstate="69B4DF1B-9EE3-4C67-95146A19338E52A0"
 			defaultstate="69B4DF1B-9EE3-4C67-95146A19338E52A0">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextStateSetter"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse(PlayersFaction.RitualContextForKey(Key, true).CanAfford, &quot;standard&quot;, &quot;red&quot;)">
+					<child_m_user_properties>
+						<property
+							name="event0"
+							value="PooledResourceTransaction"/>
+						<property
+							name="event1"
+							value="PanelOpened"/>
+						<property
+							name="event2"
+							value="CampaignTurnStart"/>
+						<property
+							name="event3"
+							value="RitualComplete"/>
+					</child_m_user_properties>
+				</callback_with_context>
+			</callbackwithcontextlist>
 			<componentimages>
 				<component_image
 					this="01390847-5398-4C0F-94582C37E02A429D"
@@ -9665,6 +9906,131 @@
 				</newstate>
 			</states>
 		</mission_name>
+		<dy_rank_requirement
+			this="67B350A3-BDE5-8642-491D1E2892300EC3"
+			id="dy_rank_requirement"
+			offset="53.00,36.00"
+			allowhorizontalresize="false"
+			allowverticalresize="false"
+			docking="Center"
+			dock_offset="-61.00,15.00"
+			component_anchor_point="0.50,0.50"
+			priority="60"
+			tooltipslocalised="true"
+			uniqueguid="67B350A3-BDE5-8642-491D1E2892300EC3"
+			currentstate="64FBEAFF-0097-CBE2-600EBACE95EA337A"
+			defaultstate="64FBEAFF-0097-CBE2-600EBACE95EA337A">
+			<callbackwithcontextlist>
+				<callback_with_context
+					callback_id="ContextTextLabel"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse(Key == &quot;morathi_actions_devotee_uprising&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(Key == &quot;morathi_actions_steal_secrets&quot; || Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(Key == &quot;morathi_actions_corruption&quot; || Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(Key == &quot;morathi_actions_mark&quot; || Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(Key == &quot;morathi_actions_easier_seduction&quot; || Key == &quot;morathi_dark_magic_amplify_magic&quot; || Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1)))))"/>
+				<callback_with_context
+					callback_id="ContextStateSetter"
+					context_object_id="CcoRitualRecord"
+					context_function_id="GetIfElse((lvl = GetIfElse(Key == &quot;morathi_actions_devotee_uprising&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(Key == &quot;morathi_actions_steal_secrets&quot; || Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(Key == &quot;morathi_actions_corruption&quot; || Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(Key == &quot;morathi_actions_mark&quot; || Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(Key == &quot;morathi_actions_easier_seduction&quot; || Key == &quot;morathi_dark_magic_amplify_magic&quot; || Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))), mor = Key == &quot;morathi_dark_magic_shadow_walk&quot; || Key == &quot;morathi_dark_magic_cataclysm&quot; || Key == &quot;morathi_actions_support_cult&quot;) =&gt; { PlayersFaction.CharacterList.Any(IsWounded == false &amp;&amp; Rank &gt;= lvl &amp;&amp; GetIfElse(mor, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent &amp;&amp; AgentSubtypeRecordContext.Key.Contains(&quot;sorceress&quot;))) }, &quot;reached&quot;, &quot;not_reached&quot;)">
+					<child_m_user_properties>
+						<property
+							name="event0"
+							value="PanelOpened"/>
+						<property
+							name="event1"
+							value="CampaignTurnStart"/>
+						<property
+							name="event2"
+							value="RitualComplete"/>
+					</child_m_user_properties>
+				</callback_with_context>
+			</callbackwithcontextlist>
+			<states>
+				<not_reached
+					this="D27F05E0-AE22-20C6-89E478CE4E230BD7"
+					name="not_reached"
+					width="20"
+					height="24"
+					tooltip="No characters with required rank available"
+					tooltiplabel="dy_rank_requirement_not_reached_Tooltip_65000a"
+					interactive="true"
+					disabled="true"
+					uniqueguid="D27F05E0-AE22-20C6-89E478CE4E230BD7">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_4d3eb7a8"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						font_colour_override_preset_key="red"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</not_reached>
+				<not_reached_legendary
+					this="62E0B49D-7443-E5F7-DD18E9897FE51B3A"
+					name="not_reached_legendary"
+					width="20"
+					height="24"
+					interactive="true"
+					disabled="true"
+					uniqueguid="62E0B49D-7443-E5F7-DD18E9897FE51B3A">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_f725983c"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						font_colour_override_preset_key="red"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</not_reached_legendary>
+				<reached
+					this="64FBEAFF-0097-CBE2-600EBACE95EA337A"
+					name="reached"
+					width="20"
+					height="24"
+					tooltip="Required rank of performing character"
+					tooltiplabel="dy_rank_requirement_reached_Tooltip_e0050"
+					interactive="true"
+					disabled="true"
+					uniqueguid="64FBEAFF-0097-CBE2-600EBACE95EA337A">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_ed4ebbfb"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</reached>
+				<reached_legendary
+					this="AE21F37B-D263-80BF-DC13E6C20FE3A6BE"
+					name="reached_legendary"
+					width="20"
+					height="24"
+					interactive="true"
+					disabled="true"
+					uniqueguid="AE21F37B-D263-80BF-DC13E6C20FE3A6BE">
+					<component_text
+						text="10"
+						textvalign="Center"
+						texthalign="Center"
+						textlabel="StateText_5c55ecfc"
+						font_m_size="12"
+						font_m_colour="#FFF8D7FF"
+						font_m_leading="3"
+						fontcat_name="body_12"
+						text_shader_name="drop_shadow_t0"
+						textshadervars="0.00,1.00,2.00,0.00"/>
+				</reached_legendary>
+			</states>
+		</dy_rank_requirement>
 		<tx_dark_magic_title
 			this="C5649E53-81DA-4278-922F5E827E5A5807"
 			id="tx_dark_magic_title"
@@ -9845,7 +10211,7 @@
 					height="40"
 					uniqueguid="EBD65E62-3FF7-425F-93207B1BA77CFFAE">
 					<component_text
-						text="{{tr:web_of_power_characters_desc}}"
+						text="{{tr:corv_morathi_panel_characters_desc}}"
 						textvalign="Center"
 						texthalign="Center"
 						textxoffset="50.00,50.00"
@@ -10022,6 +10388,28 @@
 						<property
 							name="selection_parent"
 							value="character_list_holder"/>
+						<property
+							name="support_inactive_states"
+							value=""/>
+						<property
+							name="selection_condition"
+							value="(r = Component(&quot;corvus_morathi_panel&quot;).CurrentSelection.SelectedObjectList.FirstContext) =&gt; { GetIfElse(IsContextValid(r) == false, true, Rank &gt;= GetIfElse(r.RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_corruption&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_mark&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))) &amp;&amp; GetIfElse(r.RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || r.RitualContext.Key == &quot;morathi_actions_support_cult&quot;, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent)) }"/>
+					</child_m_user_properties>
+				</callback_with_context>
+				<callback_with_context
+					callback_id="ContextInactiveStateSetter"
+					context_object_id="CcoCampaignCharacter"
+					context_function_id="(r = Component(&quot;corvus_morathi_panel&quot;).CurrentSelection.SelectedObjectList.FirstContext) =&gt; { GetIfElse(IsContextValid(r) == false, true, Rank &gt;= GetIfElse(r.RitualContext.Key == &quot;morathi_actions_devotee_uprising&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot;, 25, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_steal_secrets&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_greater_summoning&quot;, 20, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_corruption&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_veil_of_shadows&quot;, 15, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_mark&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_unholy_haste&quot;, 10, GetIfElse(r.RitualContext.Key == &quot;morathi_actions_easier_seduction&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_amplify_magic&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_lesser_summoning&quot;, 5, 1))))) &amp;&amp; GetIfElse(r.RitualContext.Key == &quot;morathi_dark_magic_shadow_walk&quot; || r.RitualContext.Key == &quot;morathi_dark_magic_cataclysm&quot; || r.RitualContext.Key == &quot;morathi_actions_support_cult&quot;, AgentSubtypeRecordContext.Key == &quot;wh2_main_def_morathi&quot;, IsAgent)) }">
+					<child_m_user_properties>
+						<property
+							name="event0"
+							value="SelectionParentSelectionChanged"/>
+						<property
+							name="event1"
+							value="CampaignSelectionChanged"/>
+						<property
+							name="event2"
+							value="PanelOpened"/>
 					</child_m_user_properties>
 				</callback_with_context>
 				<callback_with_context

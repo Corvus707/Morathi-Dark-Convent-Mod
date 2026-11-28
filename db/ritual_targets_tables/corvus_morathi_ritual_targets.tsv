@@ -1,0 +1,7 @@
+key	faction_criteria	military_force_criteria	region_criteria	enable_outline_highlight	highlight_colour_selected_target	highlight_colour_no_target_selected	highlight_colour_with_target_selected	character_criteria	max_range_ap
+#ritual_targets_tables;4;db/ritual_targets_tables/corvus_morathi_ritual_targets									
+corv_sorc_target_force_any_but_self		corv_sorc_target_force_any_but_self		false	FFFFFF	FFFFFF	FFFFFF		-1
+corv_sorc_target_force_own		corv_sorc_target_force_own		false	FFFFFF	FFFFFF	FFFFFF		-1
+corv_sorc_target_region_all_excluding_self_and_ruins			corv_sorc_target_region_all_excluding_self_and_ruins	false	FFFFFF	FFFFFF	FFFFFF		-1
+corv_sorc_target_region_any			corv_sorc_target_region_any	false	FFFFFF	FFFFFF	FFFFFF		-1
+corv_morathi_target_region_all_excluding_self_and_ruins			corv_morathi_target_region_all_excluding_self_and_ruins	false	FFFFFF	FFFFFF	FFFFFF		-1

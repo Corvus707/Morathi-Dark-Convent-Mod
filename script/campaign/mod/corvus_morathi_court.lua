@@ -391,6 +391,319 @@ local function set_card_portrait(button, path)
     end
 end
 
+-- ---- Rewards: icons and their tooltips, as in vanilla's Ice Court ------------------------------------------------
+-- Dilemma rewards (a trait or a lore), the traits on a candidate's card and the lores on an empty or locked slot.
+-- The game's context lookups didn't work from script, so icons, effects and spells come from
+-- corvus_dark_convent_tooltips.lua (generated from the db and loc), and the tooltip is corvus_morathi_reward_tooltip:
+-- vanilla's trait tooltip layout, filled in and shown by this script while the mouse is over a reward.
+
+local tooltip_name = "corvus_morathi_reward_tooltip"
+local tooltip_layout = "ui/campaign ui/corvus_morathi_reward_tooltip"
+-- Lores, traits and research icons of a training slot. Children added inside the slot template's instances in the
+-- court layout are never created, so they come from their own layout, created on each slot.
+local slot_overlay_name = "corvus_morathi_court_slot"
+local slot_overlay_layout = "ui/campaign ui/corvus_morathi_court_slot"
+-- The slot template's lock image (its image 1); its path set in the court layout is ignored
+local locked_slot_image = "ui/skins/warhammer3/icon_locked.png"
+local max_slot_lores = 5
+local max_slot_traits = 4
+
+-- Components showing a reward, by their path from the UI root: { subtype = ..., trait = ..., uic = component }
+local reward_components = {}
+
+local function trait_data(trait)
+    return corvus_dark_convent_tooltips and corvus_dark_convent_tooltips.traits[trait] or {}
+end
+
+local function lore_data(subtype)
+    return corvus_dark_convent_tooltips and corvus_dark_convent_tooltips.lores[subtype] or {}
+end
+
+-- TESTING: writes reward tooltip events to corvus_dark_convent_log.txt in the game folder. Set to false when done.
+local debug_log_to_file = true
+local function debug_log(text)
+    out("Dark Convent: "..text)
+    if not debug_log_to_file then
+        return
+    end
+    local file = io.open("corvus_dark_convent_log.txt", "a")
+    if file then
+        file:write(text.."\n")
+        file:close()
+    end
+end
+
+-- A reward component's key: the ids from the UI root down to it (e.g. ".../slot_2/corvus_morathi_court_slot/
+-- trait_list/trait_1"). Addresses can't be used: the same component's address didn't match between calls.
+local function reward_key(uic)
+    local ids = {}
+    local current = uic
+    for _ = 1, 40 do
+        local id = current:Id()
+        if id == "root" then
+            break
+        end
+        table.insert(ids, 1, id)
+        local parent = current:Parent()
+        if not parent then
+            break
+        end
+        current = UIComponent(parent)
+    end
+    return table.concat(ids, "/")
+end
+
+-- Shows a lore (subtype) or a trait on an icon component, with its name too if with_text. Its tooltip shows on hover.
+local function show_reward(uic, subtype, trait, with_text)
+    local key = reward_key(uic)
+    local icon, name
+    if subtype then
+        icon = lore_data(subtype).icon
+        name = subtype_name(subtype)
+    elseif trait then
+        icon = trait_data(trait).icon
+        name = trait_name(trait)
+    else
+        reward_components[key] = nil
+        uic:SetVisible(false)
+        return
+    end
+    if icon then
+        uic:SetImagePath(icon, 0)
+    end
+    if with_text then
+        set_text(uic, name)
+    end
+    uic:SetTooltipText("", true)
+    reward_components[key] = { subtype = subtype, trait = trait, uic = uic }
+    uic:SetVisible(true)
+end
+
+-- The lores a group's candidates can learn, in dilemma order
+local function group_lores(group)
+    local lores = {}
+    for _, dilemma in ipairs(group.dilemmas) do
+        for _, choice in ipairs(dilemma.choices) do
+            if choice.subtype then
+                table.insert(lores, choice.subtype)
+            end
+        end
+    end
+    return lores
+end
+
+-- ---- the reward tooltip ----
+
+local function get_reward_tooltip()
+    local tooltip = find_uicomponent(core:get_ui_root(), tooltip_name)
+    if not tooltip then
+        tooltip = UIComponent(core:get_ui_root():CreateComponent(tooltip_name, tooltip_layout))
+        tooltip:SetVisible(false)
+    end
+    return tooltip
+end
+
+-- Makes a list show count entries: its template child (the first) and copies of it, the rest hidden. Returns them.
+local function list_entries(list, template_id, count)
+    local template = find_uicomponent(list, template_id)
+    local entries = { template }
+    for i = 2, count do
+        entries[i] = find_uicomponent(list, template_id.."_"..i) or UIComponent(template:CopyComponent(template_id.."_"..i))
+    end
+    for i = 0, list:ChildCount() - 1 do
+        UIComponent(list:Find(i)):SetVisible(i < count)
+    end
+    return entries
+end
+
+local function fill_reward_tooltip(tooltip, subtype, trait)
+    local holder = find_uicomponent(tooltip, "character_trait_holder")
+    local explanation = find_uicomponent(holder, "dy_explanation")
+    local effects_list = find_uicomponent(holder, "effects_list")
+    local lore_entry = find_uicomponent(tooltip, "lore_entry")
+    local ability_group = find_uicomponent(lore_entry, "ability_group")
+    local ability_list = find_uicomponent(ability_group, "ability_group_ability_list")
+
+    if trait then
+        set_text(find_uicomponent(holder, "dy_title"), trait_name(trait))
+        set_text(find_uicomponent(holder, "description_window"), loc("character_trait_levels_colour_text_"..trait, ""))
+        local explanation_text = loc("character_trait_levels_explanation_text_"..trait, "")
+        set_text(explanation, explanation_text)
+        explanation:SetVisible(explanation_text ~= "")
+        local effects = trait_data(trait).effects or {}
+        for i, entry in ipairs(list_entries(effects_list, "template_entry", #effects)) do
+            local effect = effects[i]
+            if effect then
+                set_text(entry, effect.text)
+                entry:SetImagePath(effect.icon, 0)
+            end
+        end
+        effects_list:SetVisible(#effects > 0)
+        lore_entry:SetVisible(false)
+    else
+        -- A lore: its description, and its spells as icons
+        set_text(find_uicomponent(holder, "dy_title"), subtype_name(subtype))
+        set_text(find_uicomponent(holder, "description_window"), loc("agent_subtypes_description_text_override_"..subtype, ""))
+        explanation:SetVisible(false)
+        effects_list:SetVisible(false)
+        local lore = lore_data(subtype)
+        local spells = lore.spells or {}
+        set_text(find_uicomponent(ability_group, "label_ability_group_name"), lore.group or "")
+        for i, entry in ipairs(list_entries(ability_list, "template_ability_group_ability", #spells)) do
+            if spells[i] then
+                entry:SetImagePath(spells[i], 0)
+            end
+        end
+        lore_entry:SetVisible(#spells > 0)
+        ability_list:Layout()
+        ability_group:Layout()
+        lore_entry:Layout()
+    end
+    effects_list:Layout()
+    holder:Layout()
+    tooltip:Layout()
+end
+
+-- Beside the reward, on the screen
+local function place_reward_tooltip(tooltip, uic)
+    local x, y = uic:Position()
+    local w = uic:Dimensions()
+    local tooltip_w, tooltip_h = tooltip:Bounds()
+    local screen_w, screen_h = core:get_screen_resolution()
+    local tooltip_x = x + w + 6
+    if tooltip_x + tooltip_w > screen_w then
+        tooltip_x = x - tooltip_w - 6
+    end
+    local tooltip_y = math.min(y, screen_h - tooltip_h)
+    tooltip:MoveTo(math.max(0, tooltip_x), math.max(0, tooltip_y))
+end
+
+local function hide_reward_tooltip()
+    local tooltip = find_uicomponent(core:get_ui_root(), tooltip_name)
+    if tooltip and tooltip:Visible() then
+        tooltip:RemoveTopMost()
+        tooltip:SetVisible(false)
+    end
+end
+
+local function show_reward_tooltip(uic)
+    local reward = reward_components[reward_key(uic)]
+    if not reward then
+        hide_reward_tooltip()
+        return
+    end
+    local tooltip = get_reward_tooltip()
+    fill_reward_tooltip(tooltip, reward.subtype, reward.trait)
+    if not tooltip:Visible() then
+        tooltip:SetVisible(true)
+        -- Above the court, which is top-most itself
+        tooltip:RegisterTopMost()
+    end
+    place_reward_tooltip(tooltip, uic)
+    -- Text sizes can settle a frame later; place it again once they have
+    cm:real_callback(function ()
+        if tooltip:Visible() then
+            place_reward_tooltip(tooltip, uic)
+            local x, y = tooltip:Position()
+            local w, h = tooltip:Bounds()
+            debug_log("tooltip "..tooltip:Id().." shown at "..x..","..y.." size "..w.."x"..h)
+        end
+    end, 50, "corvus_morathi_reward_tooltip_place")
+end
+
+-- The game sends no mouse-over events for the court (ComponentMouseOn never fired), so while it's open the rewards
+-- are checked every 100 ms for the mouse, and the tooltip follows the one it's over.
+local hovered_reward_key = nil
+local reported_hover_error = false
+
+local function update_reward_hover(panel_open)
+    local found_key, found_uic = nil, nil
+    if panel_open then
+        for key, reward in pairs(reward_components) do
+            if reward.uic:VisibleFromRoot() and reward.uic:IsMouseOverChildren() then
+                found_key, found_uic = key, reward.uic
+                break
+            end
+        end
+    end
+    if found_key == hovered_reward_key then
+        return
+    end
+    hovered_reward_key = found_key
+    debug_log("hovering "..tostring(found_key))
+    if found_uic then
+        show_reward_tooltip(found_uic)
+    else
+        hide_reward_tooltip()
+    end
+end
+
+local function reward_hover_callback()
+    local panel = find_uicomponent(core:get_ui_root(), panel_name)
+    local panel_open = panel and panel:Visible() or false
+    if not panel_open and hovered_reward_key == nil then
+        return
+    end
+    local ok, err = pcall(update_reward_hover, panel_open)
+    if not ok and not reported_hover_error then
+        reported_hover_error = true
+        debug_log("error checking reward hover: "..tostring(err))
+    end
+end
+
+-- ---- training slots: lores, traits, lock and research ----
+
+local function get_slot_overlay(card)
+    local overlay = find_uicomponent(card, slot_overlay_name)
+    if not overlay then
+        overlay = UIComponent(card:CreateComponent(slot_overlay_name, slot_overlay_layout))
+    end
+    return overlay
+end
+
+local function tech_tooltip(tech)
+    local tech_name = common.get_localised_string("technologies_onscreen_name_"..tech)
+    return "[[col:red]]"..loc("campaign_localised_strings_string_required_technologies", "Requires technology researched:").."[[/col]]"
+        .."\n"..(tech_name ~= "" and tech_name or tech).."\n\n"
+        ..loc("campaign_localised_strings_string_left_click_tech_panel", "Left-click to view in technology panel.")
+end
+
+-- An empty or locked slot shows the group's lores; a candidate in training, the traits she will get. A locked slot
+-- shows the lock and a red research icon, which opens its technology in the tech tree (set in the overlay layout).
+local function refresh_slot_overlay(card, group, slot, slot_index, unlocked)
+    local ok, err = pcall(function () card:SetImagePath(locked_slot_image, 1) end)
+    if not ok then
+        out("Dark Convent: could not set the lock image: "..tostring(err))
+    end
+    local overlay = get_slot_overlay(card)
+
+    local lore_list = find_uicomponent(overlay, "lore_list")
+    local lores = slot == nil and group_lores(group) or {}
+    for i = 1, max_slot_lores do
+        show_reward(find_uicomponent(lore_list, "lore_"..i), lores[i], nil, false)
+    end
+    lore_list:Layout()
+
+    local trait_list = find_uicomponent(overlay, "trait_list")
+    for i = 1, max_slot_traits do
+        show_reward(find_uicomponent(trait_list, "trait_"..i), nil, slot and slot.traits[i], false)
+    end
+    trait_list:Layout()
+
+    local tech = not unlocked and slot_unlock_tech(group, slot_index)
+    for _, group_techs in pairs(slot_unlock_techs) do
+        for _, group_tech in pairs(group_techs) do
+            local tech_icon = find_uicomponent(overlay, "tech_"..group_tech)
+            if tech_icon then
+                tech_icon:SetVisible(group_tech == tech)
+                if group_tech == tech then
+                    tech_icon:SetTooltipText(tech_tooltip(tech), true)
+                end
+            end
+        end
+    end
+end
+
 local function refresh_slot_card(card, group, group_index, slot_index, faction)
     local slot = training_state[slot_key(group_index, slot_index)]
     local unlocked = is_slot_unlocked(group, slot_index)
@@ -423,12 +736,9 @@ local function refresh_slot_card(card, group, group_index, slot_index, faction)
         purchase:SetState(affordable and "active" or "inactive")
         purchase:SetTooltipText(affordable and "Train a candidate||Send a candidate to the Dark Convent." or "Train a candidate||Not enough gold.", true)
     end
-    if not unlocked then
-        local tech = slot_unlock_tech(group, slot_index)
-        local tech_name = tech and common.get_localised_string("technologies_onscreen_name_"..tech) or ""
-        card:SetTooltipText("Locked||"..(tech_name ~= "" and ("Research "..tech_name.." to unlock this training slot.")
-            or "This training slot is locked."), true)
-    end
+    -- As in vanilla, a locked slot's research icon says what it needs, not the slot
+    card:SetTooltipText("", true)
+    refresh_slot_overlay(card, group, slot, slot_index, unlocked)
 end
 
 local function refresh_dilemma_box(panel)
@@ -469,10 +779,7 @@ local function refresh_dilemma_box(panel)
             local choice_button = find_uicomponent(row, "choice_button")
             set_text(find_uicomponent(choice_button, "button_txt"), loc("character_training_dilemma_choices_localised_label_"..choice.key))
             choice_button:SetState("active")
-            local payload = find_uicomponent(row, "dy_payload")
-            local payload_text = choice.subtype and subtype_name(choice.subtype) or (choice.traits[1] and trait_name(choice.traits[1])) or ""
-            set_text(payload, payload_text)
-            payload:SetVisible(payload_text ~= "")
+            show_reward(find_uicomponent(row, "dy_payload"), choice.subtype, choice.traits[1], true)
         end
     end
     options_list:Layout()
@@ -509,8 +816,14 @@ local function refresh_training_ui()
         refresh_dilemma_box(panel)
     end)
     if not ok then
-        out("Dark Convent: error refreshing UI: "..tostring(err))
+        debug_log("error refreshing UI: "..tostring(err))
     end
+    local keys = {}
+    for key in pairs(reward_components) do
+        table.insert(keys, key)
+    end
+    table.sort(keys)
+    debug_log("refreshed, "..#keys.." rewards")
 end
 
 local function get_resource_bar()
@@ -574,6 +887,7 @@ local function fit_to_screen(panel)
 end
 
 local function close_panel()
+    hide_reward_tooltip()
     local panel = get_panel()
     if panel then
         panel:RemoveTopMost()
@@ -681,6 +995,11 @@ cm:add_first_tick_callback(function ()
         end,
         close_panel,
         true)
+
+    -- Reward tooltips: shown while the mouse is over a lore or trait, hidden when it leaves
+    core:progress_on_loading_screen_dismissed(function ()
+        cm:repeat_real_callback(reward_hover_callback, 100, "corvus_morathi_court_reward_hover")
+    end)
 
     -- ---- Dark Convent training ----
 

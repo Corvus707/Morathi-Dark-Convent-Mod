@@ -7,7 +7,8 @@
 --   * Rite of the Disciples (final level): raises a disciple army, corrupts the province and destroys the cult
 --   * Ritual of Plunder (final level): loots the settlement, ruins it and corrupts the province
 --   * Dark Conduit: Morathi's own extra spell intensity (a custom character bundle)
---   * Dark Elves' resource bar has no Devotees counter, so one is added (corvus_morathi_devotees.twui.xml)
+--   * Dark Elves' resource bar has no Devotees or Manipulation counter, so they are added
+--     (corvus_morathi_devotees.twui.xml, corvus_morathi_manipulation.twui.xml: Total/Max like Neferata's)
 
 local faction_key = "wh2_main_def_cult_of_pleasure"
 local morathi_subtype = "wh2_main_def_morathi"
@@ -322,13 +323,24 @@ local function update_cults(faction)
     safe("disciple armies", update_disciple_armies)
 end
 
--- ---- Devotees counter on the resource bar ----
+-- ---- Devotees and Manipulation counters on the resource bar ----
 
-local devotees_holder_name = "corvus_morathi_devotees_holder"
-local devotees_layout = "ui/campaign ui/corvus_morathi_devotees"
 local slaves_holder_name = "slave_holder"  -- hud_campaign_resource_bar_default
+-- In bar order, each after the one before it (the first after the slaves counter)
+local counters = {
+    { name = "corvus_morathi_devotees_holder", layout = "ui/campaign ui/corvus_morathi_devotees", label = "Devotees" },
+    { name = "corvus_morathi_manipulation_holder", layout = "ui/campaign ui/corvus_morathi_manipulation", label = "Manipulation" },
+}
 
-local function add_devotees_counter()
+local function child_index(parent, id)
+    for i = 0, parent:ChildCount() - 1 do
+        if UIComponent(parent:Find(i)):Id() == id then
+            return i
+        end
+    end
+end
+
+local function add_resource_counters()
     if cm:get_local_faction_name(true) ~= faction_key then
         return
     end
@@ -337,30 +349,31 @@ local function add_devotees_counter()
         log("could not find the resource bar")
         return
     end
-    if find_uicomponent(resource_bar, devotees_holder_name) then
-        return
-    end
-    local holder = UIComponent(resource_bar:CreateComponent(devotees_holder_name, devotees_layout))
-    holder:SetVisible(true)
-    -- The bar lays its children out in order: move the counter to just after the slaves counter
-    for i = 0, resource_bar:ChildCount() - 1 do
-        if UIComponent(resource_bar:Find(i)):Id() == slaves_holder_name then
-            local ok, err = pcall(function () resource_bar:Adopt(holder:Address(), i + 1) end)
-            if not ok then
-                log("could not move the Devotees counter next to the slaves: "..tostring(err))
+    local after = slaves_holder_name
+    for _, counter in ipairs(counters) do
+        if not find_uicomponent(resource_bar, counter.name) then
+            local holder = UIComponent(resource_bar:CreateComponent(counter.name, counter.layout))
+            holder:SetVisible(true)
+            -- The bar lays its children out in order
+            local i = child_index(resource_bar, after)
+            if i then
+                local ok, err = pcall(function () resource_bar:Adopt(holder:Address(), i + 1) end)
+                if not ok then
+                    log("could not move the "..counter.label.." counter: "..tostring(err))
+                end
             end
-            break
+            log("added the "..counter.label.." counter")
         end
+        after = counter.name
     end
     resource_bar:Layout()
-    log("added the Devotees counter")
 end
 
 cm:add_first_tick_callback(function ()
     core:progress_on_loading_screen_dismissed(function ()
         cm:real_callback(function ()
-            safe("adding the Devotees counter", add_devotees_counter)
-        end, 600, "corvus_morathi_add_devotees_counter")
+            safe("adding the resource counters", add_resource_counters)
+        end, 600, "corvus_morathi_add_resource_counters")
     end)
 
     if cm:is_new_game() then

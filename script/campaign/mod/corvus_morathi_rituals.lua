@@ -1,14 +1,15 @@
 -- Morathi's panel rituals (Dark Magic and Seduction pages). The rituals and their effect text are defined in the db
 -- (build_morathi_rituals.py); their payloads are display-only, so the effects are applied here when a ritual completes.
--- Who can perform each ritual and the minimum level are the db's (ritual_performing_characters, corvus_morathi_continued):
--- Morathi for her own rituals (morathi_only below), a Sorceress hero for the rest. The game greys out and explains
--- rituals without a qualifying performer. Values are placeholders.
+-- Who can perform each ritual and the minimum level are enforced by the panel (the levels are written into the
+-- expressions of corvus_morathi_panel.twui.xml): Morathi for her own rituals (morathi_only below), a Sorceress hero for the
+-- rest. The db's performer tables stay empty: with a required performer the game blocks the ritual, as the panel can't
+-- assign one. Values are placeholders.
 
 local faction_key = "wh2_main_def_cult_of_pleasure"
 local morathi_subtype = "wh2_main_def_morathi"
 
--- Ritual key -> required level, and whether only Morathi can perform it (the same as the db's performers; this script
--- only uses it to recognise its rituals)
+-- Ritual key -> required level, and whether only Morathi can perform it (the same as the panel's; this script only uses it
+-- to recognise its rituals)
 local ritual_requirements = {
     morathi_dark_magic_withering_curse = { level = 1 },
     morathi_dark_magic_amplify_magic = { level = 5 },
@@ -697,7 +698,7 @@ end
 
 -- ---- unlocking -----------------------------------------------------------------------------------------------------
 
--- Level requirements used to be script locks; the db's performers handle them now. Saves made before that may still
+-- Level requirements used to be script locks; the panel handles them now. Saves made before that may still
 -- have rituals locked, so every ritual is unlocked when the campaign loads.
 local function unlock_all_rituals()
     local faction = cm:get_faction(faction_key)

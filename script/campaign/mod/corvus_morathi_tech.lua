@@ -55,7 +55,7 @@ end
 
 -- Vanilla, Dark Convent and Supreme Sorceresses of Death
 local function is_death_sorceress(character)
-    return string.find(character:character_subtype_key(), "sorceress_death", 1, true) ~= nil
+    return string.find(character:character_subtype_key(), "sorceress_death") ~= nil
 end
 
 local function update_unsettling_radiance()

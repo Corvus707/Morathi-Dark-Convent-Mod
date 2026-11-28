@@ -3,3 +3,6 @@ key	text	tooltip
 rituals_display_name_corv_morathi_ritual_dominate	Dominate	false
 rituals_description_corv_morathi_ritual_dominate	The Hag Queen's whispers have done their work. Call in every debt, every secret, every stolen kiss, and make this faction a loyal [[img:icon_vassal]][[/img]]vassal of Naggaroth. The target faction must have reached 100% [[img:icon_seductive_influence]][[/img]]seductive influence. The total [[img:icon_seductive_influence]][[/img]]seductive influence required to reach this threshold depends on the target's race and number of settlements.	false
 campaign_group_rituals_unlock_text_corv_morathi_ritual_featurecorv_morathi_ritual_dominate	{{tr:campaign_group_rituals_unlock_text_wh3_dlc27_feature_seductive_influencewh3_main_ritual_sla_forced_vassalisation}}	false
+effects_description_corv_effect_dark_convent_dummy	Has access to the [[b]]Dark Convent[[/b]]	false
+effects_additional_tooltip_details_localised_description_corv_effect_dark_convent_dummy	In the Dark Convent, Morathi shapes the next generation of Sorceresses and Supreme Sorceresses, each trained along the path the Hag Queen chooses for her. From her court she also weaves dark magic and seduction across the world, sending her Sorceresses to carry out her rituals.	false
+effects_description_corv_effect_seductive_influence_culture_hidden		false

@@ -1,0 +1,9 @@
+key	icon
+#ui_info_ritual_target_criterias_tables;0;db/ui_info_ritual_target_criterias_tables/corvus_morathi_ritual_targets	
+corv_sorc_force_any_but_self	force
+corv_sorc_force_own	force
+corv_sorc_region_any_but_self	settlement
+corv_sorc_region_any	settlement
+corv_morathi_region_any_but_self	settlement
+corv_morathi_cult	settlement
+corv_morathi_region_no_cult	settlement

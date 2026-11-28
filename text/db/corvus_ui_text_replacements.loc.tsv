@@ -1,9 +1,8 @@
 key	text	tooltip
 #Loc;1;text/db/corvus_ui_text_replacements.loc		
-ui_text_replacements_localised_text_button_web_of_power_tooltip_wh2_main_sc_def_dark_elves	Rituals|| bleh	false
-ui_text_replacements_localised_text_button_web_of_power_tooltip	Changing of the Ways||Hatch plots and treasons to manipulate the destiny of all beings.	false
-ui_text_replacements_localised_text_web_of_power	Changing of the Ways	false
+ui_text_replacements_localised_text_button_web_of_power_tooltip_wh2_main_sc_def_dark_elves	Rituals||Weave dark magic and seduction across the world through Morathi and her Sorceresses.	false
 ui_text_replacements_localised_text_web_of_power_wh2_main_sc_def_dark_elves	Rituals	false
-ui_text_replacements_localised_text_web_of_power_characters_desc	Only Morathi and Sorceress Heroes can execute actions	false
-ui_text_replacements_localised_text_hp_campaign_title_web_of_power	The Dark Convent	false
-ui_text_replacements_localised_text_hp_campaign_description_web_of_power	PLACEHOLDER	false
+ui_text_replacements_localised_text_hp_campaign_title_web_of_power_wh2_main_sc_def_dark_elves	The Dark Convent	false
+ui_text_replacements_localised_text_hp_campaign_description_web_of_power_wh2_main_sc_def_dark_elves	Through her court, Morathi weaves dark magic and seduction across the world. Manipulations cost Manipulation; Dark Magic is free. Each action needs a character of the required level to perform it: Morathi performs her own rituals (Shadow Walk, Establish Cult and Cataclysm), and Sorceress heroes perform the rest. Pick an action, then the character to perform it, then its target.	false
+ui_text_replacements_localised_text_corv_morathi_panel_characters_desc	Morathi performs her own rituals; Sorceress heroes perform the rest	false
+ui_text_replacements_localised_text_ritual_targeting_cannot_afford_wh2_main_def_cult_of_pleasure	[[col:red]]You have insufficient [[img:icon_manipulation]][[/img]]Manipulation to perform this action.[[/col]]	false

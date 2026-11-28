@@ -1,4 +1,2 @@
 campaign_group	unique_resource
 #campaign_group_crafting_infos_tables;0;db/campaign_group_crafting_infos_tables/corvus_morathi_continued	
-corv_morathi_ritual_feature	morathi_concealment
-corv_morathi_ritual_feature	morathi_manipulation

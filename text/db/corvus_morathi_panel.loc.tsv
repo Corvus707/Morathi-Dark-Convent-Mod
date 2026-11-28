@@ -1,0 +1,5 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_panel.loc		
+campaign_localised_strings_string_corv_morathi_no_performer	[[col:red]]No characters with the required rank available. Morathi performs her own rituals; Sorceress heroes perform the rest.[[/col]]	false
+campaign_localised_strings_string_corv_morathi_cannot_afford	[[col:red]]You have insufficient [[img:icon_manipulation]][[/img]]Manipulation to perform this action.[[/col]]	false
+campaign_localised_strings_string_corv_morathi_select_performer	[[col:red]]Select a character who can perform this action: Morathi for her own rituals, a Sorceress hero of the required rank for the rest.[[/col]]	false

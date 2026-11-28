@@ -1,0 +1,9 @@
+key	text	tooltip
+#Loc;1;text/db/corvus_morathi_ritual_targets.loc		
+ui_info_ritual_target_criterias_localised_text_corv_sorc_force_any_but_self	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Sorceress\\n\\n[[b]]Target:[[/b]] Army	false
+ui_info_ritual_target_criterias_localised_text_corv_sorc_force_own	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Sorceress\\n\\n[[b]]Target:[[/b]] Own Army	false
+ui_info_ritual_target_criterias_localised_text_corv_sorc_region_any_but_self	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Sorceress\\n\\n[[b]]Target:[[/b]] Settlement	false
+ui_info_ritual_target_criterias_localised_text_corv_sorc_region_any	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Sorceress\\n\\n[[b]]Target:[[/b]] Settlement	false
+ui_info_ritual_target_criterias_localised_text_corv_morathi_region_any_but_self	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Morathi\\n\\n[[b]]Target:[[/b]] Settlement	false
+ui_info_ritual_target_criterias_localised_text_corv_morathi_cult	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Morathi\\n\\n[[b]]Target:[[/b]] Settlement with one of Morathi's cults	false
+ui_info_ritual_target_criterias_localised_text_corv_morathi_region_no_cult	\\n[[b]]{{tr:web_of_power_character_prefix}}[[/b]] Morathi\\n\\n[[b]]Target:[[/b]] Settlement of a neutral or allied faction, without one of Morathi's cults	false
