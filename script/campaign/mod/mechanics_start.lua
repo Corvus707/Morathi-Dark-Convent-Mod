@@ -3,7 +3,7 @@ local faction_key = "wh2_main_def_cult_of_pleasure"
 local panel_name = "corvus_morathi_panel"
 local panel_layout = "ui/campaign ui/corvus_morathi_panel"
 local button_name = "button_corvus_morathi_panel"
-local button_icon = "ui/skins/default/icon_gift_of_slaanesh.png"
+local button_icon = "ui/skins/default/dlc27_hef_secrets_of_the_white_tower/icon_hef_secrets_of_the_white_tower.png"
 local button_tooltip = "Cult of Pleasure||Seduce enemies or manipulate the winds of magic to your advantage."
 local escape_key_name = "corvus_morathi_panel_escape"
 
@@ -21,6 +21,21 @@ local ritual_lists = { "action_list_manipulations", "action_list" }
 
 local function get_panel()
     return find_uicomponent(core:get_ui_root(), panel_name)
+end
+
+-- TESTING: writes to corvus_dark_convent_log.txt in the game folder. Set to false when done.
+local debug_log_to_file = true
+local function debug_log(text)
+    out("Web of Power: "..text)
+    if not debug_log_to_file then
+        return
+    end
+    local file = io.open("corvus_dark_convent_log.txt", "a")
+    if file then
+        local ok, seconds = pcall(os.clock)
+        file:write((ok and string.format("[%.1f] ", seconds) or "").."[web of power] "..text.."\n")
+        file:close()
+    end
 end
 
 local function get_button()
@@ -192,11 +207,18 @@ cm:add_first_tick_callback(function ()
             return context.string == button_name
         end,
         function ()
-            if is_panel_open() then
-                close_panel()
-            else
-                open_panel()
+            local opening = not is_panel_open()
+            debug_log("Web of Power button clicked, "..(opening and "opening" or "closing"))
+            local ok, err = pcall(opening and open_panel or close_panel)
+            if not ok then
+                debug_log("error "..(opening and "opening" or "closing").." the Web of Power: "..tostring(err))
+                return
             end
+            -- TESTING: what's on screen a moment later
+            cm:real_callback(function ()
+                local panel = get_panel()
+                debug_log("0.5 s later: Web of Power "..(panel and ("visible "..tostring(panel:Visible())..", from root "..tostring(panel:VisibleFromRoot())) or "missing"))
+            end, 500, "corvus_morathi_panel_open_snapshot")
         end,
         true)
 

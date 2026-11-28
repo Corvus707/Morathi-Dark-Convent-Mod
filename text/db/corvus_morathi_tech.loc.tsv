@@ -128,5 +128,6 @@ effects_description_corv_effect_tech_morathi_spell_cooldown	Morathi: cooldown %+
 effects_description_corv_effect_tech_morathi_drain_winds	Morathi: while an enemy spellcaster is within 60m, her Winds of Magic reserves gain 0.1 per second, and enemy spellcasters' reserves lose 0.1 per second	false
 effects_description_corv_effect_tech_morathi_arcane_conduit	Morathi: "{{tr:unit_abilities_onscreen_name_corv_morathi_dark_arcane_conduit}}" replaces Greater Arcane Conduit (+80% power recharge, +15% spell mastery, and 4 damage per second to up to 6 entities of each enemy unit within 35m)	false
 effects_description_corv_effect_tech_charmed_morathi_army	Enables Charmed! attacks for Morathi's army	false
+campaign_effect_scopes_localised_text_corv_faction_to_character_own_all_armies	\\n(all armies)	false
 pooled_resource_factors_display_name_positive_morathi_manipulation_technology	Technology	false
 pooled_resource_factors_display_name_negative_morathi_manipulation_technology	Technology	false

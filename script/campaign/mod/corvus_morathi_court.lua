@@ -5,7 +5,7 @@ local panel_layout = "ui/campaign ui/corvus_morathi_court"
 local button_holder_name = "corvus_morathi_court_button_holder"
 local button_holder_layout = "ui/campaign ui/corvus_morathi_court_button"
 local button_name = "button_corvus_morathi_court"
-local button_icon = "ui/skins/default/icon_gift_of_slaanesh.png"
+local button_icon = "ui/skins/warhammer3/icon_ice_court.png"
 local button_tooltip = "The Dark Convent||Enter the Dark Convent to train spellcasters and acquire character traits."
 local escape_key_name = "corvus_morathi_court_escape"
 
@@ -36,7 +36,7 @@ local skip_dilemma_turn_wait = false
 local skip_training_duration = false
 -- Morathi's trait: Sorceress heroes recruitable in any of her provinces
 local morathi_subtype = "wh2_main_def_morathi"
-local morathi_trait = "corv_trait_morathi_dark_convent"
+local old_morathi_trait = "corv_trait_morathi_dark_convent"
 local old_convent_bundle_key = "corv_dark_convent"
 local convent_trait_prefix = "corv_trait_dark_convent_"
 
@@ -157,22 +157,23 @@ local function remove_non_convent_traits(character)
     end
 end
 
--- Morathi's trait lets Sorceress heroes be recruited in any of her provinces
+-- Morathi's innate skill, Dark Manipulator, lets Sorceress heroes be recruited in any of her provinces (db
+-- character_skill_level_to_effects_junctions), so it shows with her lord traits on the start screen. Earlier versions
+-- did this with a faction bundle, then with a trait of their own; both are removed from older saves.
 local function give_morathi_convent_trait()
     local faction = cm:get_faction(faction_key)
     if not faction or faction:is_dead() then
         return
     end
-    -- Replaced by the trait; remove it from saves made before the change
     if faction:has_effect_bundle(old_convent_bundle_key) then
         cm:remove_effect_bundle(old_convent_bundle_key, faction_key)
     end
     local characters = faction:character_list()
     for i = 0, characters:num_items() - 1 do
         local character = characters:item_at(i)
-        if character:character_subtype_key() == morathi_subtype and not character:has_trait(morathi_trait) then
-            out("Dark Convent: giving "..morathi_trait.." to Morathi")
-            cm:force_add_trait(cm:char_lookup_str(character), morathi_trait)
+        if character:character_subtype_key() == morathi_subtype and character:has_trait(old_morathi_trait) then
+            out("Dark Convent: removing "..old_morathi_trait.." from Morathi")
+            cm:force_remove_trait(cm:char_lookup_str(character), old_morathi_trait)
         end
     end
 end
@@ -428,7 +429,8 @@ local function debug_log(text)
     end
     local file = io.open("corvus_dark_convent_log.txt", "a")
     if file then
-        file:write(text.."\n")
+        local ok, seconds = pcall(os.clock)
+        file:write((ok and string.format("[%.1f] ", seconds) or "")..text.."\n")
         file:close()
     end
 end
@@ -536,6 +538,8 @@ local function fill_reward_tooltip(tooltip, subtype, trait)
             if effect then
                 set_text(entry, effect.text)
                 entry:SetImagePath(effect.icon, 0)
+                -- An ability's own tooltip, for when the reward tooltip is held
+                entry:SetTooltipText(effect.tip or "", true)
             end
         end
         effects_list:SetVisible(#effects > 0)
@@ -551,7 +555,8 @@ local function fill_reward_tooltip(tooltip, subtype, trait)
         set_text(find_uicomponent(ability_group, "label_ability_group_name"), lore.group or "")
         for i, entry in ipairs(list_entries(ability_list, "template_ability_group_ability", #spells)) do
             if spells[i] then
-                entry:SetImagePath(spells[i], 0)
+                entry:SetImagePath(spells[i].icon, 0)
+                entry:SetTooltipText(spells[i].tip or "", true)
             end
         end
         lore_entry:SetVisible(#spells > 0)
@@ -578,11 +583,185 @@ local function place_reward_tooltip(tooltip, uic)
     tooltip:MoveTo(math.max(0, tooltip_x), math.max(0, tooltip_y))
 end
 
+-- ---- the ability a trait gives, beside the trait's tooltip, as vanilla's trait tooltip shows it: vanilla's
+-- special_ability_tooltip layout (corvus_morathi_ability_tooltip), filled from corvus_dark_convent_tooltips.abilities
+
+local ability_tooltip_name = "corvus_morathi_ability_tooltip"
+local ability_tooltip_layout = "ui/campaign ui/corvus_morathi_ability_tooltip"
+
+local function get_ability_tooltip()
+    local panel = find_uicomponent(core:get_ui_root(), ability_tooltip_name)
+    if not panel then
+        panel = UIComponent(core:get_ui_root():CreateComponent(ability_tooltip_name, ability_tooltip_layout))
+        panel:SetVisible(false)
+    end
+    return panel
+end
+
+local function hide_ability_tooltip()
+    local panel = find_uicomponent(core:get_ui_root(), ability_tooltip_name)
+    if panel and panel:Visible() then
+        panel:RemoveTopMost()
+        panel:SetVisible(false)
+    end
+end
+
+-- Lays out a component's lists from the innermost out, so each sizes to what's shown in it
+local function layout_all(uic)
+    for i = 0, uic:ChildCount() - 1 do
+        layout_all(UIComponent(uic:Find(i)))
+    end
+    pcall(function () uic:Layout() end)
+end
+
+local function seconds_text(value)
+    return string.format("%gs", value)
+end
+
+local function fill_ability_tooltip(panel, ability)
+    local body = find_uicomponent(panel, "main_tooltip_body")
+    local header = find_uicomponent(body, "header")
+    pcall(function () header:SetState("common") end)
+    set_text(header, ability.name)
+
+    local icon = find_uicomponent(body, "icon_ability")
+    pcall(function () icon:SetState(ability.passive and "passive" or "active") end)
+    icon:SetImagePath(ability.icon, 0)
+    set_text(find_uicomponent(body, "label_ability_type"), ability.passive and "Passive Ability" or ability.type)
+    local uses = find_uicomponent(body, "label_num_uses_battle")
+    uses:SetVisible(ability.uses > 0)
+    set_text(uses, "Uses: "..ability.uses)
+
+    -- Effects and attributes, as one phase
+    local effect_parent = find_uicomponent(body, "effect_parent")
+    local phase_info = find_uicomponent(effect_parent, "phase_info")
+    local reserves = find_uicomponent(phase_info, "label_mana_depletion_parent")
+    reserves:SetVisible(ability.reserves ~= 0)
+    set_text(find_uicomponent(reserves, "label_mana_depletion"), string.format("%+g", ability.reserves))
+
+    local effect_list = find_uicomponent(phase_info, "phase_effect_list")
+    for i, entry in ipairs(list_entries(effect_list, "template_effect", #ability.effects)) do
+        local effect = ability.effects[i]
+        if effect then
+            local label = find_uicomponent(entry, "label_effect")
+            pcall(function () label:SetState(effect.good and "true" or "false") end)
+            set_text(label, effect.text)
+            find_uicomponent(entry, "effect_icon_parent"):SetVisible(effect.icon ~= "")
+            if effect.icon ~= "" then
+                find_uicomponent(entry, "effect_icon"):SetImagePath(effect.icon, 0)
+            end
+        end
+    end
+    effect_list:SetVisible(#ability.effects > 0)
+
+    local attribute_list = find_uicomponent(phase_info, "attribute_list")
+    for i, entry in ipairs(list_entries(attribute_list, "template_attribute", #ability.attributes)) do
+        local attribute = ability.attributes[i]
+        if attribute then
+            find_uicomponent(entry, "attribute_image"):SetImagePath(attribute.icon, 0)
+            set_text(find_uicomponent(entry, "attribute_text"), attribute.text)
+        end
+    end
+    attribute_list:SetVisible(#ability.attributes > 0)
+    effect_parent:SetVisible(ability.reserves ~= 0 or #ability.effects > 0 or #ability.attributes > 0)
+
+    -- Duration (permanent for passives) and cooldown
+    local duration = find_uicomponent(body, "duration_parent")
+    find_uicomponent(duration, "icon_permanent"):SetVisible(ability.duration <= 0)
+    local duration_value = find_uicomponent(duration, "duration_value")
+    duration_value:SetVisible(ability.duration > 0)
+    set_text(duration_value, seconds_text(ability.duration))
+    local cooldown = find_uicomponent(body, "cooldown_parent")
+    cooldown:SetVisible(ability.cooldown > 0)
+    set_text(find_uicomponent(cooldown, "cooldown_value"), seconds_text(ability.cooldown))
+
+    set_text(find_uicomponent(body, "description"), ability.description)
+    layout_all(panel)
+end
+
+-- Beside the trait's tooltip: to its right, or its left if there's no room
+local function place_ability_tooltip(panel, tooltip)
+    local x, y = tooltip:Position()
+    local w = tooltip:Bounds()
+    local panel_w, panel_h = panel:Bounds()
+    local screen_w, screen_h = core:get_screen_resolution()
+    local panel_x = x + w + 4
+    if panel_x + panel_w > screen_w then
+        panel_x = x - panel_w - 4
+    end
+    panel:MoveTo(math.max(0, panel_x), math.max(0, math.min(y, screen_h - panel_h)))
+end
+
+-- Shows the ability a trait gives beside the trait's tooltip, or hides it
+local function show_ability_tooltip(tooltip, trait)
+    local ability_key = trait and (corvus_dark_convent_tooltips and corvus_dark_convent_tooltips.traits[trait] or {}).ability
+    local ability = ability_key and corvus_dark_convent_tooltips.abilities and corvus_dark_convent_tooltips.abilities[ability_key]
+    if not ability then
+        hide_ability_tooltip()
+        return
+    end
+    local panel = get_ability_tooltip()
+    fill_ability_tooltip(panel, ability)
+    if not panel:Visible() then
+        panel:SetVisible(true)
+        panel:RegisterTopMost()
+    end
+    place_ability_tooltip(panel, tooltip)
+end
+
 local function hide_reward_tooltip()
+    hide_ability_tooltip()
     local tooltip = find_uicomponent(core:get_ui_root(), tooltip_name)
     if tooltip and tooltip:Visible() then
         tooltip:RemoveTopMost()
         tooltip:SetVisible(false)
+    end
+end
+
+-- The lock progress bar of vanilla's sticky tooltips: fills while the mouse rests on the reward (0 to 1); when it's
+-- full the tooltip is held and can be hovered
+local reported_bar_error = false
+local function set_hold_progress(tooltip, fraction)
+    local ok, err = pcall(function ()
+        local extents = find_uicomponent(tooltip, "stick_progress_bar", "bar_extents_and_pos")
+        local fill = find_uicomponent(extents, "auto_resizing_comp")
+        local in_progress = find_uicomponent(fill, "in_progress_comp")
+        local completed = find_uicomponent(fill, "completed_comp")
+        fraction = math.max(0, math.min(1, fraction))
+        local full_width, height = extents:Dimensions()
+        local width = math.max(1, math.floor(full_width * fraction + 0.5))
+        for _, part in ipairs({ fill, in_progress, completed }) do
+            part:SetCanResizeWidth(true)
+            part:Resize(width, height)
+        end
+        in_progress:SetVisible(fraction > 0 and fraction < 1)
+        completed:SetVisible(fraction >= 1)
+    end)
+    if not ok and not reported_bar_error then
+        reported_bar_error = true
+        debug_log("could not fill the tooltip's progress bar: "..tostring(err))
+    end
+end
+
+-- The bar fills by its layout's "fill" animation, which the game plays smoothly every frame. If that can't be
+-- started, the hover check fills it in steps instead (set_hold_progress).
+local hold_bar_stepped = false
+local function start_hold_bar(tooltip)
+    set_hold_progress(tooltip, 0)
+    if hold_bar_stepped then
+        return
+    end
+    local ok, err = pcall(function ()
+        local in_progress = find_uicomponent(tooltip, "stick_progress_bar", "in_progress_comp")
+        if not in_progress:AnimationExists("fill") then
+            error("the bar has no fill animation")
+        end
+        in_progress:SetVisible(true)
+        in_progress:TriggerAnimation("fill")
+    end)
+    if not ok then
+        hold_bar_stepped = true
+        debug_log("could not animate the tooltip's progress bar, filling it in steps: "..tostring(err))
     end
 end
 
@@ -599,11 +778,17 @@ local function show_reward_tooltip(uic)
         -- Above the court, which is top-most itself
         tooltip:RegisterTopMost()
     end
+    start_hold_bar(tooltip)
     place_reward_tooltip(tooltip, uic)
-    -- Text sizes can settle a frame later; place it again once they have
+    show_ability_tooltip(tooltip, reward.trait)
+    -- Text sizes can settle a frame later; place them again once they have
     cm:real_callback(function ()
         if tooltip:Visible() then
             place_reward_tooltip(tooltip, uic)
+            local panel = find_uicomponent(core:get_ui_root(), ability_tooltip_name)
+            if panel and panel:Visible() then
+                place_ability_tooltip(panel, tooltip)
+            end
             local x, y = tooltip:Position()
             local w, h = tooltip:Bounds()
             debug_log("tooltip "..tooltip:Id().." shown at "..x..","..y.." size "..w.."x"..h)
@@ -613,10 +798,100 @@ end
 
 -- The game sends no mouse-over events for the court (ComponentMouseOn never fired), so while it's open the rewards
 -- are checked every 100 ms for the mouse, and the tooltip follows the one it's over.
+-- Held tooltips: after the mouse has stayed on a reward for a while its tooltip stays open while the mouse is on the
+-- tooltip itself, so its abilities and spells can be hovered for their own tooltips.
+local hover_tick_ms = 50
+local hold_after_ticks = 10    -- half a second on the reward
+local hold_grace_ticks = 8     -- 0.4 seconds to cross from the reward to its tooltip
 local hovered_reward_key = nil
+local hover_ticks = 0
+local away_ticks = 0
+local tooltip_held = false
 local reported_hover_error = false
+local reported_interactive_error = false
+
+-- A held tooltip takes the mouse (for its abilities' tooltips); otherwise nothing in it does
+local function set_tooltip_interactive(uic, interactive)
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        local ok, err = pcall(function () child:SetInteractive(interactive) end)
+        if not ok and not reported_interactive_error then
+            reported_interactive_error = true
+            debug_log("could not change the tooltip's interactivity: "..tostring(err))
+        end
+        set_tooltip_interactive(child, interactive)
+    end
+end
+
+local function set_held_tooltip_interactive(tooltip, interactive)
+    local ok = pcall(function () tooltip:SetInteractive(interactive) end)
+    if not ok and not reported_interactive_error then
+        reported_interactive_error = true
+        debug_log("could not change the tooltip box's interactivity")
+    end
+    set_tooltip_interactive(tooltip, interactive)
+end
+
+-- Whether the mouse is on the tooltip: the box or anything visible in it (asking the box alone didn't see it)
+local function mouse_over_tooltip(uic)
+    if uic:IsMouseOverChildren() then
+        return true
+    end
+    for i = 0, uic:ChildCount() - 1 do
+        local child = UIComponent(uic:Find(i))
+        if child:Visible() and mouse_over_tooltip(child) then
+            return true
+        end
+    end
+    return false
+end
+
+-- The trait's tooltip and, beside it, the ability tooltip: a held tooltip is both
+local function held_tooltip_parts()
+    local root = core:get_ui_root()
+    local parts = {}
+    for _, name in ipairs({ tooltip_name, ability_tooltip_name }) do
+        local part = find_uicomponent(root, name)
+        if part and part:Visible() then
+            table.insert(parts, part)
+        end
+    end
+    return parts
+end
+
+local function release_tooltip()
+    if tooltip_held then
+        tooltip_held = false
+        local root = core:get_ui_root()
+        for _, name in ipairs({ tooltip_name, ability_tooltip_name }) do
+            local part = find_uicomponent(root, name)
+            if part then
+                set_held_tooltip_interactive(part, false)
+            end
+        end
+    end
+end
+
+local function mouse_over_held_tooltip()
+    for _, part in ipairs(held_tooltip_parts()) do
+        if mouse_over_tooltip(part) then
+            return true
+        end
+    end
+    return false
+end
 
 local function update_reward_hover(panel_open)
+    local tooltip = find_uicomponent(core:get_ui_root(), tooltip_name)
+    -- A held tooltip stays while the mouse is on it
+    if panel_open and tooltip_held and tooltip and tooltip:Visible() and mouse_over_held_tooltip() then
+        if away_ticks > 0 then
+            debug_log("mouse reached the held tooltip")
+        end
+        away_ticks = 0
+        return
+    end
+
     local found_key, found_uic = nil, nil
     if panel_open then
         for key, reward in pairs(reward_components) do
@@ -626,10 +901,45 @@ local function update_reward_hover(panel_open)
             end
         end
     end
+
+    if found_key ~= nil and found_key == hovered_reward_key then
+        away_ticks = 0
+        hover_ticks = hover_ticks + 1
+        if not tooltip_held and tooltip and tooltip:Visible() then
+            if hover_ticks >= hold_after_ticks then
+                tooltip_held = true
+                -- The full, bright bar
+                set_hold_progress(tooltip, 1)
+                for _, part in ipairs(held_tooltip_parts()) do
+                    set_held_tooltip_interactive(part, true)
+                end
+                debug_log("holding the tooltip of "..found_key)
+            elseif hold_bar_stepped then
+                set_hold_progress(tooltip, hover_ticks / hold_after_ticks)
+            end
+        end
+        return
+    end
+    -- Leaving a held tooltip's reward: a moment to reach the tooltip before it closes
+    if found_key == nil and hovered_reward_key ~= nil and tooltip_held and panel_open then
+        away_ticks = away_ticks + 1
+        if away_ticks <= hold_grace_ticks then
+            return
+        end
+        if tooltip then
+            local x, y = tooltip:Position()
+            local w, h = tooltip:Bounds()
+            debug_log("held tooltip closed: the mouse wasn't seen on it (tooltip at "..x..","..y.." size "..w.."x"..h..")")
+        end
+    end
     if found_key == hovered_reward_key then
         return
     end
+
     hovered_reward_key = found_key
+    hover_ticks = 0
+    away_ticks = 0
+    release_tooltip()
     debug_log("hovering "..tostring(found_key))
     if found_uic then
         show_reward_tooltip(found_uic)
@@ -724,6 +1034,11 @@ local function refresh_slot_card(card, group, group_index, slot_index, faction)
         set_card_portrait(button, candidate_portraits[group.key] or default_candidate_portrait)
         set_text(find_uicomponent(button, "dy_name"), slot.subtype and subtype_name(slot.subtype) or "Candidate")
         set_text(find_uicomponent(button, "dy_time"), tostring(slot.turns_left))
+        -- The card template's rank badge only shows its placeholder (10), so it's hidden
+        local rank = find_uicomponent(button, "rank_dspl_small")
+        if rank then
+            rank:SetVisible(false)
+        end
         find_uicomponent(button, "alert"):SetVisible(slot.pending)
         button:SetState(is_selected and "selected" or "active")
         button:SetTooltipText(slot.pending and "A decision awaits||Select this candidate to choose how her training continues." or "In training||This candidate is training in the Dark Convent.", true)
@@ -902,18 +1217,41 @@ end
 local function open_panel()
     local panel = get_panel()
     if not panel then
-        out("Creating "..panel_name)
+        debug_log("creating "..panel_name)
         panel = UIComponent(core:get_ui_root():CreateComponent(panel_name, panel_layout))
     end
+    debug_log("opening: hiding the other UI")
     hide_other_ui()
     set_spacebar_options_disabled(true)
+    debug_log("opening: fitting to the screen")
     fit_to_screen(panel)
     panel:SetVisible(true)
     -- Above map labels and anything the game shows later, like the vanilla full-screen panels
     panel:RegisterTopMost()
     set_button_selected(true)
+    debug_log("opening: taking the escape key")
     cm:steal_escape_key_with_callback(escape_key_name, close_panel)
     refresh_training_ui()
+    debug_log("opened")
+    -- TESTING: what's on screen a moment later
+    cm:real_callback(function ()
+        local ok, err = pcall(function ()
+            local court = get_panel()
+            debug_log("0.5 s after opening: court "..(court and ("visible "..tostring(court:Visible())..", from root "..tostring(court:VisibleFromRoot())) or "missing"))
+            local root = core:get_ui_root()
+            local shown = {}
+            for i = 0, root:ChildCount() - 1 do
+                local child = UIComponent(root:Find(i))
+                if child:Visible() then
+                    table.insert(shown, child:Id())
+                end
+            end
+            debug_log("  visible at the top level: "..table.concat(shown, ", "))
+        end)
+        if not ok then
+            debug_log("  snapshot failed: "..tostring(err))
+        end
+    end, 500, "corvus_morathi_court_open_snapshot")
 end
 
 local function get_or_create_button()
@@ -979,10 +1317,11 @@ cm:add_first_tick_callback(function ()
             return context.string == button_name
         end,
         function ()
-            if is_panel_open() then
-                close_panel()
-            else
-                open_panel()
+            local opening = not is_panel_open()
+            debug_log("court button clicked, "..(opening and "opening" or "closing"))
+            local ok, err = pcall(opening and open_panel or close_panel)
+            if not ok then
+                debug_log("error "..(opening and "opening" or "closing").." the court: "..tostring(err))
             end
         end,
         true)
@@ -998,8 +1337,20 @@ cm:add_first_tick_callback(function ()
 
     -- Reward tooltips: shown while the mouse is over a lore or trait, hidden when it leaves
     core:progress_on_loading_screen_dismissed(function ()
-        cm:repeat_real_callback(reward_hover_callback, 100, "corvus_morathi_court_reward_hover")
+        cm:repeat_real_callback(reward_hover_callback, hover_tick_ms, "corvus_morathi_court_reward_hover")
     end)
+
+    -- TESTING: every panel opening and closing, to see what happens around the court
+    for _, event in ipairs({ "PanelOpenedCampaign", "PanelClosedCampaign" }) do
+        core:add_listener(
+            "corvus_morathi_court_log_"..event,
+            event,
+            true,
+            function (context)
+                debug_log(event..": "..tostring(context.string))
+            end,
+            true)
+    end
 
     -- ---- Dark Convent training ----
 
@@ -1124,7 +1475,7 @@ cm:add_first_tick_callback(function ()
             return context.string ~= panel_name and is_panel_open()
         end,
         function (context)
-            out("Closing "..panel_name.." because "..context.string.." opened")
+            debug_log("closing "..panel_name.." because "..context.string.." opened")
             close_panel()
         end,
         true)

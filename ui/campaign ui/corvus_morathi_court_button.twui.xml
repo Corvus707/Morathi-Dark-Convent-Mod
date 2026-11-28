@@ -54,33 +54,28 @@
 				<default
 					this="0EC8C657-718E-44F4-B4A8F36C4CE6B79D"
 					name="default"
-					width="46"
-					height="53"
+					width="55"
+					height="55"
 					uniqueguid="0EC8C657-718E-44F4-B4A8F36C4CE6B79D"/>
 			</states>
 		</corvus_morathi_court_button_holder>
 		<button_corvus_morathi_court
 			this="019C1A3E-B774-4E66-B04EBABBA8DF30E3"
 			id="button_corvus_morathi_court"
-			component_anchor_point="0.50,0.50"
 			docking="Center"
-			uniqueguid_in_template="5E5903D5-3190-4BE4-A117AA3392596D5C"
-			offset="4.00,7.00"
+			component_anchor_point="0.50,0.50"
 			allowhorizontalresize="false"
 			allowverticalresize="false"
 			tooltipslocalised="true"
-			soundcategory="UI_GBL_TMP_Round_Small_Button"
+			soundcategory="UI_GBL_TMP_Round_Large_Button_Toggle"
 			uniqueguid="019C1A3E-B774-4E66-B04EBABBA8DF30E3"
-			currentstate="7AAF90A0-4092-419A-82B18EB4C38F3238"
-			defaultstate="7AAF90A0-4092-419A-82B18EB4C38F3238">
+			currentstate="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A"
+			defaultstate="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A">
 			<callbackwithcontextlist>
 				<callback_with_context callback_id="Button"/>
 				<callback_with_context callback_id="CallbackAnimTrigger"/>
 			</callbackwithcontextlist>
 			<userproperties>
-				<property
-					name="disable_override"
-					value="resizable"/>
 				<property
 					name="disable_override0"
 					value="CallbackAnimTrigger"/>
@@ -90,112 +85,117 @@
 			</userproperties>
 			<componentimages>
 				<component_image
-					this="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-					uniqueguid="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-					imagepath="ui/skins/default/icon_forces.png"/>
+					this="09F733A0-9691-46CE-B82E4B705C3F5281"
+					uniqueguid="09F733A0-9691-46CE-B82E4B705C3F5281"
+					imagepath="ui/skins/default/icon_objectives.png"/>
 				<component_image
-					this="63556CD7-0077-4E7C-8EA5CB1B329A8CC8"
-					uniqueguid="63556CD7-0077-4E7C-8EA5CB1B329A8CC8"
-					imagepath="ui/skins/default/button_round_small_pressed.png"/>
+					this="A52F9B50-E0E6-4168-9B0913E427A39DA8"
+					uniqueguid="A52F9B50-E0E6-4168-9B0913E427A39DA8"
+					imagepath="ui/skins/default/button_round_hud_selected_inactive.png"/>
 				<component_image
-					this="95A7FC30-8B6B-4338-A99817A54F1454F1"
-					uniqueguid="95A7FC30-8B6B-4338-A99817A54F1454F1"
-					imagepath="ui/skins/default/button_round_small_selected_hover.png"/>
+					this="3D1F1835-4D03-4729-957E22C9AB4B91E8"
+					uniqueguid="3D1F1835-4D03-4729-957E22C9AB4B91E8"
+					imagepath="ui/skins/default/button_round_hud_pressed.png"/>
 				<component_image
-					this="6D8AFF29-0F8C-4E4A-AAA792D83407CFA2"
-					uniqueguid="6D8AFF29-0F8C-4E4A-AAA792D83407CFA2"
-					imagepath="ui/skins/default/button_round_small_hover.png"/>
+					this="FDFE2C1E-D484-4256-92103D00A21E8998"
+					uniqueguid="FDFE2C1E-D484-4256-92103D00A21E8998"
+					imagepath="ui/skins/default/button_round_hud_selected_hover.png"/>
 				<component_image
-					this="B79F88C1-B17C-4F55-A3EAEE471F645545"
-					uniqueguid="B79F88C1-B17C-4F55-A3EAEE471F645545"
-					imagepath="ui/skins/default/button_round_small_active.png"/>
+					this="DAC34D19-B126-4102-95680699487654C6"
+					uniqueguid="DAC34D19-B126-4102-95680699487654C6"
+					imagepath="ui/skins/default/button_round_hud_hover.png"/>
 				<component_image
-					this="E402FB2B-08D6-453E-99C17D2A80AFF6AA"
-					uniqueguid="E402FB2B-08D6-453E-99C17D2A80AFF6AA"
-					imagepath="ui/skins/default/button_round_small_inactive.png"/>
+					this="F1712897-5C5E-4357-B14F7EE2697E820E"
+					uniqueguid="F1712897-5C5E-4357-B14F7EE2697E820E"
+					imagepath="ui/skins/default/button_round_hud_active.png"/>
 				<component_image
-					this="36DF60AA-51DC-401E-869410636576699F"
-					uniqueguid="36DF60AA-51DC-401E-869410636576699F"
-					imagepath="ui/skins/default/button_round_small_selected.png"/>
+					this="7D36E918-FF68-4E69-A054C48F5E4FD9CE"
+					uniqueguid="7D36E918-FF68-4E69-A054C48F5E4FD9CE"
+					imagepath="ui/skins/default/button_round_hud_inactive.png"/>
 				<component_image
-					this="94B121A8-F566-4400-B3B542268B325F62"
-					uniqueguid="94B121A8-F566-4400-B3B542268B325F62"
-					imagepath="ui/skins/default/button_round_small_underlay.png"/>
+					this="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+					uniqueguid="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+					imagepath="ui/skins/default/button_round_hud_selected.png"/>
 				<component_image
-					this="CB72702A-16DD-4472-81C5389002FC6C85"
-					uniqueguid="CB72702A-16DD-4472-81C5389002FC6C85"
-					imagepath="ui/skins/default/button_round_small_selected_underlay.png"/>
+					this="0C0E46A0-DED8-49EB-BC331B80D6C75F15"
+					uniqueguid="0C0E46A0-DED8-49EB-BC331B80D6C75F15"
+					imagepath="ui/skins/default/button_round_hud_selected_pressed.png"/>
 				<component_image
-					this="A982E5BE-F4B5-4CCA-94ECC4974AB79E79"
-					uniqueguid="A982E5BE-F4B5-4CCA-94ECC4974AB79E79"
-					imagepath="ui/skins/default/button_round_small_selected_inactive.png"/>
+					this="87E2E256-68BB-45F3-85C799D27F07DCE5"
+					uniqueguid="87E2E256-68BB-45F3-85C799D27F07DCE5"
+					imagepath="ui/skins/default/button_round_hud_frame_back.png"/>
 				<component_image
-					this="52F9E5FA-7738-414C-9AC42D6800571E99"
-					uniqueguid="52F9E5FA-7738-414C-9AC42D6800571E99"
-					imagepath="ui/skins/default/button_round_small_selected_pressed.png"/>
-				<component_image
-					this="B35E7102-0077-4A1B-9B455368CFFED9C0"
-					uniqueguid="B35E7102-0077-4A1B-9B455368CFFED9C0"/>
+					this="3A03DE63-54AA-42AB-A1B86D197991F6E5"
+					uniqueguid="3A03DE63-54AA-42AB-A1B86D197991F6E5"/>
 			</componentimages>
 			<states>
 				<active
-					this="7AAF90A0-4092-419A-82B18EB4C38F3238"
+					this="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A"
 					name="active"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="7AAF90A0-4092-419A-82B18EB4C38F3238"
+					pixelcollision="true"
+					uniqueguid="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A"
 					stateeditordisplaypos="40.00,24.00">
 					<imagemetrics>
 						<image
-							this="E12D6825-622D-46CF-A0750E80711B1FE4"
-							uniqueguid="E12D6825-622D-46CF-A0750E80711B1FE4"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="C65949CF-97D8-4D54-A2B5CA6705AE2949"
+							uniqueguid="C65949CF-97D8-4D54-A2B5CA6705AE2949"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="2E1771D3-A398-4AAF-89624CD9B3F9BF74"
-							uniqueguid="2E1771D3-A398-4AAF-89624CD9B3F9BF74"
-							componentimage="B79F88C1-B17C-4F55-A3EAEE471F645545"
-							width="38"
-							height="38"/>
+							this="D9A267B8-CD58-4735-AEFFE36108F163F9"
+							uniqueguid="D9A267B8-CD58-4735-AEFFE36108F163F9"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
 						<image
-							this="9E6DACEB-93B8-4CE9-B50956D4C9BE5521"
-							uniqueguid="9E6DACEB-93B8-4CE9-B50956D4C9BE5521"
-							componentimage="6D8AFF29-0F8C-4E4A-AAA792D83407CFA2"
-							width="38"
-							height="38"
+							this="F7498630-A88E-4C76-90F9441965B71865"
+							uniqueguid="F7498630-A88E-4C76-90F9441965B71865"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
+						<image
+							this="109CA401-FC91-496E-97DD9D57878F976C"
+							uniqueguid="109CA401-FC91-496E-97DD9D57878F976C"
+							componentimage="DAC34D19-B126-4102-95680699487654C6"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"/>
 						<image
-							this="1C0B0157-A106-46DA-BED906446765E63A"
-							uniqueguid="1C0B0157-A106-46DA-BED906446765E63A"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="9CAB56AA-C6A8-4305-9192CE733DD597C6"
+							uniqueguid="9CAB56AA-C6A8-4305-9192CE733DD597C6"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shader_name="brighten_t0"/>
 						<image
-							this="45EA69CC-FD2F-4D2A-B92557B996F7A688"
-							uniqueguid="45EA69CC-FD2F-4D2A-B92557B996F7A688"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
-							dockpoint="Center"
-							shader_name="brighten_t0"/>
-						<image
-							this="9CB5BE6D-F617-4E33-87CEBF5F1D4AF6E5"
-							uniqueguid="9CB5BE6D-F617-4E33-87CEBF5F1D4AF6E5"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="63103754-7941-4F08-83965F0855C4B321"
+							uniqueguid="63103754-7941-4F08-83965F0855C4B321"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"
 							dockpoint="Center"
 							shadertechnique_vars="0.50,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
+						<image
+							this="6564B9C4-A23A-45C1-BC90C358C0522769"
+							uniqueguid="6564B9C4-A23A-45C1-BC90C358C0522769"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
+							dockpoint="Center"
+							shader_name="brighten_t0"/>
 					</imagemetrics>
 					<transitionmap>
 						<transition
-							transition_m_target_state="BAFF4C77-332A-4F5B-97F577E2541E20EE"
+							transition_m_target_state="67FE3B56-960E-4F2A-B42D96901CBB81AC"
 							transition_m_transition_time="200"
 							transition_m_interpolation_property_mask="64"/>
 					</transitionmap>
@@ -206,33 +206,42 @@
 						fontcat_name="body_12"/>
 				</active>
 				<down
-					this="F772E4D6-19BF-42A3-B48139B69CEE5CD9"
+					this="FB8AD39B-185F-42C0-8BC66CE4AAD5BFF4"
 					name="down"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="F772E4D6-19BF-42A3-B48139B69CEE5CD9"
+					pixelcollision="true"
+					uniqueguid="FB8AD39B-185F-42C0-8BC66CE4AAD5BFF4"
 					stateeditordisplaypos="145.00,219.00">
 					<imagemetrics>
 						<image
-							this="23101FC3-B1F2-411F-A8B2A13FC53BBFC5"
-							uniqueguid="23101FC3-B1F2-411F-A8B2A13FC53BBFC5"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="AA77187A-D590-415D-8A83206D4474AD14"
+							uniqueguid="AA77187A-D590-415D-8A83206D4474AD14"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="4DAAECF2-5B4C-4EA3-B9D239B0AA6682AB"
-							uniqueguid="4DAAECF2-5B4C-4EA3-B9D239B0AA6682AB"
-							componentimage="63556CD7-0077-4E7C-8EA5CB1B329A8CC8"
-							width="38"
-							height="38"/>
+							this="B78B37AB-112E-4335-8D7AE2C2719EA1EA"
+							uniqueguid="B78B37AB-112E-4335-8D7AE2C2719EA1EA"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
 						<image
-							this="715A4348-C442-4310-8740AD605F15064D"
-							uniqueguid="715A4348-C442-4310-8740AD605F15064D"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
+							this="B8F26CBC-F049-4B68-853A5DC613C72673"
+							uniqueguid="B8F26CBC-F049-4B68-853A5DC613C72673"
+							componentimage="3D1F1835-4D03-4729-957E22C9AB4B91E8"
+							width="55"
+							height="55"/>
+						<image
+							this="B8B198BB-045C-4009-8695B70DBB066E24"
+							uniqueguid="B8B198BB-045C-4009-8695B70DBB066E24"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
 							offset="0.00,3.00"
-							width="38"
-							height="38"
+							width="55"
+							height="55"
 							colour="#6E6E6EFF"
 							dockpoint="Center"
 							dock_offset="0.00,3.00"/>
@@ -240,10 +249,10 @@
 					<transitionmap>
 						<transition
 							index="1"
-							transition_m_target_state="962EA71F-3257-4B1F-826808861CCE0FDE"/>
+							transition_m_target_state="44AB5340-5968-483E-ACD9D2815FD804F8"/>
 						<transition
 							index="3"
-							transition_m_target_state="5354DC8A-7178-4F40-91DD3914955633C2"/>
+							transition_m_target_state="9AA6127A-A2DF-4146-8B128DB1EB7537A7"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -253,39 +262,48 @@
 						textshadervars="0.30,0.00,0.00,0.00"/>
 				</down>
 				<down_off
-					this="962EA71F-3257-4B1F-826808861CCE0FDE"
+					this="44AB5340-5968-483E-ACD9D2815FD804F8"
 					name="down_off"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="962EA71F-3257-4B1F-826808861CCE0FDE"
+					pixelcollision="true"
+					uniqueguid="44AB5340-5968-483E-ACD9D2815FD804F8"
 					stateeditordisplaypos="40.00,319.00">
 					<imagemetrics>
 						<image
-							this="CF4E4068-2637-4892-BAEDFD327E1AA7CC"
-							uniqueguid="CF4E4068-2637-4892-BAEDFD327E1AA7CC"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="5773BC10-573C-420B-8BB44F7C2C18286B"
+							uniqueguid="5773BC10-573C-420B-8BB44F7C2C18286B"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="2E44B1A5-7D88-4567-916274F9F7300227"
-							uniqueguid="2E44B1A5-7D88-4567-916274F9F7300227"
-							componentimage="B79F88C1-B17C-4F55-A3EAEE471F645545"
-							width="38"
-							height="38"/>
+							this="096A38CA-29D2-415D-A76D239F226579A6"
+							uniqueguid="096A38CA-29D2-415D-A76D239F226579A6"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
 						<image
-							this="1E1F2249-EBF5-4925-B20538FA428B44CE"
-							uniqueguid="1E1F2249-EBF5-4925-B20538FA428B44CE"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="16113EE3-7269-4774-9F1AA769547348AF"
+							uniqueguid="16113EE3-7269-4774-9F1AA769547348AF"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
+						<image
+							this="4979806C-27FB-43F1-8C0D56383A5220F1"
+							uniqueguid="4979806C-27FB-43F1-8C0D56383A5220F1"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"/>
 					</imagemetrics>
 					<transitionmap>
-						<transition transition_m_target_state="F772E4D6-19BF-42A3-B48139B69CEE5CD9"/>
+						<transition transition_m_target_state="FB8AD39B-185F-42C0-8BC66CE4AAD5BFF4"/>
 						<transition
 							index="8"
-							transition_m_target_state="7AAF90A0-4092-419A-82B18EB4C38F3238"/>
+							transition_m_target_state="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -294,40 +312,49 @@
 						fontcat_name="body_12"/>
 				</down_off>
 				<hover
-					this="BAFF4C77-332A-4F5B-97F577E2541E20EE"
+					this="67FE3B56-960E-4F2A-B42D96901CBB81AC"
 					name="hover"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="BAFF4C77-332A-4F5B-97F577E2541E20EE"
+					pixelcollision="true"
+					uniqueguid="67FE3B56-960E-4F2A-B42D96901CBB81AC"
 					stateeditordisplaypos="137.00,126.00">
 					<imagemetrics>
 						<image
-							this="8B6A10DA-78BC-4E32-8B9AF40E6C028179"
-							uniqueguid="8B6A10DA-78BC-4E32-8B9AF40E6C028179"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="37BFBFFE-94BF-4088-A5CDC7C5162F662C"
+							uniqueguid="37BFBFFE-94BF-4088-A5CDC7C5162F662C"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="096C6AD7-E8D7-44D3-A607B4DE85CBA408"
-							uniqueguid="096C6AD7-E8D7-44D3-A607B4DE85CBA408"
-							componentimage="B79F88C1-B17C-4F55-A3EAEE471F645545"
-							width="38"
-							height="38"
+							this="7B1F6CA8-9691-480C-B1333F43806056C3"
+							uniqueguid="7B1F6CA8-9691-480C-B1333F43806056C3"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
+						<image
+							this="1D9D268C-CB58-4C91-867F9AC7A70B54C3"
+							uniqueguid="1D9D268C-CB58-4C91-867F9AC7A70B54C3"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"/>
 						<image
-							this="A62EF179-828E-420F-9369BF418F089CE0"
-							uniqueguid="A62EF179-828E-420F-9369BF418F089CE0"
-							componentimage="6D8AFF29-0F8C-4E4A-AAA792D83407CFA2"
-							width="38"
-							height="38"/>
+							this="E2B0C2C8-4988-4E48-8CAA7643CCBA60E3"
+							uniqueguid="E2B0C2C8-4988-4E48-8CAA7643CCBA60E3"
+							componentimage="DAC34D19-B126-4102-95680699487654C6"
+							width="55"
+							height="55"/>
 						<image
-							this="6E12B6AE-1A6A-4165-A70C10E2300CF371"
-							uniqueguid="6E12B6AE-1A6A-4165-A70C10E2300CF371"
-							componentimage="B35E7102-0077-4A1B-9B455368CFFED9C0"
-							offset="5.00,5.00"
-							width="28"
-							height="28"
+							this="3E9D2EDE-9D9A-484A-8613782A75FB8AC2"
+							uniqueguid="3E9D2EDE-9D9A-484A-8613782A75FB8AC2"
+							componentimage="3A03DE63-54AA-42AB-A1B86D197991F6E5"
+							offset="3.00,3.00"
+							width="49"
+							height="49"
 							dockpoint="Center"
 							material_name="ui/effects/materials/magic_flame.xml.material">
 							<material_m_parameter_overrides>
@@ -347,7 +374,7 @@
 									is_override_of_default="false"/>
 								<property
 									name="heat_percent"
-									x="1"
+									x="0.699999988"
 									y="0"
 									z="0"
 									w="0"
@@ -448,41 +475,41 @@
 							</material_m_texture_overrides>
 						</image>
 						<image
-							this="94250DB0-8386-4BEB-B96EE453F7FC1221"
-							uniqueguid="94250DB0-8386-4BEB-B96EE453F7FC1221"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="B3E2C0C5-5078-4DA2-98E7AB00E516D1E0"
+							uniqueguid="B3E2C0C5-5078-4DA2-98E7AB00E516D1E0"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shader_name="brighten_t0"/>
 						<image
-							this="2E3AA7CF-C22E-4BF8-BB580578822AE7FC"
-							uniqueguid="2E3AA7CF-C22E-4BF8-BB580578822AE7FC"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
-							colour="#FFFFFF00"
-							dockpoint="Center"
-							shader_name="brighten_t0"/>
-						<image
-							this="1404D13D-DD4F-4117-9A68462CDF1FE914"
-							uniqueguid="1404D13D-DD4F-4117-9A68462CDF1FE914"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="286F2228-54F8-49B5-8A15981A97F8B6A9"
+							uniqueguid="286F2228-54F8-49B5-8A15981A97F8B6A9"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="0.50,0.00,0.00,0.00"
+							shader_name="brighten_t0"/>
+						<image
+							this="1A7C672D-FDBB-4F2B-BF693374E78CE484"
+							uniqueguid="1A7C672D-FDBB-4F2B-BF693374E78CE484"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
+							colour="#FFFFFF00"
+							dockpoint="Center"
 							shader_name="brighten_t0"/>
 					</imagemetrics>
 					<transitionmap>
 						<transition
 							index="1"
-							transition_m_target_state="7AAF90A0-4092-419A-82B18EB4C38F3238"
+							transition_m_target_state="A72DE5AE-02B0-4CD1-92FD6E70C1A2EA2A"
 							transition_m_transition_time="200"
 							transition_m_interpolation_property_mask="64"/>
 						<transition
 							index="2"
-							transition_m_target_state="F772E4D6-19BF-42A3-B48139B69CEE5CD9"/>
+							transition_m_target_state="FB8AD39B-185F-42C0-8BC66CE4AAD5BFF4"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -492,33 +519,42 @@
 						textshadervars="0.30,0.00,0.00,0.00"/>
 				</hover>
 				<inactive
-					this="19A27DF6-00E4-430C-AADB43DA90D7C05C"
+					this="AAFA457F-BCFC-4AAF-A962776C8BBD2337"
 					name="inactive"
-					width="38"
-					height="38"
-					soundcategory="UI_GBL_TMP_Selection_Locked_Unavailable_Small"
+					width="55"
+					height="55"
+					soundcategory="UI_GBL_TMP_Selection_Locked_Unavailable_Medium"
 					interactive="true"
 					disabled="true"
-					uniqueguid="19A27DF6-00E4-430C-AADB43DA90D7C05C">
+					pixelcollision="true"
+					uniqueguid="AAFA457F-BCFC-4AAF-A962776C8BBD2337">
 					<imagemetrics>
 						<image
-							this="30D0C4DE-845B-454B-B1456F39C43F848D"
-							uniqueguid="30D0C4DE-845B-454B-B1456F39C43F848D"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="822FB30B-C63A-4EA3-873807008C9A44E1"
+							uniqueguid="822FB30B-C63A-4EA3-873807008C9A44E1"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="017720EA-D629-4A17-B27D4CEC88C2FF24"
-							uniqueguid="017720EA-D629-4A17-B27D4CEC88C2FF24"
-							componentimage="E402FB2B-08D6-453E-99C17D2A80AFF6AA"
-							width="38"
-							height="38"/>
+							this="3C321E01-68BF-47F6-AAAE3E3952534064"
+							uniqueguid="3C321E01-68BF-47F6-AAAE3E3952534064"
+							componentimage="F1712897-5C5E-4357-B14F7EE2697E820E"
+							width="55"
+							height="55"/>
 						<image
-							this="CC6097EE-917D-4908-93AFDC99390258F4"
-							uniqueguid="CC6097EE-917D-4908-93AFDC99390258F4"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="1650BF03-16DD-4FBE-A6F988B9F737BAAA"
+							uniqueguid="1650BF03-16DD-4FBE-A6F988B9F737BAAA"
+							componentimage="7D36E918-FF68-4E69-A054C48F5E4FD9CE"
+							width="55"
+							height="55"/>
+						<image
+							this="B4A85449-736E-4966-A49766258AD5E304"
+							uniqueguid="B4A85449-736E-4966-A49766258AD5E304"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							colour="#FFFFFF46"
 							dockpoint="Center"/>
 					</imagemetrics>
@@ -529,57 +565,67 @@
 						fontcat_name="body_12"/>
 				</inactive>
 				<selected
-					this="7F5B3D24-CC09-4DB5-B321D8CACE544E53"
+					this="3ACD97FF-4C83-4EBB-8D8601E7738D3365"
 					name="selected"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
+					soundcategory="UI_GBL_TMP_Round_Large_Button_Toggle"
 					interactive="true"
-					uniqueguid="7F5B3D24-CC09-4DB5-B321D8CACE544E53"
+					pixelcollision="true"
+					uniqueguid="3ACD97FF-4C83-4EBB-8D8601E7738D3365"
 					stateeditordisplaypos="401.00,333.00">
 					<imagemetrics>
 						<image
-							this="7F85155C-1A00-4BB2-8F507BE0DD116F80"
-							uniqueguid="7F85155C-1A00-4BB2-8F507BE0DD116F80"
-							componentimage="CB72702A-16DD-4472-81C5389002FC6C85"
-							width="38"
-							height="38"/>
+							this="B350C7D0-BEC9-4606-84597F0AF44A606B"
+							uniqueguid="B350C7D0-BEC9-4606-84597F0AF44A606B"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="B3272BC4-3462-40D6-9C455477139C28F0"
-							uniqueguid="B3272BC4-3462-40D6-9C455477139C28F0"
-							componentimage="36DF60AA-51DC-401E-869410636576699F"
-							width="38"
-							height="38"/>
+							this="AE2022B1-C1E2-41F2-85BB3F8E52B0C5DF"
+							uniqueguid="AE2022B1-C1E2-41F2-85BB3F8E52B0C5DF"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
 						<image
-							this="986392A8-71E4-4F7C-8E7D9239AF576E10"
-							uniqueguid="986392A8-71E4-4F7C-8E7D9239AF576E10"
-							componentimage="95A7FC30-8B6B-4338-A99817A54F1454F1"
-							width="38"
-							height="38"
+							this="0AC22F37-4859-4320-B92286E49C46C7B3"
+							uniqueguid="0AC22F37-4859-4320-B92286E49C46C7B3"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
+						<image
+							this="0D4A9DFA-2B83-4D31-B7816AA758418D2B"
+							uniqueguid="0D4A9DFA-2B83-4D31-B7816AA758418D2B"
+							componentimage="FDFE2C1E-D484-4256-92103D00A21E8998"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"/>
 						<image
-							this="C245308F-DD62-4EF6-9454F3F76C16CB71"
-							uniqueguid="C245308F-DD62-4EF6-9454F3F76C16CB71"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="E35EC100-0DD9-4782-A34D1F56F9DC5A51"
+							uniqueguid="E35EC100-0DD9-4782-A34D1F56F9DC5A51"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
 						<image
-							this="14FA8251-0B7B-4052-A6A580938AD08E27"
-							uniqueguid="14FA8251-0B7B-4052-A6A580938AD08E27"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="AB11125C-636D-4B34-BE8BAD63018DF7E0"
+							uniqueguid="AB11125C-636D-4B34-BE8BAD63018DF7E0"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
 						<image
-							this="4799EA0C-345D-4E93-8BCCCEBC0EF4F912"
-							uniqueguid="4799EA0C-345D-4E93-8BCCCEBC0EF4F912"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="9A67CA5B-6A77-4D4A-81B19ED2D982779E"
+							uniqueguid="9A67CA5B-6A77-4D4A-81B19ED2D982779E"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"
 							dockpoint="Center"
 							shadertechnique_vars="2.00,0.00,0.00,0.00"
@@ -587,7 +633,7 @@
 					</imagemetrics>
 					<transitionmap>
 						<transition
-							transition_m_target_state="5354DC8A-7178-4F40-91DD3914955633C2"
+							transition_m_target_state="9AA6127A-A2DF-4146-8B128DB1EB7537A7"
 							transition_m_transition_time="200"
 							transition_m_interpolation_property_mask="64"/>
 					</transitionmap>
@@ -598,33 +644,42 @@
 						fontcat_name="body_12"/>
 				</selected>
 				<selected_down
-					this="8FD2D710-A863-4678-ADB8A248C5E14745"
+					this="18F89CA9-3924-402C-92CB725D1588ED35"
 					name="selected_down"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="8FD2D710-A863-4678-ADB8A248C5E14745"
+					pixelcollision="true"
+					uniqueguid="18F89CA9-3924-402C-92CB725D1588ED35"
 					stateeditordisplaypos="268.00,120.00">
 					<imagemetrics>
 						<image
-							this="8A34DF4E-9816-4BE9-A23B9E3A16C8E26D"
-							uniqueguid="8A34DF4E-9816-4BE9-A23B9E3A16C8E26D"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="8F59F705-A3BE-4878-AC6A5AD0A9A89DD7"
+							uniqueguid="8F59F705-A3BE-4878-AC6A5AD0A9A89DD7"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="870D89AD-9F0E-4148-B145E3668E1F2381"
-							uniqueguid="870D89AD-9F0E-4148-B145E3668E1F2381"
-							componentimage="52F9E5FA-7738-414C-9AC42D6800571E99"
-							width="38"
-							height="38"/>
+							this="B770CB9D-D3C1-4230-97C0B0DCDF77A8A2"
+							uniqueguid="B770CB9D-D3C1-4230-97C0B0DCDF77A8A2"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
 						<image
-							this="2018CE8B-456A-44C4-8D00B9BB9A546BE0"
-							uniqueguid="2018CE8B-456A-44C4-8D00B9BB9A546BE0"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
+							this="6D018FB4-B838-4574-922358FC2EB712DF"
+							uniqueguid="6D018FB4-B838-4574-922358FC2EB712DF"
+							componentimage="0C0E46A0-DED8-49EB-BC331B80D6C75F15"
+							width="55"
+							height="55"/>
+						<image
+							this="9F362FEE-DF5F-4D6D-BC9B06D2F4ED458D"
+							uniqueguid="9F362FEE-DF5F-4D6D-BC9B06D2F4ED458D"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
 							offset="0.00,3.00"
-							width="38"
-							height="38"
+							width="55"
+							height="55"
 							colour="#808080FF"
 							dockpoint="Center"
 							dock_offset="0.00,3.00"/>
@@ -632,10 +687,10 @@
 					<transitionmap>
 						<transition
 							index="1"
-							transition_m_target_state="7292B72D-F690-43E0-910E760EC7D9B433"/>
+							transition_m_target_state="D86CB640-B6A0-4045-91D073FC7F47EE71"/>
 						<transition
 							index="3"
-							transition_m_target_state="BAFF4C77-332A-4F5B-97F577E2541E20EE"/>
+							transition_m_target_state="67FE3B56-960E-4F2A-B42D96901CBB81AC"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -645,41 +700,50 @@
 						textshadervars="0.30,0.00,0.00,0.00"/>
 				</selected_down>
 				<selected_down_off
-					this="7292B72D-F690-43E0-910E760EC7D9B433"
+					this="D86CB640-B6A0-4045-91D073FC7F47EE71"
 					name="selected_down_off"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="7292B72D-F690-43E0-910E760EC7D9B433"
+					pixelcollision="true"
+					uniqueguid="D86CB640-B6A0-4045-91D073FC7F47EE71"
 					stateeditordisplaypos="384.00,21.00">
 					<imagemetrics>
 						<image
-							this="38BEEA84-CF6A-4813-9A1101334E85D052"
-							uniqueguid="38BEEA84-CF6A-4813-9A1101334E85D052"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="683BC29C-9367-407E-87B1A824CC012BD1"
+							uniqueguid="683BC29C-9367-407E-87B1A824CC012BD1"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="7FADF8F1-295A-4EB3-9745A5484972F09D"
-							uniqueguid="7FADF8F1-295A-4EB3-9745A5484972F09D"
-							componentimage="36DF60AA-51DC-401E-869410636576699F"
-							width="38"
-							height="38"/>
+							this="C09D2830-4C7D-4EC9-AB92A59F1C57DCD7"
+							uniqueguid="C09D2830-4C7D-4EC9-AB92A59F1C57DCD7"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
 						<image
-							this="FAB611B4-B0F3-4D9C-A5245FEA3EFAD682"
-							uniqueguid="FAB611B4-B0F3-4D9C-A5245FEA3EFAD682"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="3A4F76C6-FF45-4561-9F50093AD02FF9BE"
+							uniqueguid="3A4F76C6-FF45-4561-9F50093AD02FF9BE"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
+						<image
+							this="7D1B6610-3DD9-4F22-B8B93FF9E9F3C02D"
+							uniqueguid="7D1B6610-3DD9-4F22-B8B93FF9E9F3C02D"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
 					</imagemetrics>
 					<transitionmap>
-						<transition transition_m_target_state="8FD2D710-A863-4678-ADB8A248C5E14745"/>
+						<transition transition_m_target_state="18F89CA9-3924-402C-92CB725D1588ED35"/>
 						<transition
 							index="8"
-							transition_m_target_state="7F5B3D24-CC09-4DB5-B321D8CACE544E53"/>
+							transition_m_target_state="3ACD97FF-4C83-4EBB-8D8601E7738D3365"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -688,40 +752,49 @@
 						fontcat_name="body_12"/>
 				</selected_down_off>
 				<selected_hover
-					this="5354DC8A-7178-4F40-91DD3914955633C2"
+					this="9AA6127A-A2DF-4146-8B128DB1EB7537A7"
 					name="selected_hover"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
-					uniqueguid="5354DC8A-7178-4F40-91DD3914955633C2"
+					pixelcollision="true"
+					uniqueguid="9AA6127A-A2DF-4146-8B128DB1EB7537A7"
 					stateeditordisplaypos="269.00,216.00">
 					<imagemetrics>
 						<image
-							this="26528069-A9C5-45D3-B67AB5D009C53B2F"
-							uniqueguid="26528069-A9C5-45D3-B67AB5D009C53B2F"
-							componentimage="CB72702A-16DD-4472-81C5389002FC6C85"
-							width="38"
-							height="38"/>
+							this="D7BCA896-E165-40BB-B2ED7C4CAD3689BE"
+							uniqueguid="D7BCA896-E165-40BB-B2ED7C4CAD3689BE"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="41F7A98D-471F-4120-9C26D15322353FA1"
-							uniqueguid="41F7A98D-471F-4120-9C26D15322353FA1"
-							componentimage="36DF60AA-51DC-401E-869410636576699F"
-							width="38"
-							height="38"
+							this="1DF0F69D-6921-4B9F-8197506C13F6CCDF"
+							uniqueguid="1DF0F69D-6921-4B9F-8197506C13F6CCDF"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
+						<image
+							this="81DB1021-611C-46C7-B925A0D3D03F4B62"
+							uniqueguid="81DB1021-611C-46C7-B925A0D3D03F4B62"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"/>
 						<image
-							this="9CCA624D-4BB7-4A9C-9353F2873AB80AEA"
-							uniqueguid="9CCA624D-4BB7-4A9C-9353F2873AB80AEA"
-							componentimage="95A7FC30-8B6B-4338-A99817A54F1454F1"
-							width="38"
-							height="38"/>
+							this="F50EF468-CFD1-4D53-A29949846CBB1F5A"
+							uniqueguid="F50EF468-CFD1-4D53-A29949846CBB1F5A"
+							componentimage="FDFE2C1E-D484-4256-92103D00A21E8998"
+							width="55"
+							height="55"/>
 						<image
-							this="3039AB83-D85A-4431-BC8AD040C1DD4CA7"
-							uniqueguid="3039AB83-D85A-4431-BC8AD040C1DD4CA7"
-							componentimage="B35E7102-0077-4A1B-9B455368CFFED9C0"
-							offset="5.00,5.00"
-							width="28"
-							height="28"
+							this="E0AAEDEB-4682-4E39-B429853EF4BEA455"
+							uniqueguid="E0AAEDEB-4682-4E39-B429853EF4BEA455"
+							componentimage="3A03DE63-54AA-42AB-A1B86D197991F6E5"
+							offset="3.00,3.00"
+							width="49"
+							height="49"
 							dockpoint="Center"
 							material_name="ui/effects/materials/magic_flame.xml.material">
 							<material_m_parameter_overrides>
@@ -741,7 +814,7 @@
 									is_override_of_default="false"/>
 								<property
 									name="heat_percent"
-									x="1"
+									x="0.699999988"
 									y="0"
 									z="0"
 									w="0"
@@ -842,30 +915,30 @@
 							</material_m_texture_overrides>
 						</image>
 						<image
-							this="F5C550A5-43DA-4CC6-9FAED61ED368AA6C"
-							uniqueguid="F5C550A5-43DA-4CC6-9FAED61ED368AA6C"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="3451BC2A-6E80-4B85-B5AA961EF5065B7F"
+							uniqueguid="3451BC2A-6E80-4B85-B5AA961EF5065B7F"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
 						<image
-							this="804BD442-44BC-48A9-B01BD8C2620F15F1"
-							uniqueguid="804BD442-44BC-48A9-B01BD8C2620F15F1"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="476A7046-488C-471D-9B0A649FDD7C313A"
+							uniqueguid="476A7046-488C-471D-9B0A649FDD7C313A"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							colour="#FFFFFF00"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
 						<image
-							this="296A9054-9642-4A51-BFAEA1DEECEC37A1"
-							uniqueguid="296A9054-9642-4A51-BFAEA1DEECEC37A1"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="894E022E-C75E-466E-94F56F14AB95E22A"
+							uniqueguid="894E022E-C75E-466E-94F56F14AB95E22A"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							dockpoint="Center"
 							shadertechnique_vars="2.00,0.00,0.00,0.00"
 							shader_name="brighten_t0"/>
@@ -873,12 +946,12 @@
 					<transitionmap>
 						<transition
 							index="1"
-							transition_m_target_state="7F5B3D24-CC09-4DB5-B321D8CACE544E53"
+							transition_m_target_state="3ACD97FF-4C83-4EBB-8D8601E7738D3365"
 							transition_m_transition_time="200"
 							transition_m_interpolation_property_mask="64"/>
 						<transition
 							index="2"
-							transition_m_target_state="8FD2D710-A863-4678-ADB8A248C5E14745"/>
+							transition_m_target_state="18F89CA9-3924-402C-92CB725D1588ED35"/>
 					</transitionmap>
 					<component_text
 						font_m_size="12"
@@ -888,32 +961,41 @@
 						textshadervars="0.30,0.00,0.00,0.00"/>
 				</selected_hover>
 				<selected_inactive
-					this="B43C35B2-CD6D-4501-9203EEA929C79AD1"
+					this="E27E60E5-5454-4B51-A585806C16BC45CA"
 					name="selected_inactive"
-					width="38"
-					height="38"
+					width="55"
+					height="55"
 					interactive="true"
 					disabled="true"
-					uniqueguid="B43C35B2-CD6D-4501-9203EEA929C79AD1">
+					pixelcollision="true"
+					uniqueguid="E27E60E5-5454-4B51-A585806C16BC45CA">
 					<imagemetrics>
 						<image
-							this="055858F5-8B64-4F51-8657FE2DA1BF8EC6"
-							uniqueguid="055858F5-8B64-4F51-8657FE2DA1BF8EC6"
-							componentimage="94B121A8-F566-4400-B3B542268B325F62"
-							width="38"
-							height="38"/>
+							this="87AF1AF8-3857-48A1-AB09352506DB8446"
+							uniqueguid="87AF1AF8-3857-48A1-AB09352506DB8446"
+							componentimage="87E2E256-68BB-45F3-85C799D27F07DCE5"
+							offset="-3.00,-3.00"
+							width="61"
+							height="61"
+							dockpoint="Center"/>
 						<image
-							this="828D3788-4EF1-4074-AC0B6795A665A843"
-							uniqueguid="828D3788-4EF1-4074-AC0B6795A665A843"
-							componentimage="A982E5BE-F4B5-4CCA-94ECC4974AB79E79"
-							width="38"
-							height="38"/>
+							this="1C08DEC0-2D10-4622-B5CFD80543E516A6"
+							uniqueguid="1C08DEC0-2D10-4622-B5CFD80543E516A6"
+							componentimage="24619BF1-87BC-4920-B2AEE9DB28DB86E3"
+							width="55"
+							height="55"/>
 						<image
-							this="28F92410-A3AC-4900-B804512FD21B2AF2"
-							uniqueguid="28F92410-A3AC-4900-B804512FD21B2AF2"
-							componentimage="52C48B75-26DF-4CB6-9758AF130ABF3BCF"
-							width="38"
-							height="38"
+							this="228A6239-7BFE-4E0C-9A0D095A1C222323"
+							uniqueguid="228A6239-7BFE-4E0C-9A0D095A1C222323"
+							componentimage="A52F9B50-E0E6-4168-9B0913E427A39DA8"
+							width="55"
+							height="55"/>
+						<image
+							this="C738ADAC-F80F-4308-B4A3848B589AB623"
+							uniqueguid="C738ADAC-F80F-4308-B4A3848B589AB623"
+							componentimage="09F733A0-9691-46CE-B82E4B705C3F5281"
+							width="55"
+							height="55"
 							colour="#FFFFFF46"
 							dockpoint="Center"
 							shadertechnique_vars="1.00,0.00,0.00,0.00"
@@ -935,8 +1017,8 @@
 							targetmetrics_m_height="95"
 							targetmetrics_m_width="95"
 							targetmetrics_m_shadervars="0.70,0.00,0.00,0.00"
-							targetmetrics_m_imageindex1="11"
-							targetmetrics_m_imageindex2="11"
+							targetmetrics_m_imageindex1="10"
+							targetmetrics_m_imageindex2="10"
 							material_param_id="heat_percent"/>
 					</frames>
 				</mouseon>
@@ -947,8 +1029,8 @@
 							interpolationpropertymask="1064"
 							targetmetrics_m_height="95"
 							targetmetrics_m_width="95"
-							targetmetrics_m_imageindex1="11"
-							targetmetrics_m_imageindex2="11"
+							targetmetrics_m_imageindex1="10"
+							targetmetrics_m_imageindex2="10"
 							material_param_id="heat_percent"/>
 					</frames>
 				</mouseoff>

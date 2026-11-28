@@ -1,3 +1,4 @@
 key	location	ownership	source	target	territory
 #campaign_effect_scopes_tables;2;db/campaign_effect_scopes_tables/corvus_morathi_tech					
 corv_faction_to_character_own_druchii_spellcasters	factionwide	yours	faction	character	any
+corv_faction_to_character_own_all_armies	factionwide	yours	faction	character	any
